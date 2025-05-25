@@ -3,25 +3,29 @@ name: Verify PDF/A-1B compatibility
 on:
   push:
     branches:
-      - master
-      - pdfa-1b
+      - main
+      - devel
   pull_request:
     branches:
-      - master
+      - main
+      - devel
 
 jobs:
-  veralidate:
+  build_latex:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Compile PDF
+      - name: Install TexLive and dependencies
+        uses: teatimeguest/setup-texlive-action@v3
+        with:
+          package-file: texlive-packages.txt
+      - name: Compile LaTeX document
         run: >
-          docker run --rm -t -v "$(pwd):/workdir" 
-          texlive/texlive@sha256:889f8293c444060ef8470cf5f5764c7efcdcc831c8c856a4363cf00929c95426
-          pdflatex -halt-on-error main.tex
+            pdflatex -halt-on-error main.tex 
       - name: Verify PDF
         run: >
           docker run --rm -t -v "$(pwd):/data" 
           ghcr.io/verapdf/cli@sha256:26a57c6711ae1d59f987f34ca411f87d8078e3ae75bb90671fcece957b75dcee
           -f 1b main.pdf
+

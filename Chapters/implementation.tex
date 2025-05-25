@@ -126,7 +126,16 @@ You should not use single subsections---for example, Section 2.1 needs to be acc
 
 \figref{fig:work_packages} serves as an example of a figure and a text referring to it. Figure captions are below the figure, and the caption text ends with a full stop. A short caption is centered, while a long caption extending to a several lines is justified on both sides. According to the copyright enactments, you must always have the permission from the copyright holder to use the figure in your work. \textbf{Copyright infringement may lead to legal actions and penalties, and in those cases the author is responsible.} The writer should grow towards to mainly using figures of his own in the thesis. \textbf{ \figref{fig:work_packages} serves as an example of authors' own production, thus requiring no reference or footnotes.} In other words: if no outside source is referred to, it is assumed that the author of the thesis is also the author of the figure.
 
-%Pictures in .eps if you use latex, .pdf or .png if you use pdflatex. Don't specify the extension so you can use both!
+The final thesis will be published as a PDF/A file, and this LaTeX
+template produces files in that format directly (There is no need to
+use Muuntaja). Be sure to remove all transparency in your source
+images to ensure the end result is also compliant.
+
+% Pictures in .pdf, .png or .jpg. No need to specify the extension.
+% Transparent images are not allowed with PDF/A.
+% With ImageMagick transparency can be removed with
+% convert image.png -background white -alpha remove -alpha off image_nobg.png
+% This restriction also affects PDF images
 \begin{figure}[ht]
   \begin{center}
     \includegraphics*[width=0.7\textwidth]{WP}

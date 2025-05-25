@@ -1,0 +1,38 @@
+scheme-basic          # Base TeX Live scheme; minimal install for LaTeX (required).
+algorithm2e           # Provides structured pseudocode environments; actively maintained.
+babel-finnish         # Finnish language support for babel; needed for multilingual documents.
+biblatex              # Modern bibliography package; recommended over bibtex.
+boxedminipage         # Creates boxed content blocks; still useful in templates.
+caption		      # Caption??
+chngcntr              # Allows resetting counters (e.g., figures per chapter); still applicable.
+collection-fontsrecommended # Fonts
+datetime              # ❌ Obsolete; replaced by datetime2. Use only if legacy compatibility is needed.
+datetime2             # ✅ Modern date/time formatting package; recommended.
+datetime2-finnish     # Locale module for datetime2 to support Finnish.
+fancybox              # Legacy box drawing package; works, but modern alternatives exist.
+float                 # Allows precise control over float placement; widely used.
+hyphen-finnish        # Finnish hyphenation patterns; used with babel.
+import                # Supports modular document structure; enables nested \input.
+lastpage              # Enables 'Page X of Y' in headers/footers; still useful.
+microtype             # Enhances typographic quality (kerning, protrusion); strongly recommended.
+multirow              # Allows multi-row cells in tables; still widely needed.
+newtx                 # ✅ Modern Times-like font package; supersedes 'times', includes text+math.
+nth                   # Adds support for ordinal suffixes (e.g., 1st, 2nd); small but helpful.
+pdfx                  # Enables PDF/A and PDF/X output; useful for archival documents.
+placeins              # Prevents floats from escaping their sections; useful with \FloatBarrier.
+subfigure             # ❌ Deprecated; use `subcaption` instead unless legacy support is needed.
+times                 # ❌ Obsolete font package; replaced by `newtx`.
+titlecaps             # Capitalizes titles (e.g., sections); niche but functional.
+titlesec              # Provides control over section title formatting; useful for custom layouts.
+tocloft               # Customizes ToC/LoF/LoT layout; powerful but can be complex.
+xcolor		      # Color support
+xstring               # String manipulation utilities for macro authors; still useful.
+
+# collection-latex-extra
+fmtcount
+enumitem
+ifoddpage
+ifnextok
+relsize
+everyshi
+xmpincl
