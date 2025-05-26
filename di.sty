@@ -37,7 +37,7 @@
 \usepackage[english=nohyphenation,finnish=nohyphenation]{hyphsubst}
 \usepackage[labelsep=period]{caption}
 \usepackage{enumitem}
-\usepackage[nodayofweek, level]{datetime}
+\usepackage[useregional=text, british]{datetime2}
 \usepackage{nth}
 \usepackage{titlecaps}
 \usepackage{titletoc}
@@ -233,6 +233,8 @@
 \newcommand{\maketitlepage}{
     \sloppy
     \begin{titlepage}
+      \DTMdefboolkey{finnish}{showdayofmonth}[false]{}
+      \DTMdefboolkey{en-GB}{showdayofmonth}[false]{}
     	\centering{\includegraphics*[width=0.22\textwidth]{Figures/logo.png}\\}
     	\ifthenelse{\equal{\@thesislanguage}{english}}
     	{
@@ -243,7 +245,7 @@
         	\vspace{12 mm}
         	{\textbf{\fontsize{18}{22pt}\selectfont\MakeUppercase \@title \\}}
         	\vfill
-        	{\fontsize{14}{17}\selectfont \getthesis's Thesis \\Degree Programme in Computer Science and Engineering \\ \monthyear \\}
+                {\fontsize{14}{17}\selectfont \getthesis's Thesis \\Degree Programme in Computer Science and Engineering \\ \DTMToday \\}
         	\vspace{1cm}
     	}
     	{
@@ -254,10 +256,10 @@
         	\vspace{12 mm}
         	{\textbf{\fontsize{18}{22pt}\selectfont\MakeUppercase \@otsikko \\}}
         	\vfill
-        	{\fontsize{14}{17}\selectfont \ifthenelse{\equal{\@thesis}{Master}}
+                {\fontsize{14}{17}\selectfont \ifthenelse{\equal{\@thesis}{Master}}
             	{Diplomityö}
             	{Kandidaatintyö} 
-        	\\ Tietotekniikan tutkinto-ohjelma \\ \kuukausivuosi \\}
+                \\ Tietotekniikan tutkinto-ohjelma \\ \DTMToday \\}
         	\vspace{1cm}
     	}
     \end{titlepage}
@@ -295,13 +297,13 @@
 \renewenvironment{abstract}{
 	\newpage
 	\addtocontents{toc}{\protect\contentsline{chapter}{ABSTRACT}{}{page.\thepage}}
-	{{\getauthorsabstract (\getyear) \titlecap{\@title}.} University of Oulu, Degree Programme in Computer Science and Engineering, \pageref{LastPage}~p.}
+	{{\getauthorsabstract (\the\year) \titlecap{\@title}.} University of Oulu, Degree Programme in Computer Science and Engineering, \pageref{LastPage}~p.}
 	\abschapter*{ABSTRACT} \bf}{}
 
 \newenvironment{tiivistelma}{
 	\newpage \selectlanguage{finnish}
 	\addtocontents{toc}{\protect\contentsline{chapter}{TIIVISTELM\"A}{}{page.\thepage}}
-	{{\getauthorsabstract (\getyear) \@otsikko .} Oulun yli\-opis\-to, Tietotekniikan tutkinto-ohjelma, \pageref{LastPage}~s.}
+	{{\getauthorsabstract (\the\year) \@otsikko .} Oulun yli\-opis\-to, Tietotekniikan tutkinto-ohjelma, \pageref{LastPage}~s.}
 	\abschapter*{TIIVISTELM\"A} \bf}{\selectlanguage{english}}
 
 %chapters without page numbering
@@ -481,10 +483,12 @@ Byte& \byte{0}&\byte{1} &\byte{2} & \byte{3} \\
 }
 %signature at the bottom of foreword
 \newcommand{\signature}{
-    \par\lskip[1]\hspace{0.0cm}
+  \DTMlangsetup[en-GB]{monthyearsep={,\space}}
+  \DTMlangsetup[finnish]{monthyearsep={,\space}}
+  \par\lskip[1]\hspace{0.0cm}
     \ifthenelse{\equal{\@thesislanguage}{english}}
-    {\begin{flushleft} Oulu, \monthname\ \nth{\number \day}, \number \year\end{flushleft}}
-    {\begin{flushleft} Oulussa \kern-0.6em \tanaan \end{flushleft}}
+    {\begin{flushleft} Oulu, \DTMtoday \end{flushleft}}
+    {\begin{flushleft} Oulussa, \DTMtoday \end{flushleft}}
     \par \lskip[0]\hspace{0.0cm}
     \ifthenelse{\equal{\@firstnametwo}{}}
     {\begin{flushleft} \@firstname\ \@lastname \end{flushleft}}

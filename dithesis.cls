@@ -770,41 +770,10 @@
 \newcommand{\charef}[1]{Chapter \ref{#1}}
 \newcommand{\secref}[1]{Section \ref{#1}}
   
-\newcommand{\monthyear}{\monthname\ \number \year}
-
-\newcommand{\getyear}{\number \year}
-
 %Implementation of switch case
 \newcommand{\ifequals}[3]{\ifthenelse{\equal{#1}{#2}}{#3}{\kern -0.0em}}
 \newcommand{\case}[2]{#1 #2} % Dummy, so \renewcommand has something to overwrite...
 \newenvironment{switch}[1]{\renewcommand{\case}{\ifequals{#1}}}{}
-
-\newcommand{\kuukausi}{
-    \begin{switch}{\number \month}
-        \case{1}{Tammikuu}
-        \case{2}{Helmikuu}
-        \case{3}{Maaliskuu}
-        \case{4}{Huhtikuu}
-        \case{5}{Toukokuu}
-        \case{6}{Kes\"akuu}
-        \case{7}{Hein\"akuu}
-        \case{8}{Elokuu}
-        \case{9}{Syyskuu}
-        \case{10}{Lokakuu}
-        \case{11}{Marraskuu}
-        \case{12}{Joulukuu}
-    \end{switch}
-}
-
-\newcommand{\kuukausivuosi}{
-    \kuukausi \number \year
-}
-
-\newcommand{\tanaan}{
-    \selectlanguage{finnish}
-    \noindent \number \day. \monthname\ \number \year
-    \selectlanguage{english}
-}
 
 \setlength\columnsep{10\p@}
 \setlength\columnseprule{0\p@}
