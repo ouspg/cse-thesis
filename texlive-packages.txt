@@ -19,8 +19,6 @@ newtx                 # ✅ Modern Times-like font package; supersedes 'times', 
 nth                   # Adds support for ordinal suffixes (e.g., 1st, 2nd); small but helpful.
 pdfx                  # Enables PDF/A and PDF/X output; useful for archival documents.
 placeins              # Prevents floats from escaping their sections; useful with \FloatBarrier.
-subfigure             # ❌ Deprecated; use `subcaption` instead unless legacy support is needed.
-times                 # ❌ Obsolete font package; replaced by `newtx`.
 titlecaps             # Capitalizes titles (e.g., sections); niche but functional.
 titlesec              # Provides control over section title formatting; useful for custom layouts.
 tocloft               # Customizes ToC/LoF/LoT layout; powerful but can be complex.
@@ -29,9 +27,11 @@ xstring               # String manipulation utilities for macro authors; still u
 
 # collection-latex-extra
 fmtcount
+fontaxes
 enumitem
 ifoddpage
 ifnextok
 relsize
 everyshi
 xmpincl
+xpatch
