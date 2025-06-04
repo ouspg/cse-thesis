@@ -10,13 +10,18 @@
 
 
 \documentclass[a4paper, 12pt, titlepage]{report}
-\usepackage[english,finnish]{babel}
-\usepackage{di}
+\usepackage[finnish]{di}
+\usepackage[type={CC}, modifier={by}, version={4.0}]{doclicense}
 
-\usepackage[type={CC}, modifier={by-nc-sa}, version={4.0}]{doclicense}
-
-\copyrighttext{Copyright \noexpand\textcopyright\ \number\year\ \getauthors{, }} {\textcopyright{} \number\year \getauthors{, }. Tämä teos on lisenssoitu \href{https://creativecommons.org/licenses/by-nc-nd/4.0/deed.fi}{CC BY-NC-SA 4.0} -käyttöluvalla.}
-
+\copyrighttext
+  {Copyright \textcopyright\ \number\year\ \getauthors{, }}
+  {%
+    \textcopyright{}
+    \number\year\ \getauthors{, }.\par
+    \doclicenseThis % CC logo
+    Poikkeus: kuvat sivuilla 5 ja 7 eivät kuulu lisenssiin.
+  }
+  
 
 \newcommand{\englishabstract}{
 This document provides general guidance for a degree student of Computer Science and Engineering in preparing his/her master's thesis. This guide defines the role of a thesis in the M.Sc. Degree, presents the actions to be taken in different phases of the thesis procedure and introduces the way that master’s thesis is written. The document has been formatted based on these guidelines to serve as an example how the thesis should look like.}
@@ -37,8 +42,6 @@ Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa opiskelijaa diplomityö
 
 % Please choose the correct type of thesis and the language used
 \thesis{Master} % {Bachelor | Master}
-% Uncomment for Finnish thesis
-% \renewcommand{\thesislanguage}{finnish}
 
 %Names of other authors can be added here
 \firstnametwo{Author}
@@ -65,7 +68,7 @@ Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa opiskelijaa diplomityö
     \hypersetup{pageanchor=true}
     \makecopyrightpage{}
   
-    \ifthenelse{\equal{\thesislanguage}{finnish}}{
+    \IfLang{\MainLang}{finnish}{
       \printtiivistelma
       \printabstract
       \selectlanguage{finnish}
@@ -101,7 +104,7 @@ Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa opiskelijaa diplomityö
     \chapter{Summary}
         \label{summary}
         \input{Chapters/summary}
-
+    
     \printbibliography[heading=bibnumbered, title=\mybibname]
 
     \startappendix
