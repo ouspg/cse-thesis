@@ -7,6 +7,10 @@
 
 \ProvidesFile{doclicense-finnish.ldf}
 
+\ifthenelse{\equal{\doclicense@imagemodifier}{-88x31}}{% chktex 29
+  \@namedef{doclicense@imagemodifier}{-eu-88x31}% chktex 29
+}{}
+
 \@namedef{doclicense@lang@thisDoc}{Tämä teos on lisensoitu}%
 \@namedef{doclicense@lang@word@license}{ -käyttöluvalla}%
 %

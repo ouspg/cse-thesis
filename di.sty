@@ -346,10 +346,8 @@ versus via with within without}
 \newcommand{\getotsikko}{\@otsikko}
 \newcommand{\gettitle}{\@title}
 
-\newcommand{\lskip}[1][]{\vspace{#1\baselineskip}\noindent}
-
-\newcommand{\printavainsanat}{\lskip Avainsanat: \avainsanat}
-\newcommand{\printkeywords}{\lskip Keywords: \keywords}
+\newcommand{\printavainsanat}{\par\noindent Avainsanat: \avainsanat}
+\newcommand{\printkeywords}{\par\noindent Keywords: \keywords}
 
 \newcommand{\thesis}[1]{\gdef\@thesis{#1}}
 \newcommand{\getthesis}{\@thesis}
@@ -642,29 +640,13 @@ versus via with within without}
 %signature at the bottom of foreword
 \newcommand{\signature}{
   \DTMlangsetup[en-GB]{monthyearsep={,\space}}
-  \par\lskip[1]\hspace{0.0cm}
+  \par \vspace{1\baselineskip} \noindent
   \begin{flushleft} \cityname \DTMToday
   \end{flushleft}
-  \par \lskip[0]\hspace{0.0cm}
-  \ifthenelse{\equal{\@firstnametwo}{}}
-  {
-    \begin{flushleft} \@firstname\ \@lastname
-  \end{flushleft}}
-  {\ifthenelse{\equal{\@firstnamethree}{}}
-    {
-      \begin{flushleft}
-        \@firstname\ \@lastname\\
-        \@firstnametwo\ \@lastnametwo
-      \end{flushleft}
-    }
-    {
-      \begin{flushleft}
-        \@firstname\ \@lastname\\
-        \@firstnametwo\ \@lastnametwo\\
-        \@firstnamethree\ \@lastnamethree
-      \end{flushleft}
-    }
-  }
+  \par \noindent
+  \begin{flushleft}
+    \getauthors{\\}
+  \end{flushleft}
 }
 
 \g@addto@macro{\normalsize}{%
@@ -680,10 +662,3 @@ versus via with within without}
 \newcommand{\tabref}[1]{Table~\ref{#1}}
 \newcommand{\charef}[1]{Chapter~\ref{#1}}
 \newcommand{\secref}[1]{Section~\ref{#1}}
-
-%
-%% Creative Commons license Finnish translations for use with doclicense.sty.
-%% To be removed when Finnish is supported by doclicense. 
-\newcommand{\MyMetadataText}{\doclicense@lang@thisDoc \ \doclicense@type \ \doclicense@modifier \ \doclicense@version \ \doclicense@lang@word@license}
-%
-
