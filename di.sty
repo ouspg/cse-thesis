@@ -1,28 +1,16 @@
 %
-% Template for Department of Electrical and Information Engineering
-% Diploma Thesis v1.1.2013
+% Template for Degree Programme of Computer Science and Engineering
+% Diploma Thesis at University of Oulu
+%
 % Authors: Mika Korhonen (original author), Pekka Pietikäinen,
 % Christian Wieser, Teemu Tokola, Juha Kylmänen, Tuomas Holmberg and
-% Tuomas Varanka.
-% If you make any improvements to this template, please contact
-% teemu.tokola@oulu.fi
+% Tuomas Varanka
+% If you make any improvements to this template, please use
+% https://github.com/ouspg/cse-thesis
 %
-% CHANGELOG
-% 2023-01-31: Thnks to Miika Sikala
-%   row 133: \dichapter{\texorpdfstring{\MakeUppercase{#1}}{}} -->
-% \dichapter{\texorpdfstring{\MakeUppercase{#1}}{#1}}
-%   row 136: \dichapter*{\texorpdfstring{\MakeUppercase{#1}}{}} -->
-% \dichapter*{\texorpdfstring{\MakeUppercase{#1}}{#1}}
-%   row 217:
-% \renewcommand{\section}[1]{\oldsection{\texorpdfstring{\titlecap{##1}}{}}{}}
-% -->
-% \renewcommand{\section}[1]{\oldsection{\texorpdfstring{\titlecap{##1}}{##1}}{}}
-%   row 218:
-% \renewcommand{\subsection}[1]{\oldsubsection{\texorpdfstring{\titlecap{##1}}{}}{}}
-% -->
-% \renewcommand{\subsection}[1]{\oldsubsection{\texorpdfstring{\titlecap{##1}}{##1}}{}}
-% 2023-01-31: Track changes has been turned on -TTo
-%
+% Several inspirations come from from Aalto University
+% aaltothesis.cls by Luis R.J. Costa
+
 \ProvidesPackage{di}
 
 % --- Encoding and fonts: Required for correct character rendering and thesis typography ---
@@ -245,7 +233,8 @@ versus via with within without}
 \setcounter{secnumdepth}{2} % numbers up to \subsection by default
 
 % Chapter
-% Commentary: Chapters are set in 14pt bold (bfseries), centered, uppercase. No space before, one baseline skip after.
+% Chapters are set in 14pt bold (bfseries), centered, uppercase.
+% No space before, one baseline skip after.
 \titleformat{\chapter}
   [hang]
   {\normalfont\bfseries\fontsize{14}{17}\selectfont\centering}
@@ -256,28 +245,31 @@ versus via with within without}
 % Remove indentation for the first paragraph after headings
 \patchcmd{\chapter}{\@afterindenttrue}{\@afterindentfalse}{}{}
 
+\renewcommand{\thechapter}{\arabic{chapter}}
+
 % Section
-% Commentary: Sections are 12pt bold (bfseries), left-aligned, normal font, with 2 baseline skips before and 1 after.
+% Sections are 12pt bold (bfseries), left-aligned, normal font.
+% 2 baseline skips before and 1 after.
 \titleformat{\section}
   [hang]
   {\normalfont\bfseries\fontsize{12}{15}\selectfont}
   {\thesection.}
   {1em}
   {}
-% (Spacing is set in \@startsection: 2\baselineskip before, \baselineskip after.)
 
 % Subsection
-% Commentary: Subsections are bold italic (bfseries, itshape), normal font size, with 2 baseline skips before and 1 after.
+% Subsections are bold italic (bfseries, itshape), normal font size,
+% with 2 baseline skips before and 1 after.
 \titleformat{\subsection}
   [hang]
   {\normalfont\bfseries\itshape}
   {\thesubsection.}
   {1em}
   {}
-% (Spacing is set in \@startsection: 2\baselineskip before, \baselineskip after.)
 
 % Subsubsection
-% Commentary: Subsubsections are italic (itshape), normal font size, with 2 baseline skips before and 1 after.
+% Subsubsections are italic (itshape), normal font size,
+% with 2 baseline skips before and 1 after.
 \titleformat{\subsubsection}
   [hang]
   {\normalfont\itshape}
@@ -304,7 +296,7 @@ versus via with within without}
 % Inspired from here:
 % http://tex.stackexchange.com/questions/73242/problem-with-redefining-chapter-command
 
-\renewcommand{\thechapter}{\arabic{chapter}}
+
 
 \renewcommand{\section}{
   \@startsection
