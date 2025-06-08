@@ -24,7 +24,7 @@
 \usepackage[english=nohyphenation,finnish=nohyphenation]{hyphsubst} % No hyphenation per instructions
 
 % --- Typography, layout, and sectioning ---
-\usepackage{titlesec}            % Custom section/chapter formatting (font size, bold, spacing)
+\usepackage[noindentafter]{titlesec}            % Custom section/chapter formatting (font size, bold, spacing)
 \usepackage{titletoc}            % Custom table of contents formatting
 \usepackage{titlecaps}           % Title capitalization for headings as per instructions
 \usepackage{etoolbox}            % Utility for macro programming (used in title formatting)
@@ -115,6 +115,8 @@
 
 % --- Miscellaneous ---
 \tolerance=500                   % Typographic tolerance (for line breaking)
+\setlength{\parindent}{0.5cm}
+
 
 \setlist[itemize,1]{label=\raisebox{0.2ex}{\tiny$\bullet$}}
 \setlist[itemize,2]{label=\raisebox{0.2ex}{\tiny$\bullet$}}
@@ -241,9 +243,6 @@ versus via with within without}
   {\thechapter.}
   {1em}
   {\MakeUppercase}
-\titlespacing*{\chapter}{0pt}{0pt}{\baselineskip}
-% Remove indentation for the first paragraph after headings
-\patchcmd{\chapter}{\@afterindenttrue}{\@afterindentfalse}{}{}
 
 \renewcommand{\thechapter}{\arabic{chapter}}
 
@@ -252,7 +251,7 @@ versus via with within without}
 % 2 baseline skips before and 1 after.
 \titleformat{\section}
   [hang]
-  {\normalfont\bfseries\fontsize{12}{15}\selectfont}
+  {\normalfont\bfseries\fontsize{12}{15}\selectfont\centering}
   {\thesection.}
   {1em}
   {}
@@ -262,7 +261,7 @@ versus via with within without}
 % with 2 baseline skips before and 1 after.
 \titleformat{\subsection}
   [hang]
-  {\normalfont\bfseries\itshape}
+  {\normalfont\bfseries\itshape\centering}
   {\thesubsection.}
   {1em}
   {}
@@ -272,10 +271,15 @@ versus via with within without}
 % with 2 baseline skips before and 1 after.
 \titleformat{\subsubsection}
   [hang]
-  {\normalfont\itshape}
+  {\normalfont\itshape\centering}
   {\thesubsubsection.}
   {1em}
   {}
+
+\titlespacing*{\chapter}{0pt}{0pt}{\baselineskip}
+\titlespacing*{\section}{0pt}{2\baselineskip}{\baselineskip}
+\titlespacing*{\subsection}{0pt}{2\baselineskip}{\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{2\baselineskip}{\baselineskip}
 
 % --------------------
 % Add period after number in TOC entries
@@ -295,30 +299,6 @@ versus via with within without}
 %
 % Inspired from here:
 % http://tex.stackexchange.com/questions/73242/problem-with-redefining-chapter-command
-
-
-
-\renewcommand{\section}{
-  \@startsection
-  {section}%
-  {1}%
-  {0mm}%
-  {2\baselineskip}%
-  {\baselineskip}%
-{\normalfont\normalsize\bfseries\centering}}%
-
-\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}%
-
-\renewcommand{\subsection}{
-  \@startsection
-  {subsection}%
-  {2}%
-  {0mm}%
-  {2\baselineskip}%
-  {\baselineskip}%
-{\normalfont\normalsize\bfseries\itshape\centering}}%
-
-\renewcommand{\thesubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}}%
 
 \newcommand{\firstname}[1]{\gdef\@firstname{#1}}
 \newcommand{\lastname}[1]{\gdef\@lastname{#1}}
