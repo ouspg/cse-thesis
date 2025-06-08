@@ -189,7 +189,7 @@
 	\addtostream{xmpdata}{\noexpand\Author {\getauthorsmetadata}}%
   \addtostream{xmpdata}{\noexpand\Copyright {\MetaCopyrightText}}%%
  	\addtostream{xmpdata}{\noexpand\CopyrightURL {\pdfCopyrightURL}}
-	\addtostream{xmpdata}{\noexpand\Subject {\englishabstract}}%
+	\addtostream{xmpdata}{\noexpand\Subject {\abstractmetadata}}%
 	%\addtostream{xmpdata}{\noexpand\Keywords {\keywords}}%
 	\closeoutputstream{xmpdata}%
   }{%
@@ -366,9 +366,18 @@ versus via with within without}
 \newcommand{\cityname}{}
 \newcommand{\universitylogo}{Figures/logo-en.png}
 
-\newcommand{\keywords}{}
-\newcommand{\avainsanat}{}
-\newcommand{\allkeywords}{\keywords, \avainsanat}
+\newcommand{\keywordsmetadata}{}%
+\newcommand{\keywords}[1]{\renewcommand*{\keywordsmetadata}{#1}}
+
+\newcommand{\avainsanatmetadata}{}%
+\newcommand{\avainsanat}[1]{\renewcommand*{\avainsanatmetadata}{#1}}
+
+% Define abstract content storage
+\long\def\abstractmetadata{}
+\long\def\tiivistelmametadata{}
+% User-facing macros for defining abstract text
+\long\def\abstract#1{\long\def\abstractmetadata{#1}}
+\long\def\tiivistelma#1{\long\def\tiivistelmametadata{#1}}
 
 % Add macros for thesis type in English and Finnish
 \newcommand{\thesistypeenglish}{%
@@ -467,6 +476,54 @@ versus via with within without}
 \setlength{\cftbeforetoctitleskip}{0mm}
 \setlength{\cftaftertoctitleskip}{8mm}
 \renewcommand{\cftdotsep}{0.2}
+
+\newcommand{\englishabstracttitle}{%
+  {\textbf{\getauthorsabstractacta\ (\the\year) \titlecap{\@title}}. University of Oulu, Degree Programme in Computer Science and Engineering, \shownumberofpages~p.}
+}
+
+\newcommand{\finnishabstracttitle}{%
+  {\textbf{\getauthorsabstractacta\ (\the\year) \getotsikko}. Oulun yli\-opis\-to, Tietotekniikan tutkinto-ohjelma, \shownumberofpages~s.}
+}
+
+\newcommand{\englishabstracttitleieee}{%
+  {\getauthorsabstractieee, ``\titlecap{\@title},'' \thesistypeenglish, Dept. of Computer Science, Univ. of Oulu, Oulu, Finland, \the\year.}
+}
+
+\newcommand{\finnishabstracttitleieee}{%
+  {\getauthorsabstractieee, ``\getotsikko,'' \thesistypefinnish, Tietotekniikan koulutusohjelma, Oulun yliopisto, Oulu, Suomi, \the\year.}
+}
+
+
+\newenvironment{thesisabstract}[1]{%
+  \selectlanguage{#1}%
+  \setcounter{NAppdxPages}{\value{NAllPages}-\value{NMainTxtPages}}%
+  \renewcommand*{\spc}{, }
+  \ifstrequal{#1}{finnish}{%
+    \def\thesisabstract@heading{TIIVISTELMÄ}%
+    \def\thesisabstract@keywords{Avainsanat: \avainsanatmetadata}
+    \def\thesisabstract@authorline{\finnishabstracttitle}
+  }{%
+    \def\thesisabstract@heading{ABSTRACT}%
+    \def\thesisabstract@keywords{Keywords: \keywordsmetadata}%
+    \def\thesisabstract@authorline{\englishabstracttitle}
+  }%
+  \cleardoublepage
+  \thesisabstract@authorline
+  \par\vspace{2\baselineskip}%
+
+  {\centering\bfseries\fontsize{14}{17}\selectfont\MakeUppercase{\thesisabstract@heading}\par}%
+  \addtocontents{toc}{\protect\contentsline{chapter}{\thesisabstract@heading}{}{page.\thepage}}
+  \vspace{1\baselineskip}
+  \@afterindentfalse\@afterheading
+  \begingroup
+  \bfseries
+  }{%
+  \endgroup
+  \par
+  \vspace{1\baselineskip}\noindent
+  \textbf{\thesisabstract@keywords}
+}
+
 
 \newenvironment{abstractpage}[2]{%
   \newpage

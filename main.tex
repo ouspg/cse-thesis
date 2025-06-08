@@ -11,26 +11,38 @@
 
 \documentclass[a4paper, 12pt, titlepage]{report}
 \usepackage[finnish]{di}
-\usepackage[type={CC}, modifier={by}, version={4.0}]{doclicense}
+
+\usepackage[type={CC}, modifier={by}, version={4.0}]{doclicense-csetemplate}
 
 \copyrighttext
-  {Copyright \textcopyright\ \number\year\ \getauthors{, }}
+  {Copyright \textcopyright\ \number\year\ \getauthorsmetadata}
   {%
     \textcopyright{}
-    \number\year\ \getauthors{, }.\par
-    % \doclicenseThis % CC logo, needs transparency removed
+    \number\year\ \getauthors.\par
+    \doclicenseThis % CC logo, needs transparency removed
     Poikkeus: kuvat sivuilla 5 ja 7 eivät kuulu lisenssiin.
   }
   
+% Abstracts are placed in the metadata of the PDF file, 
+% so they cannot contain empty lines or special characters.
+\abstract{This document provides general guidance for a degree student
+  of Computer Science and Engineering in preparing his/her master's
+  thesis. This guide defines the role of a thesis in the
+  M.Sc. Degree, presents the actions to be taken in different phases
+  of the thesis procedure and introduces the way that master’s thesis
+  is written. The document has been formatted based on these
+  guidelines to serve as an example how the thesis should look like.}
 
-\newcommand{\englishabstract}{
-This document provides general guidance for a degree student of Computer Science and Engineering in preparing his/her master's thesis. This guide defines the role of a thesis in the M.Sc. Degree, presents the actions to be taken in different phases of the thesis procedure and introduces the way that master’s thesis is written. The document has been formatted based on these guidelines to serve as an example how the thesis should look like.}
+\tiivistelma{Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa
+  opiskelijaa diplomityön tekemisessä. Ohjeissa selvitetään työn asema
+  diplomi-insinööritutkinnossa, kerrotaan toimenpiteet, joihin työn
+  tekijän on ryhdyttävä työn eri vaiheissa, sekä määritellään
+  yksityiskohtaisesti diplomityön kirjallinen rakenne. Ohje on
+  muotoiltu noudattaen näitä kirjoitusohjeita ja toimii siten
+  esimerkkinä, miltä diplomityön tulisi näyttää.}
 
-\newcommand{\finnishabstract}{
-Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa opiskelijaa diplomityön tekemisessä. Ohjeissa selvitetään työn asema diplomi-insinööritutkinnossa, kerrotaan toimenpiteet, joihin työn tekijän on ryhdyttävä työn eri vaiheissa, sekä määritellään yksityiskohtaisesti diplomityön kirjallinen rakenne. Ohje on muotoiltu noudattaen näitä kirjoitusohjeita ja toimii siten esimerkkinä, miltä diplomityön tulisi näyttää.}
-
-\renewcommand{\keywords}{M.Sc. degree, master’s thesis instructions, structure of a master’s thesis}
-\renewcommand{\avainsanat}{diplomi-insinöörin tutkinto, opinnäytetyön ohjeet, diplomityön rakenne}
+\keywords{M.Sc. degree\spc master’s thesis instructions\spc structure of a master’s thesis}
+\avainsanat{diplomi-insinöörin tutkinto\spc diplomityön ohjeet\spc diplomityön rakenne}
 
 %%%%%%%%%%%%%%%%%%%%% SET YOUR INFORMATION HERE %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -69,12 +81,12 @@ Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa opiskelijaa diplomityö
     \makecopyrightpage{}
   
     \IfLang{\MainLang}{finnish}{
-      \printtiivistelma
-      \printabstract
+      \input{Chapters/tiivistelma}
+      \input{Chapters/abstract}
       \selectlanguage{finnish}
     } {
-      \printabstract
-      \printtiivistelma
+      \input{Chapters/abstract}  
+      \input{Chapters/tiivistelma}
       \selectlanguage{english}
     }
     \contents %Insert table of contents
