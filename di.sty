@@ -191,9 +191,16 @@
 	\addtostream{xmpdata}{\noexpand\Author {\getauthorsmetadata}}%
   \addtostream{xmpdata}{\noexpand\Copyright {\MetaCopyrightText}}%%
  	\addtostream{xmpdata}{\noexpand\CopyrightURL {\pdfCopyrightURL}}
-	\addtostream{xmpdata}{\noexpand\Subject {\abstractmetadata}}%
-	%\addtostream{xmpdata}{\noexpand\Keywords {\keywords}}%
-	\closeoutputstream{xmpdata}%
+		\IfFin{\MainLang}{%
+          \addtostream{xmpdata}{\noexpand\Subject {\tiivistelmametadata}}%
+          \addtostream{xmpdata}{\noexpand\Keywords[fi] {\avainsanatmetadata%
+              \noexpand\sep[en] \keywordsmetadata}}%
+        }{%
+          \addtostream{xmpdata}{\noexpand\Subject {\abstractmetadata}}%
+          \addtostream{xmpdata}{\noexpand\Keywords[en] {\keywordsmetadata%
+              \noexpand\sep[fi] \avainsanatmetadata}}%
+        }%
+  \closeoutputstream{xmpdata}%
   }{%
     % Write the metadata directly into the pdf file via hyperref keywords
 	%\renewcommand*{\spc}{; }%
@@ -294,11 +301,6 @@ versus via with within without}
 \DeclareMathSymbol{,}{\mathpunct}{letters}{"3B}
 \DeclareMathSymbol{.}{\mathord}{letters}{"3B}
 %\DeclareMathSymbol{\decimal}{\mathord}{letters}{"3A}
-
-%chapter styles
-%
-% Inspired from here:
-% http://tex.stackexchange.com/questions/73242/problem-with-redefining-chapter-command
 
 \newcommand{\firstname}[1]{\gdef\@firstname{#1}}
 \newcommand{\lastname}[1]{\gdef\@lastname{#1}}
@@ -488,7 +490,7 @@ versus via with within without}
     \def\thesisabstract@authorline{\englishabstracttitle}
   }%
   \cleardoublepage
-  \thesisabstract@authorline
+  \noindent\thesisabstract@authorline
   \par\vspace{2\baselineskip}%
 
   {\centering\bfseries\fontsize{14}{17}\selectfont\MakeUppercase{\thesisabstract@heading}\par}%
@@ -509,7 +511,7 @@ versus via with within without}
   \newpage
   \addtocontents{toc}{\protect\contentsline{chapter}{#1}{}{page.\thepage}}
   % Metadata first (not bold)
-  {\noindent#2\par\vspace{2em}}
+  {\par\noindent#2\par\vspace{2em}}
   % Heading, carefully scoped to avoid leaking bold style
   {\begingroup
     \centering
@@ -520,49 +522,6 @@ versus via with within without}
     \noindent
   }
 }{}
-
-\newcommand{\englishabstractmetadata}{%
-  {\textbf{\getauthorsabstractacta\ (\the\year) \titlecap{\@title}}. University of Oulu, Degree Programme in Computer Science and Engineering, \shownumberofpages~p.}
-}
-
-% Finnish metadata
-\newcommand{\finnishabstractmetadata}{%
-  {\textbf{\getauthorsabstractacta\ (\the\year) \@otsikko}. Oulun yli\-opis\-to, Tietotekniikan tutkinto-ohjelma, \shownumberofpages~s.}
-}
-
-% Shortcut commands
-\newcommand{\abstractenglish}{}
-\newcommand{\abstractfinnish}{\begin{abstractpage}{TIIVISTELMÄ}{\finnishabstractmetadata}}
-
-\newcommand{\englishabstractmetadataieee}{%
-  {\getauthorsabstractieee, ``\titlecap{\@title},'' \thesistypeenglish, Dept. of Computer Science, Univ. of Oulu, Oulu, Finland, \the\year.}
-}
-
-\newcommand{\finnishabstractmetadataieee}{%
-  {\getauthorsabstractieee, ``\@otsikko,'' \thesistypefinnish, Tietotekniikan koulutusohjelma, Oulun yliopisto, Oulu, Suomi, \the\year.}
-}
-
-
-% Commands to print abstracts
-\newcommand{\printabstract}{%
-  \selectlanguage{english}
-  \setcounter{NAppdxPages}{\value{NAllPages}-\value{NMainTxtPages}}
-  \begin{abstractpage}{ABSTRACT}{\englishabstractmetadata}
-    {\bfseries \englishabstract
-
-    \printkeywords}
-  \end{abstractpage}
-}
-
-\newcommand{\printtiivistelma}{%
-\selectlanguage{finnish}  
-\setcounter{NAppdxPages}{\value{NAllPages}-\value{NMainTxtPages}}
-\begin{abstractpage}{TIIVISTELMÄ}{\finnishabstractmetadata}
-    {\bfseries \finnishabstract
-
-    \printavainsanat}
-\end{abstractpage}
-}
 
 %chapters without page numbering
 \newcommand{\header}[1]{
@@ -678,6 +637,7 @@ versus via with within without}
   \end{flushleft}
 }
 
+\makeatletter
 \g@addto@macro{\normalsize}{%
   \setlength{\abovedisplayskip}{0pt}
   \setlength{\abovedisplayshortskip}{0pt}
