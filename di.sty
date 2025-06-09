@@ -320,9 +320,6 @@ versus via with within without}
 \newcommand{\getotsikko}{\@otsikko}
 \newcommand{\gettitle}{\@title}
 
-\newcommand{\printavainsanat}{\par\noindent Avainsanat: \avainsanat}
-\newcommand{\printkeywords}{\par\noindent Keywords: \keywords}
-
 \newcommand{\thesis}[1]{\gdef\@thesis{#1}}
 \newcommand{\getthesis}{\@thesis}
 
@@ -506,23 +503,6 @@ versus via with within without}
   \textbf{\thesisabstract@keywords}
 }
 
-
-\newenvironment{abstractpage}[2]{%
-  \newpage
-  \addtocontents{toc}{\protect\contentsline{chapter}{#1}{}{page.\thepage}}
-  % Metadata first (not bold)
-  {\par\noindent#2\par\vspace{2em}}
-  % Heading, carefully scoped to avoid leaking bold style
-  {\begingroup
-    \centering
-    \normalfont\bfseries\fontsize{14}{17}\selectfont
-    \MakeUppercase{#1}\par
-    \endgroup
-    \vspace{1em}
-    \noindent
-  }
-}{}
-
 %chapters without page numbering
 \newcommand{\header}[1]{
   \chapter*{#1}
@@ -583,6 +563,9 @@ versus via with within without}
   \getauthors{, }%
 }
 
+% Helper macro to get first initial from a name
+\newcommand{\getfirstinitial}[1]{\StrChar{#1}{1}.}
+
 % Returns the list of authors, separated by \sep
 \newcommand{\getauthors}[1]{%
   \@ifempty{\@firstnametwo}{%
@@ -599,31 +582,28 @@ versus via with within without}
 %get authors for the abstract (Acta style: Surname F.)
 \newcommand{\getauthorsabstractacta}{%
   \ifthenelse{\equal{\@firstnametwo}{}}%
-    {\noindent \bf \@lastname\ \StrChar{\@firstname}{1}.}%
+    {\@lastname\ \getfirstinitial{\@firstname}}%
     {\ifthenelse{\equal{\@firstnamethree}{}}%
-      {\noindent \bf \@lastname\ \StrChar{\@firstname}{1}.,\ %
-        \@lastnametwo\ \StrChar{\@firstnametwo}{1}. \ignorespaces}%
-      {\noindent \bf \@lastname\ \StrChar{\@firstname}{1}.,\ %
-        \@lastnametwo\ \StrChar{\@firstnametwo}{1}.,\ %
-        \@lastnamethree\ \StrChar{\@firstnamethree}{1}. \ignorespaces}%
+      {\@lastname\ \getfirstinitial{\@firstname},\ %
+        \@lastnametwo\ \getfirstinitial{\@firstnametwo}}%
+      {\@lastname\ \getfirstinitial{\@firstname},\ %
+        \@lastnametwo\ \getfirstinitial{\@firstnametwo},\ %
+        \@lastnamethree\ \getfirstinitial{\@firstnamethree}}%
     }%
 }
 
 %get authors for the abstract (IEEE style: F. Lastname)
 \newcommand{\getauthorsabstractieee}{%
   \ifthenelse{\equal{\@firstnametwo}{}}%
-    {\noindent \StrChar{\@firstname}{1}.\ \@lastname}%
+    {\getfirstinitial{\@firstname}\ \@lastname}%
     {\ifthenelse{\equal{\@firstnamethree}{}}%
-      {\noindent \StrChar{\@firstname}{1}.\ \@lastname,\ %
-        \StrChar{\@firstnametwo}{1}.\ \@lastnametwo \ignorespaces}%
-      {\noindent \StrChar{\@firstname}{1}.\ \@lastname,\ %
-        \StrChar{\@firstnametwo}{1}.\ \@lastnametwo,\ %
-        \StrChar{\@firstnamethree}{1}.\ \@lastnamethree \ignorespaces}%
+      {\getfirstinitial{\@firstname}\ \@lastname,\ %
+        \getfirstinitial{\@firstnametwo}\ \@lastnametwo}%
+      {\getfirstinitial{\@firstname}\ \@lastname,\ %
+        \getfirstinitial{\@firstnametwo}\ \@lastnametwo,\ %
+        \getfirstinitial{\@firstnamethree}\ \@lastnamethree}%
     }%
 }
-
-% For backward compatibility, keep the original macro name as Acta style
-\let\getauthorsabstract\getauthorsabstractacta
 
 %signature at the bottom of foreword
 \newcommand{\signature}{
