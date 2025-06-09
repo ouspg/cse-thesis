@@ -7,8 +7,8 @@ biblatex              # Modern bibliography package; recommended over bibtex.
 biblatex-ieee	      # IEEE style for biblatex
 boxedminipage         # Creates boxed content blocks; still useful in templates.
 chngcntr              # Allows resetting counters (e.g., figures per chapter); still applicable.
-csquotes
 collection-fontsrecommended # Fonts
+csquotes              # Advanced quotation handling; supports multilingual quotes.
 datetime2             # ✅ Modern date/time formatting package; recommended.
 datetime2-finnish     # Locale module for datetime2 to support Finnish.
 datetime2-english     # Locale module for datetime2 to support English.
@@ -26,7 +26,6 @@ xstring               # String manipulation utilities for macro authors; still u
 
 # collection-latex-recommended
 caption		      # Customising captions in floating environments
-everyshi	      # Obsolete?
 fancybox              # Legacy box drawing package; works, but modern alternatives exist.
 float                 # Allows precise control over float placement; widely used.
 microtype             # Enhances typographic quality (kerning, protrusion); strongly recommended.
@@ -35,14 +34,8 @@ xcolor		      # Color support
 # collection-latex-extra
 fmtcount
 enumitem
-ifoddpage
-ifnextok
-relsize
-xmpincl
 
 ccicons
 doclicense
-greek-fontenc
-ifmtarg
 newfile
 xifthen
