@@ -19,6 +19,14 @@
 \usepackage{lmodern}             % Latin Modern font as required by thesis typography
 \usepackage{newtxtext, newtxmath} % Improved text and math font for readability
 
+% --- Page layout and margins ---
+\usepackage[
+  left=4.5cm,           % left margin
+  right=2.0cm,          % right margin  
+  top=2.5cm,            % top margin
+  bottom=3.0cm,         % bottom margin
+]{geometry}
+
 % --- Language and hyphenation ---
 \usepackage[english,finnish]{babel} % Support for English and Finnish thesis (main.tex)
 \usepackage[english=nohyphenation,finnish=nohyphenation]{hyphsubst} % No hyphenation per instructions
@@ -509,12 +517,6 @@ versus via with within without}
 \addtocontents{toc}{\protect\contentsline{chapter}{#1}{}{page.\thepage} }}
 
 
-
-%page margins, and spacing
-\oddsidemargin 1.96cm      % left margin = 4.5 cm
-\evensidemargin 1.96cm
-\topmargin -0.71cm      % top margin = 2.5 cm
-\textheight 24.2cm   
 
 %page numbering
 \pagestyle{empty}
