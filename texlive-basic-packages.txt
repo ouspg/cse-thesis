@@ -1,9 +1,5 @@
 scheme-basic          # Base TeX Live scheme; minimal install for LaTeX (required).
 algorithm2e           # Provides structured pseudocode environments; actively maintained.
-appendix	      # Customized appendices
-babel-finnish         # Finnish language support for babel; needed for multilingual documents.
-biber		      # Bibliography handling
-biblatex              # Modern bibliography package; recommended over bibtex.
 appendix              # Customized appendices
 babel-finnish         # Finnish language support for babel; needed for multilingual documents.
 biber                 # Bibliography handling
