@@ -1,5 +1,5 @@
 % Template for M. Sc. (Tech.) degree programmes at the
-% Faculity of Information Technology and Electrical Engineering
+% Faculty of Information Technology and Electrical Engineering
 % at University of Oulu (CSE/BME/BA)
 % 
 % Authors: Mika Korhonen (original author), Pekka Pietikäinen,
