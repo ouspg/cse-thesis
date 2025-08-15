@@ -1,0 +1,17 @@
+% Load the bitfield package in your main.tex
+% \usepackage{bytefield}
+
+% Define a command to represent a protocol header table using bitfield
+% Example usage: TCP header representation
+\begin{figure}[ht]
+  \centering
+  \begin{bytefield}[bitwidth=\textwidth/32, bitheight=\widthof{~Data offset~}]{32} % Added horizontal spacing
+    \bitbox{16}{Source Port} & \bitbox{16}{Destination Port} \\
+    \bitbox{32}{Sequence Number} \\
+    \bitbox{32}{Acknowledgment Number} \\
+    \bitbox{4}{\rotatebox{90}{\scriptsize Data Offset}} & \bitbox{3}{\rotatebox{90}{\scriptsize Reserved}} & \bitbox{9}{Flags} & \bitbox{16}{Window Size} \\
+    \bitbox{16}{Checksum} & \bitbox{16}{Urgent Pointer} \\
+  \end{bytefield}
+  \caption{TCP Header}
+  \label{tcp-header}
+\end{figure}
