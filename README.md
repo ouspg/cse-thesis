@@ -44,7 +44,10 @@ Contributors to the template include:
  * Gallery
    * This contains examples LaTeX snippets for doing various things that some theses might require. 
  * citations.bib
-   * This holds all the bibtex citations. Use a reference manager like Zotero and use the "bibtex" form of citation when exporting from it. 
+   * This holds all the bibtex citations. Use a reference manager like Zotero and use the "bibtex" form of citation when exporting from it.
+ * copyright-allrightsreserved.tex copyright-ccby40.tex
+   * Copyright page contents for "All rights reserved" and CC-BY-4.0
+     * The wordings used in these should cover most theses
  * dithesis.sty
    * This is a package holds most of the style.
  * dithesis.cls
@@ -53,12 +56,15 @@ Contributors to the template include:
    * The main file. Input your information and files here.
  * ieee.bbx v1.4e 2025-03-14
    * This is needed to make @online citations comply with the IEEE style. TexLive 2025 should ship this, so can be removed once Overleaf has it
- * doclicense-csetemplate.sty, doclicense-images, doclicense-finnish.ldf
+ * LICENSE
+   * CC-BY-4.0 license for this template
+ * doclicense-di.sty, doclicense-images/, doclicense-finnish.ldf
    * PDF/A-compatible CC license logos and .sty-file that looks for them in separate directory
      * Generated with gs -dPDFA -dBATCH -dNOPAUSE -sColorConversionStrategy=UseDeviceIndependentColor -sDEVICE=pdfwrite -dPDFACompatibilityPolicy=2 -sOutputFile="$@" "$@.in.pdf"
    * Finnish translations to doclicense
  * images.md
-   * Instructions on removing transparency from your images
+   * Instructions on removing transparency from your PDF/PDF images
+     * Updated as needed
  * README.md
    * This file!
 
