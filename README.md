@@ -63,11 +63,29 @@ Contributors to the template include:
    * This file!
 
 ### LoC
- * 2025-06-09 Pekka Pietikäinen
-   * Big refactoring
-   * IEEE citation style using biblatex & biber
-     * Citations exported from Zotero should have doi, accessed etc. correctly!
-   * PDF/A support with metadata
+ * 2025-08-15 Pekka Pietikäinen
+  * Changes to the instructions:
+    * “Tiivistelmä” is now required for all theses. In a thesis written in English, abstract precedes “tiivistelmä” and vice versa.
+    * List of abbreviations and symbols:
+      * The changes in the italicisation of Greek letters are also reflected in this section.
+      * ” Greek letters are not italicized.” => ”The lowercase Greek letters used as symbols of quantities are italicized, but uppercase letters are not italicized (e.g. δ vs. Δ).”
+    * Tables must be in text format – not an image.
+    * Margins are now 2.5/2.5/2.5/3.0 cm (online), for bound (not just printed) versions of the thesis the old 4.5cm left margin (2.0 right) can chosen from the template.
+    * Font was Latin Modern in the text, but the template always used Times
+    * The necessary references are included in the figure captions. Copyright information is also added to the end of the caption. Figures should preferably be placed at the top or bottom of the page, however, structured naturally.
+    * Copyright
+      *  Copyright page has been added, and proper attribution for reuse/modification of image by others has been included in the instructions. More information in Chapter 3.7.
+    * The sources are now cited according to the IEEE model (was used in the text but not the template). Reference list was custom ACTA Oulu, now IEEE.
+      * For example, ”[1, 2, 5]” is now ”[1], [2], [5]”. More information and examples in Chapter 4.6.
+
+  * Template changes:
+    * Major cleanup removing obsolete packages and using modern replacements
+    * PDF/A-1b output. If no transparent images (PDF/PNG) are used, Muuntaja is not required, this is also recommended, since Muuntaja might break the thesis in other ways.
+    * Abstract, keywords and other metadata automatically included in PDF
+    * Support for CSE/BA/BME theses
+    * biblatex/biber for bibliography management
+      * Citations exported from Zotero should have doi, accessed etc. correctly!
+      
  * 2019-06-06 Tuomas Holmberg and Tuomas Varanka
    * Cleanups 
    * Moved github version to Overleaf
