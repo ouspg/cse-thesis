@@ -1,5 +1,5 @@
 % Template for M. Sc. (Tech.) degree programmes at the
-% Faculity of Information Technology and Electical Engineering
+% Faculity of Information Technology and Electrical Engineering
 % at University of Oulu (CSE/BME/BA)
 % 
 % Authors: Mika Korhonen (original author), Pekka Pietikäinen,
@@ -146,7 +146,7 @@
 	\openoutputfile{\jobname.xmpdata}{xmpdata}%
 	\addtostream{xmpdata}{\noexpand\Title {\metadatatitle}}%
 	\addtostream{xmpdata}{\noexpand\Author {\getauthorsmetadata}}%
-  \addtostream{xmpdata}{\noexpand\Copyright {\MetaCopyrightText}}%%
+        \addtostream{xmpdata}{\noexpand\Copyright {\MetaCopyrightText}}%
  	\addtostream{xmpdata}{\noexpand\CopyrightURL {\pdfCopyrightURL}}
 		\IfFin{\MainLang}{%
           \addtostream{xmpdata}{\noexpand\Subject {\tiivistelmametadata}}%
