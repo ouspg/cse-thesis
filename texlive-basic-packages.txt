@@ -4,7 +4,11 @@ appendix	      # Customized appendices
 babel-finnish         # Finnish language support for babel; needed for multilingual documents.
 biber		      # Bibliography handling
 biblatex              # Modern bibliography package; recommended over bibtex.
-biblatex-ieee	      # IEEE style for biblatex
+appendix              # Customized appendices
+babel-finnish         # Finnish language support for babel; needed for multilingual documents.
+biber                 # Bibliography handling
+biblatex              # Modern bibliography package; recommended over bibtex.
+biblatex-ieee         # IEEE style for biblatex
 boxedminipage         # Creates boxed content blocks; still useful in templates.
 chngcntr              # Allows resetting counters (e.g., figures per chapter); still applicable.
 collection-fontsrecommended # Fonts
