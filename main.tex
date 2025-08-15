@@ -12,8 +12,14 @@
 % 2023-06-15: Changes to foreword, clarifications to indicate template is also for Bachelor thesis  (TTo)
 % 2023-06-15: Example of a CC-BY figure added with reference in the footnotes (TTo)
 % 2025-06-12: Major refactoring of the template
-% Valid options english/finnish, cse/bme/ba, master/bachelor
-\documentclass[english, cse, master]{dithesis}
+
+%
+% dithesis.cls supports the following options
+% Language: english/finnish
+% Degree programme: cse (default)/bme/ba
+% Thesis type: master (default)/bachelor
+% Output type: online (default, 2.5 cm margin)/print (4.5 cm left margin for bound theses)
+\documentclass[english, online, cse, master]{dithesis}
 
 %% Copyright of a work is with the creator/author of the work regardless of
 %% whether the copyright mark is explicitly in the work or not. You may, if you
@@ -74,7 +80,7 @@
 % (Capitalizes the First Letter in Each Word except ``Small'' Ones)
 % for H0, H2, and H3. Words not to be capitalized can be
 % changed in dithesis.sty.
-% This only has effect in English. in Finnish headers follow
+% This only has effect in English. In Finnish headers follow
 % the normal Finnish rules of capitalization.
 % Also this doesn't affect the PDF metadata, so you should
 % correctly title case headings in your .tex files anyway.
@@ -87,7 +93,8 @@
 \pagestyle{empty}
 \maketitlepage
 \makecopyrightpage
-  \IfLang{\MainLang}{finnish}{
+
+\IfLang{\MainLang}{finnish}{
   \input{Chapters/tiivistelma}
   \input{Chapters/abstract}
   \selectlanguage{finnish}
