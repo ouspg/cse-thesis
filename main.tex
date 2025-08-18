@@ -11,14 +11,15 @@
 % 2023-06-15: Improvements to avoid missing filling in some details: TODO's added to template (TTo)
 % 2023-06-15: Changes to foreword, clarifications to indicate template is also for Bachelor thesis  (TTo)
 % 2023-06-15: Example of a CC-BY figure added with reference in the footnotes (TTo)
-% 2025-06-12: Major refactoring of the template
+% 2025-08-18: Major refactoring of the template (PPi)
 
 %
 % dithesis.cls supports the following options
 % Language: english/finnish
 % Degree programme: cse (default)/bme/ba
 % Thesis type: master (default)/bachelor
-% Output type: online (default, 2.5 cm margin)/print (4.5 cm left margin for bound theses)
+% Output type: online (default, 2.5 cm margin)
+%              print (4.5 cm left margin for bound theses)
 \documentclass[english, online, cse, master]{dithesis}
 
 %% Copyright of a work is with the creator/author of the work regardless of
@@ -28,6 +29,9 @@
 %% must be visible in the work.
 
 % Uncommenting one of the following will automatically create a copyright page
+% If both are commented out the license is "All rights reserved"
+% and no copyright page will be generated
+%
 %\input{copyright-allrightsreserved}
 \input{copyright-ccby40.tex}
 
@@ -36,8 +40,8 @@
 \title{TODO: Bachelor's and Diploma Thesis Guide}
 \otsikko{TODO: Kandidaatintyön ja diplomityön teko-ohjeet}
 
-\firstname{Author}
-\lastname{One}
+\firstname{Program}
+\lastname{Committee}
 
 % Names of other authors can be added here
 %\firstnametwo{}
@@ -46,30 +50,35 @@
 %\lastnamethree{}
 % Remove or comment the extra names if you do not need them
 
-% Abstracts are placed in the metadata of the PDF file, 
-% so they cannot contain empty lines or special characters.
-% Mathematic symbols should be fine (mathxmp option for pdfx package),
+% Abstracts are stored in the PDF metadata.
+% They must not contain empty lines (multiple paragraphs) or special
+% characters. Mathematical symbols should work (mathxmp option of the pdfx
+% package).
+% If the abstract contains multiple paragraphs or special characters,
+% provide the full text in abstract.tex and tiivistelma.tex.
+% This version should otherwise remain identical to it
 \abstract{This document provides general guidance for a degree student
-  in the technical degree programmes of Computer Science and Engineering, 
-  Biomedical Engineering and Business Analytics (Tech.) at the faculty of 
-  Information Technology and Electrical Engineering at the University of Oulu
-  in preparing his/her Bachelor's or Master's thesis. This guide defines the role of a
-  thesis in the M.Sc. (Tech.) Degree, presents the actions 
-  to be taken in different phases of the thesis procedure and introduces the way
-  that the thesis is written. The document has been formatted based on these
+  in the technical degree programmes of Computer Science and
+  Engineering, Biomedical Engineering and Business Analytics (Tech.)
+  at the faculty of Information Technology and Electrical Engineering
+  at the University of Oulu in preparing his/her Bachelor's or
+  Master's thesis. This guide defines the role of a thesis in the
+  M.Sc. (Tech.) Degree, presents the actions to be taken in different
+  phases of the thesis procedure and introduces the way that the
+  thesis is written. The document has been formatted based on these
   guidelines to serve as an example how the thesis should look like.}
 
 \tiivistelma{Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa
-  opiskelijaa kandidaatin- ja diplomityön tekemisessä. Ohjeissa selvitetään työn asema
-  diplomi-insinööritutkinnossa, kerrotaan toimenpiteet, joihin työn
-  tekijän on ryhdyttävä työn eri vaiheissa, sekä määritellään
-  yksityiskohtaisesti kandidaatin- ja diplomitöiden kirjallinen rakenne. Ohje on
-  muotoiltu noudattaen näitä kirjoitusohjeita ja toimii siten
-  esimerkkinä, miltä lopputyön tulisi näyttää.}
+  opiskelijaa kandidaatin- ja diplomityön tekemisessä. Ohjeissa
+  selvitetään työn asema diplomi-insinööritutkinnossa, kerrotaan
+  toimenpiteet, joihin työn tekijän on ryhdyttävä työn eri vaiheissa,
+  sekä määritellään yksityiskohtaisesti kandidaatin- ja diplomitöiden
+  kirjallinen rakenne. Ohje on muotoiltu noudattaen näitä
+  kirjoitusohjeita ja toimii siten esimerkkinä, miltä lopputyön tulisi
+  näyttää.}
 
 % Keywords are also included in the PDF metadata, and cannot contain any
 % special characters. Separate them with \spc
-
 \keywords{M.Sc. degree\spc master’s thesis instructions\spc structure of a master’s thesis}
 \avainsanat{diplomi-insinöörin tutkinto\spc diplomityön ohjeet\spc diplomityön rakenne}
 
