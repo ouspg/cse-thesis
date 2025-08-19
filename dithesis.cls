@@ -120,6 +120,15 @@
   {\arabic{NMainTxtPages}+\arabic{NAppdxPages}}%
 }%
 
+\newif\ifwithdot
+\withdottrue
+
+\newcommand{\sectionnamedot}{\ifwithdot.\fi}
+\newcommand{\chapnumformat}{\thechapter\sectionnamedot}
+\newcommand{\secnumformat}{\thesection\sectionnamedot}
+\newcommand{\subsecnumformat}{\thesubsection\sectionnamedot}
+\newcommand{\subsubsecnumformat}{\thesubsubsection\sectionnamedot}
+
 % --- Miscellaneous ---
 
 \newtoggle{writexmpdatafile}

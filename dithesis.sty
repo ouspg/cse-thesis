@@ -78,7 +78,7 @@
   \renewcommand{\headerforeword}{ALKULAUSE}
   \renewcommand{\headerabbreviations}{LYHENTEIDEN JA MERKKIEN SELITYKSET}
   \renewcommand{\tocname}{SISÄLLYSLUETTELO}
-  \renewcommand{\mybibname}{Viitteet}
+  \renewcommand{\mybibname}{Lähteet}
   \renewcommand{\cityname}{Oulussa }
   \renewcommand{\countryname}{Suomi}
   \renewcommand{\keywordsline}{Avainsanat: \avainsanatmetadata}
@@ -185,6 +185,12 @@
 \setlength{\cftaftertoctitleskip}{8mm}
 \renewcommand{\cftdotsep}{0.2}
 
+% Add dot to toc entries if option turned on
+\makeatletter
+\renewcommand{\numberline}[1]{%
+  \hb@xt@\@tempdima{#1\sectionnamedot\hfil}}
+\makeatother
+
 \makeatletter
 \let\oldl@chapter\l@chapter
 \renewcommand*\l@chapter[2]{\oldl@chapter{\MakeUppercase{#1}}{#2}}
@@ -208,7 +214,7 @@
 \titleformat{\chapter}
   [hang]
   {\normalfont\bfseries\fontsize{14}{17}\selectfont\centering}
-  {\thechapter.}
+  {\chapnumformat}
   {1em}
   {\MakeUppercase}
 
@@ -218,7 +224,7 @@
 \titleformat{\section}
   [hang]
   {\normalfont\bfseries\fontsize{12}{15}\selectfont\centering}
-  {\thesection.}
+  {\secnumformat}
   {1em}
   {}
 
@@ -228,7 +234,7 @@
 \titleformat{\subsection}
   [hang]
   {\normalfont\bfseries\itshape\centering}
-  {\thesubsection.}
+  {\subsecnumformat}
   {1em}
   {}
 \setcounter{secnumdepth}{2} % numbers up to \subsection by default
@@ -239,7 +245,7 @@
 \titleformat{\subsubsection}
   [hang]
   {\normalfont\itshape\centering}
-  {\thesubsubsection}
+  {\subsubsecformat}
   {1em}
   {}
 
