@@ -1,13 +1,7 @@
-\DIFdelbegin %DIFDELCMD < \ifthenelse{\equal{\getlanguage}{finnish}}
-%DIFDELCMD <     {\newcommand{\headerabbreviations}{LYHENTEIDEN JA MERKKIEN SELITYKSET}}
-%DIFDELCMD <     {\newcommand{\headerabbreviations}{LIST OF ABBREVIATIONS AND SYMBOLS}}
-%DIFDELCMD <     
-
-%DIFDELCMD < %%%
-\DIFdelend \header{\headerabbreviations}
+\header{\headerabbreviations}
 \setlongtables
-%DIF >  According to updated thesis guidelines, lowercase Greek letters used as quantities
-%DIF >  are italicized. Uppercase Greek letters are upright.
+% According to updated thesis guidelines, lowercase Greek letters used as quantities
+% are italicized. Uppercase Greek letters are upright.
 \begin{longtable}[l]{p{3cm}p{0.7\textwidth}}
 
     CSE\footnote{Even though a symbol or an abbreviation is explained on this page, it should be written out full when appearing in the text for the first time. Remove this footnote from your thesis.} & Computer Science and Engineering\\
@@ -29,10 +23,8 @@
     \\
     $\beta$ & shape factor \\
     $\epsilon$\textsubscript{k} & error signal at instant k \\
-    \DIFdelbegin \textbf{\DIFdel{$\Phi$}}%DIFAUXCMD
-\DIFdelend \DIFaddbegin \DIFadd{$\Phi$}\DIFaddend \textsubscript{k} & state transition matrix at instant k \\
-    \DIFdelbegin \textbf{\DIFdel{$\theta$}} %DIFAUXCMD
-\DIFdelend \DIFaddbegin \DIFadd{$\boldsymbol{\theta}$ }\DIFaddend & parameter vector \\
+    $\Phi$\textsubscript{k} & state transition matrix at instant k \\
+    $\boldsymbol{\theta}$ & parameter vector \\
     $\sigma$\textsuperscript{2} & variance \\
     \\
     $\lfloor$ $\rfloor$ & integer part \\
@@ -42,13 +34,3 @@
 \end{longtable}
 \setcounter{table}{0}
 
- %DIF < sets the dots for numbered chapters in table of contents
-\DIFdelbegin %DIFDELCMD < \addtocontents{toc}{\protect\renewcommand{\protect\cftchapleader}{\protect\cftdotfill{\cftdotsep}}}
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-%DIF < sets bibliography language
-%DIFDELCMD < \ifthenelse{\equal{\getlanguage}{finnish}}
-%DIFDELCMD <     {\newcommand{\biblanguage}{di_fin}}
-%DIFDELCMD <     {\newcommand{\biblanguage}{di_eng}} %%%
-\DIFdelend
