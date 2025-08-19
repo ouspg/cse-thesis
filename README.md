@@ -1,4 +1,4 @@
-## cse-thesis
+## CSE/BME/BA thesis
 
 This LaTeX -template is for BSc and MSc theses of the CSE, BME and BA degree
 programmes at the ITEE faculty of the University of Oulu.
@@ -37,6 +37,8 @@ Contributors to the template include:
  * Tuomas Varanka
 
 ### FILES AND FOLDERS
+ * main.tex
+   * The main file. Input your information and files here.
  * Chapters
    * This folder holds all the chapters that are added to the main file. To create more chapters simply create a .tex file in the chapters folder and input it in the main.tex file.
  * Figures
@@ -52,8 +54,6 @@ Contributors to the template include:
    * This is a package holds most of the style.
  * dithesis.cls
    * Similar to dithesis.sty, holds scripts and style.
- * main.tex
-   * The main file. Input your information and files here.
  * ieee.bbx v1.4e 2025-03-14
    * This is needed to make @online citations comply with the IEEE style. TexLive 2025 should ship this, so can be removed once Overleaf has it
  * LICENSE
@@ -69,23 +69,24 @@ Contributors to the template include:
    * This file!
 
 ### LoC
- * 2025-08-15 Pekka Pietikäinen
+ * 2025-08-19 Pekka Pietikäinen
   * Changes to the instructions:
     * “Tiivistelmä” is now required for all theses. In a thesis written in English, abstract precedes “tiivistelmä” and vice versa.
-    * Unification with changes done to ECE thesis instructions:
+    * Unification with changes done to 2025 ECE (Electronics and Communication Engineering) thesis instructions:
       * List of abbreviations and symbols:
         * The changes in the italicisation of Greek letters are also reflected in this section.
         * ” Greek letters are not italicized.” => ”The lowercase Greek letters used as symbols of quantities are italicized, but uppercase letters are not italicized (e.g. δ vs. Δ).”
         * Tables must be in text format – not an image.
-	* Margins are now 2.5/2.5/2.5/3.0 cm (online), for bound (not just printed) versions of the thesis the old 4.5cm left margin (2.0 right) can chosen from the template.
-      * Equation guidelines updated
+	    * Margins are now 2.5/2.5/2.5/3.0 cm (online), for bound (not just printed) versions of the thesis the old 4.5cm left margin (2.0 right) can chosen from the template.
+      * Equation guidelines updated to match ECE
       * Font was Latin Modern in the text, but the template always used Times
       * The necessary references are included in the figure captions. Copyright information is also added to the end of the caption. Figures should preferably be placed at the top or bottom of the page, however, structured naturally.
-      * Figure Copyright information (was in footnote)
-    * The sources are now cited according to the IEEE model (was used in the text but not the template). Reference list was custom ACTA Oulu, now IEEE.
-      * For example, ”[1, 2, 5]” is now ”[1], [2], [5]”. More information and examples in Chapter 4.6.
-    * Copyright
-      *  Copyright page has been added, and proper attribution for reuse/modification of image by others has been included in the instructions. More information in Chapter 3.7.
+      * Figure Copyright location (was in footnote, now copyright page or caption)
+      * The sources are now cited according to the IEEE model (was used in the text but not the template). Reference list was custom ACTA Oulu, now IEEE.
+        * For example, ”[1, 2, 5]” is now ”[1], [2], [5]”. More information and examples in Chapter 4.6.
+      * Finnish translation for References is now "Lähteet" (was: "Viiteet")
+    * Copyright issues
+      *  Copyright page has been added to thesis, and instructions for proper attribution for reuse/modification of images from others has been included in the instructions. More information in Chapter 3.7.
  
   * Template changes:
     * Major cleanup removing obsolete packages and using modern replacements
@@ -94,6 +95,7 @@ Contributors to the template include:
     * Support for CSE/BA/BME theses
     * biblatex/biber for bibliography management
       * Citations exported from Zotero should have doi, accessed etc. correctly!
+
  * 2025-06-02 Joni Kemppainen & Pekka Pietikäinen
    * PDF/A support for template
    * Add notes about transparency and explicit licenses for image captions
