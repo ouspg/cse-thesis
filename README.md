@@ -92,14 +92,13 @@ Contributors to the template include:
       * Turnitin is now mandatory, reflect this in text
       * BSc group thesis contributions are now in Introduction together with AI use (position previously varied, some placed this as an appendix). Example provided in Gallery/bsctimetable.tex
  
-  * Template changes:
-    * Major cleanup removing obsolete packages and using modern replacements
-    * PDF/A-1b output. If no transparent images (PDF/PNG) are used, Muuntaja is not required, this is also recommended, since Muuntaja might break the thesis in other ways.
-    * Abstract, keywords and other metadata automatically included in PDF
-    * Support for CSE/BA/BME theses
-    * biblatex/biber for bibliography management
-      * Citations exported from Zotero should have doi, accessed etc. correctly. BetterBibTeX add-on may improve results further
-
+    * Template changes:
+      * Major cleanup removing obsolete packages and using modern replacements
+      * PDF/A-1b output. If no transparent images (PDF/PNG) are used, Muuntaja is not required, this is also recommended, since Muuntaja might break the thesis in other ways.
+      * Abstract, keywords and other metadata automatically included in PDF
+      * Support for CSE/BA/BME theses
+      * biblatex/biber for bibliography management
+        * Citations exported from Zotero should have doi, accessed etc. correctly. BetterBibTeX add-on may improve results further
  * 2025-06-02 Joni Kemppainen & Pekka Pietikäinen
    * PDF/A support for template
    * Add notes about transparency and explicit licenses for image captions
