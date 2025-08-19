@@ -58,29 +58,40 @@ this scope. You should apply professional terminology when available.
 This rule also applies to all figures and tables.
 
 The aim is a clear and well-structured thesis, \textbf{without
-unnecessary excessive use of words}---a thesis usually has 50--80
-pages. The language (English/Finnish/ Swedish) should be fluent and
+unnecessary excessive use of words}---a thesis usually has \DIFdelbegin \DIFdel{50-80 }\DIFdelend \DIFaddbegin \DIFadd{50--80
+}\DIFaddend pages. The language (English/Finnish/ Swedish) should be fluent and
 readable, and it should adhere to the conventions and recommendations
 applied in a particular language. Advice on such issues can be
 obtained from various language guides (in Finnish,
-e.g.,~\cite{maamies}). There are also several excellent sources on
-the internet, e.g.,~\cite{korpela, kielitoimisto} in Finnish
-and~\cite{reportwriting, englishlanguage} in English.
+e.g.,\DIFaddbegin \DIFadd{~}\DIFaddend \cite{maamies}). There are also several excellent sources on
+the internet, e.g.,\DIFaddbegin \DIFadd{~}\DIFaddend \cite{korpela, kielitoimisto} in Finnish
+and\DIFaddbegin \DIFadd{~}\DIFaddend \cite{reportwriting, englishlanguage} in English.
 
 \section{Typography}
 
 In the text typography, you need to use the following guidelines and rules:
+\DIFdelbegin %DIFDELCMD < \newlength{\mylen}
+%DIFDELCMD < \setbox1%%%
+\DIFdel{=}%DIFDELCMD < \hbox{$\bullet$}\setbox2%%%
+\DIFdel{=}%DIFDELCMD < \hbox{\tiny$\bullet$}
+%DIFDELCMD < \setlength{\mylen}{\dimexpr0.7\ht1-0.5\ht2}
+%DIFDELCMD < \renewcommand\labelitemi{\raisebox{\mylen}{\tiny$\bullet$}}
+%DIFDELCMD < \renewcommand\labelitemii{\raisebox{\mylen}{\tiny$\bullet$}}
+%DIFDELCMD < %%%
+\DIFdelend 
 
 \begin{itemize}
     \setlength\itemsep{0pt}
     \setlength\parskip{0pt}
-  \item Font: Times New Roman
-  \item Page margin settings (exception: physical, bound copies use different settings; see Section~\ref{boundversion}):
-    \begin{itemize}[wide=0pt]
+  \item Font: \DIFdelbegin \DIFdel{Latin Modern
+    }\DIFdelend \DIFaddbegin \DIFadd{Times New Roman
+  }\DIFaddend \item Page margin settings \DIFdelbegin \DIFdel{:
+    }\DIFdelend \DIFaddbegin \DIFadd{(exception: physical, bound copies use different settings; see Section~\ref{boundversion}):
+    }\DIFaddend \begin{itemize}[wide=0pt]
         \setlength\itemsep{0pt}
         \setlength\parskip{0pt}
-      \item Left margin: 2,5 cm
-      \item Right margin: 2,5 cm
+      \item Left margin: \DIFdelbegin \DIFdel{4}\DIFdelend \DIFaddbegin \DIFadd{2}\DIFaddend ,5 cm
+      \item Right margin: 2,\DIFdelbegin \DIFdel{0 }\DIFdelend \DIFaddbegin \DIFadd{5 }\DIFaddend cm
       \item Top margin: 2,5 cm
       \item Bottom margin: 3,0 cm
     \end{itemize}
@@ -91,45 +102,59 @@ In the text typography, you need to use the following guidelines and rules:
       \item Before a heading: 2 empty rows
       \item After a heading: 1 empty row
       \item Between two headings: 1 empty row
-      \item Line spacing: the default value for each font size, which
-        is usually the font size 2 pts.
-      \item The space between two paragraphs is a normal line spacing
-      \item There is no indent in the first paragraph following a
+      \DIFdelbegin %DIFDELCMD < \end{itemize}
+%DIFDELCMD < 
+
+%DIFDELCMD <     %%%
+\DIFdelend \item Line spacing: the default value for each font size, which
+        is usually the font size \DIFdelbegin \DIFdel{+
+    }\DIFdelend 2 pts.
+      \item \DIFdelbegin \DIFdel{A single row should be left between chapters. The 1\textsuperscript{st} paragraph after a
+        headingshould not be indented. Subsequent paragraphs should be }\DIFdelend \DIFaddbegin \DIFadd{The space between two paragraphs is a normal line spacing
+      }\item \DIFadd{There is no indent in the first paragraph following a
         heading, but the following
-        paragraphs are indented by 0.5 cm
-      \item A single empty line is added between table and figure
+        paragraphs are }\DIFaddend indented by 0.5 cm
+      \DIFdelbegin \DIFdel{.
+}\DIFdelend \DIFaddbegin \item \DIFadd{A single empty line is added between table and figure
         captions and the basic text
-    \end{itemize}
-\end{itemize}
+    }\DIFaddend \end{itemize}
+\DIFaddbegin \end{itemize}
+\DIFaddend 
 
 \subsection{Figures and tables}
 The thesis should include figures and tables to support the text.
 They should be placed in the following manner as is automatically
-done when following the model of this \LaTeX\ template:
+done when following the model of this \LaTeX\DIFaddbegin \DIFadd{\ }\DIFaddend template:
 
 \begin{itemize}
     \setlength\itemsep{0pt}
     \setlength\parskip{0pt}
-  \item Table structure and the different fonts used in different
+  \item \DIFdelbegin \DIFdel{A single empty row should be left between text and the figure or table caption. 
+    }%DIFDELCMD < \item %%%
+\item%DIFAUXCMD
+\DIFdelend Table structure and the different fonts used in different
     instances are explained in \tabref{tab:sample_table}.
   \item In tables, the heading has to be placed above the table. The
     table heading should not end in a full stop. The permission to
-    publish a table copied from another source has to be mentioned as
+    publish a table copied \DIFdelbegin \DIFdel{form }\DIFdelend \DIFaddbegin \DIFadd{from }\DIFaddend another source has to be mentioned as
     part of the table heading. Many publishers inform the correct
     form to write this permission when such a permission has been
-    granted. The table must be in text format – not an image.
-  \item If necessary, the caption should be separated from the figure
+    granted. \DIFdelbegin %DIFDELCMD < \item %%%
+\item%DIFAUXCMD
+\DIFdel{The figure caption text is positioned underneath the table and the caption text ends
+    in a full stop. There should be no references in a captiontext}\DIFdelend \DIFaddbegin \DIFadd{The table must be in text format – not an image.
+  }\item \DIFadd{If necessary, the caption should be separated from the figure
     with a single line spacing for reasons of clarity. A figure and a
     short caption are centered. However, a caption spanning multiple
     lines is justified at both ends. The necessary references are
     included in the figure captions. Copyright information is also
-    added to the end of the caption. The permission to publish a
+    added to the end of the caption}\DIFaddend . The permission to publish a
     figure copied form another source has to be mentioned as part of
     the figure text. Many publishers inform the correct form to write
-    this permission when such a permission has been granted.  The
+    this permission when such a permission has been granted.  \DIFaddbegin \DIFadd{The
     copyright issues and citation practices of images are further
-    discussed in~\secref{copyright}.
-  \item Do not start a chapter with a figure, but embed it in the
+    discussed in~}\secref{copyright}\DIFadd{.
+  }\DIFaddend \item Do not start a chapter with a figure, but embed it in the
     text content. A figure is supposed to always appear in the text
     after its reference. If there is not enough space for the figure
     directly after the first reference, the word processor moves the
@@ -140,7 +165,9 @@ done when following the model of this \LaTeX\ template:
     of some chapters cannot be avoided (the same rules applies for the tables).
 \end{itemize}
 
-\begin{table}[!ht]
+\DIFdelbegin %DIFDELCMD < \captionsetup[table]{justification=raggedright,singlelinecheck=off}
+%DIFDELCMD < %%%
+\DIFdelend \begin{table}[!ht]
   % Add some padding to the table cells:
   \def\arraystretch{1.1}%
   \begin{center}
@@ -184,7 +211,7 @@ done when following the model of this \LaTeX\ template:
     \end{tabular}
     \vspace{6pt}
 
-  \raggedright \ \space \textsuperscript{1} Each full chapter should
+  \raggedright \ \space \textsuperscript{1\DIFdelbeginFL \DIFdelFL{)}\DIFdelendFL } Each full chapter should
   start on a new page.
 \end{center}
 \end{table}
@@ -202,28 +229,41 @@ presentation. All these need to be referenced to in the text body,
 preferably before the figure is placed in the text---i.e., first the
 referring text, then the figure or table. Figures and tables have a
 running number through the document---or chapter wise, if there are
-plenty of figures. \figref{fig:work_packages} serves as an example of a figure and a
+plenty of figures. \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \figref{fig:work_packages} serves as an example of a figure and a
 text referring to it. Figure captions are below the figure, and the
 caption text ends with a full stop. A short caption is centered,
 while a long caption extending to a several lines is justified on both sides.
+\DIFdelbegin \DIFdel{According to the copyright enactments, you must always have the permission from the copyright holder to use the
+figure in your work. }\textbf{\DIFdel{Copyright infringement may lead to legal actions and penalties, and in those cases the author is responsible.}} %DIFAUXCMD
+\DIFdel{The writer should grow towards to mainly using figures of his own in the thesis. }\textbf{%DIFDELCMD < \figref{fig:work_packages} %%%
+\DIFdel{serves as an example of authors' own production, thus requiring no reference or footnotes.}} %DIFAUXCMD
+\DIFdel{In other words: if no outside source is
+referred to , it is assumed that the author of the thesis is also the author of the figure.
+}\DIFdelend 
 
-% Pictures in .pdf, .png or .jpg. No need to specify the extension.
-% Transparent images are not allowed with PDF/A.
-% With ImageMagick transparency can be removed with
-% convert image.png -background white -alpha remove -alpha off image_nobg.png
-% This restriction also affects PDF images, as a first step try to make the PDF
-% image PDF/A:
-% gs -dPDFA -dBATCH -dNOPAUSE
-% -sColorConversionStrategy=UseDeviceIndependentColor
-% -sDEVICE=pdfwrite -dPDFACompatibilityPolicy=2
-% -sOutputFile=output.pdf input.pdf
-\begin{figure}[ht]
+\DIFdelbegin \DIFdel{It is also good practice to
+explicitly state a license for your
+images, such as CC BY. Please refer to the university instructions on
+further instructions on copyright issues. }\DIFdelend %DIF >  Pictures in .pdf, .png or .jpg. No need to specify the extension.
+%DIF >  Transparent images are not allowed with PDF/A.
+%DIF >  With ImageMagick transparency can be removed with
+%DIF >  convert image.png -background white -alpha remove -alpha off image_nobg.png
+%DIF >  This restriction also affects PDF images, as a first step try to make the PDF
+%DIF >  image PDF/A:
+%DIF >  gs -dPDFA -dBATCH -dNOPAUSE
+%DIF >  -sColorConversionStrategy=UseDeviceIndependentColor
+%DIF >  -sDEVICE=pdfwrite -dPDFACompatibilityPolicy=2
+%DIF >  -sOutputFile=output.pdf input.pdf
+\DIFaddbegin \begin{figure}[ht]
 \begin{center}
   \includegraphics*[width=0.7\textwidth]{WP}
 \end{center}
-\caption{Connections between work packages (WP).
-  \copyrightstring\ \href{https://creativecommons.org/licenses/by/4.0/}{CC
-BY 4.0}.}
+\caption{\DIFaddFL{Connections between work packages (WP).
+  }\copyrightstring\DIFaddFL{\ }\href{https://creativecommons.org/licenses/by/4.0/}{\DIFaddFL{CC
+BY 4.0}}\DIFaddFL{.}}
 \alt{Diagram showing interactions between work packages WP1 to WP5,
   all inside WP6, which is itself inside WP7. WP3 (left) sends
   outputs to WP1, WP2, and WP4. WP1 and WP2 are bidirectionally
@@ -231,53 +271,103 @@ BY 4.0}.}
 arrow shows WP3 also directly feeding into WP5.}
 \label{fig:work_packages}
 \end{figure}
+\DIFaddend 
 
-If no external source is mentioned in the caption, it is assumed that
+\DIFaddbegin \DIFadd{If no external source is mentioned in the caption, it is assumed that
 the thesis author is also the creator and copyright holder of the
 figure (noting that authorship and copyright ownership are not always
 the same). In such cases, the figure is licensed under the same terms
 as the document itself (default: “All rights reserved”). This is
-further discussed in \secref{copyright}. For figures that constitute
+further discussed in }\secref{copyright}\DIFadd{. For figures that constitute
 significant contributions — and may therefore be of interest for
 reuse — it is advisable to explicitly state the copyright and
 licensing information, even if it has already been included on a separate
 copyright page.
+}
 
-Figures and tables should be given an alternative text that summarises
+\DIFadd{Figures and tables should be given an alternative text that summarises
 the information they contain for the reader. This is discussed further
-in~\secref{accessibility}. Unfortunately support for this in
-\LaTeX\ is still work in progress, and the alternative text will
+in~}\secref{accessibility}\DIFadd{. Unfortunately support for this in
+}\LaTeX\DIFadd{\ is still work in progress, and the alternative text will
 currently not end up in the final PDF, so including them is not a requirement.
-A suitable alternative text for~\figref{fig:work_packages} could be:
+A suitable alternative text for~}\figref{fig:work_packages} \DIFadd{could be:
+}
 
 \begin{quote}
-Diagram showing interactions between work packages WP1 to WP5, all
+\DIFadd{Diagram showing interactions between work packages WP1 to WP5, all
 inside WP6, which is itself inside WP7. WP3 (left) sends outputs to
 WP1, WP2, and WP4. WP1 and WP2 are bidirectionally linked. WP1,
 WP2, and WP4 send outputs to WP5 (right). A curved arrow shows WP3
 also directly feeding into WP5.
-\end{quote}
+}\end{quote}
 
-The final thesis will be published as a PDF/A file, and this LaTeX
-template produces files in that format directly. Be sure to remove all
+\DIFaddend The final thesis will be published as a PDF/A file, and this LaTeX
+template produces files in that format directly\DIFdelbegin \DIFdel{(There is no need to
+use Muuntaja)}\DIFdelend . Be sure to remove all
 transparency in your source images to ensure the end result is also
-compliant. This affects figures in PDF and PNG formats. Instructions
-on doing this are included with the thesis template.  If you have done
-this for all of your images, there is no need to use Muuntaja.
+compliant. \DIFdelbegin %DIFDELCMD < 
 
-\subsection{Algorithms}
+%DIFDELCMD < %%%
+%DIF <  Pictures in .pdf, .png or .jpg. No need to specify the extension.
+%DIF <  Transparent images are not allowed with PDF/A.
+%DIF <  With ImageMagick transparency can be removed with
+%DIF <  convert image.png -background white -alpha remove -alpha off image_nobg.png
+%DIF <  This restriction also affects PDF images
+%DIFDELCMD < \begin{figure}[ht]
+%DIFDELCMD <   \begin{center}
+%DIFDELCMD <     \includegraphics*[width=0.7\textwidth]{WP}
+%DIFDELCMD <   \end{center}
+%DIFDELCMD <   %%%
+%DIFDELCMD < \caption{%
+{%DIFAUXCMD
+\DIFdelFL{Connections between work packages (WP). \copyright\ Unto Uneksija 2025 CC BY}}
+  %DIFAUXCMD
+%DIFDELCMD < \label{fig:work_packages}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{As mentioned, in case the figure has been taken from elsewhere, the author needs to have a permission from the copyright holder. Usually this is based on a licence that gives permission to use the work with some conditions. The most common example would be a CC-BY licence, such as the one used in }%DIFDELCMD < \figref{fig:ccbypic}%%%
+\DIFdel{.  Note how the footnote is used instead of a citation to point to the original source}\DIFdelend \DIFaddbegin \DIFadd{This affects figures in PDF and PNG formats. Instructions
+on doing this are included with the thesis template.  If you have done
+this for all of your images, there is no need to use Muuntaja}\DIFaddend .
+
+\DIFdelbegin %DIFDELCMD < \begin{figure}[H]
+%DIFDELCMD <   \begin{center}
+%DIFDELCMD <     \includegraphics[width=12cm]{Figures/ccby.jpg}
+%DIFDELCMD <   \end{center}
+%DIFDELCMD <     %%%
+%DIFDELCMD < \caption[]{%
+{%DIFAUXCMD
+\DIFdelFL{"Stephen Crane, Author, Red Badge of Courage" by Tony Fischer Photography}%DIFDELCMD < \footnotemark%%%
+\DIFdelFL{.}}
+    %DIFAUXCMD
+%DIFDELCMD < \label{fig:ccbypic}
+%DIFDELCMD < \end{figure}
+%DIFDELCMD < %%%
+\footnotetext{\DIFdel{"Stephen Crane, Author, Red Badge of Courage", available at https://openverse.org/image/110032f8-1a7a-421f-86b1-88fdfde2e44f by Tony Fischer Photography is licensed under CC BY 2.0}}
+%DIFAUXCMD
+%DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \subsection{Algorithms}
 Algorithms can be implemented simply using \LaTeX. An example of an
-algorithm is given in Algorithm~\ref{alg:examplealg}. An input and an
+algorithm is given in Algorithm\DIFaddbegin \DIFadd{~}\DIFaddend \ref{alg:examplealg}. An input and an
 output for the algorithm should be assigned at the start. Equations
 or discussed methods can be referenced in the algorithm. Depending on
 one's needs the algorithm may be implemented in a higher level of
-pseudocode compared to one in Algorithm~\ref{alg:examplealg}.
+pseudocode compared to one in Algorithm\DIFaddbegin \DIFadd{~}\DIFaddend \ref{alg:examplealg}.
 
-%For more documentation and examples of creating algorithms, see:
-% http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf
+%DIF < For more documentation and examples of creating algorithms, see: http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf
+%DIF > For more documentation and examples of creating algorithms, see:
+%DIF >  http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf
 \vspace{7mm}
 \begin{algorithm}[H]
-\SetAlgoLined
+\DIFdelbegin %DIFDELCMD < \ifthenelse{\equal{\getlanguage}{finnish}}
+%DIFDELCMD <     {\renewcommand{\algorithmcfname}{Algoritmi}}
+%DIFDELCMD <     {}
+%DIFDELCMD < %%%
+\DIFdelend \SetAlgoLined
 \DontPrintSemicolon
 \SetKwData{min}{min}
 \SetKwFunction{swap}{swap}
@@ -330,8 +420,8 @@ that the tools you use (including their licenses, terms, and
 conditions) permit the output to be utilized in your thesis as intended.
 
 The thesis must include a disclaimer at the end of the introduction
-in a subsection titled ``\textit{Author's Contributions and the Role
-of Artificial Intelligence}.'' This subsection serves two purposes.
+in a subsection titled \DIFdelbegin \DIFdel{"}\DIFdelend \DIFaddbegin \DIFadd{``}\DIFaddend \textit{Author's Contributions and the Role
+of Artificial Intelligence}.\DIFdelbegin \DIFdel{" }\DIFdelend \DIFaddbegin \DIFadd{'' }\DIFaddend This subsection serves two purposes.
 First, you should clarify your own contributions to the thesis, which
 is necessary in cases when the thesis is completed, for example, in a
 project with multiple contributors. Second, the section must detail
@@ -459,8 +549,9 @@ help you in solving your problem. At the most difficult time it is
 good to remember that every engineer you see out there has once been
 in the same situation as you are now, and yet they were still able to graduate.
 
-%Pictures in .eps if you use latex, .pdf or .png if you use pdflatex.
-% Don't specify the extension so you can use both!
+%DIF < Pictures in .eps if you use latex, .pdf or .png if you use pdflatex. Don't specify the extension so you can use both!
+%DIF > Pictures in .eps if you use latex, .pdf or .png if you use pdflatex.
+%DIF >  Don't specify the extension so you can use both!
 \begin{figure}[ht]
 \begin{center}
   \includegraphics*[width=0.9\textwidth]{unto_uneksija}
@@ -480,7 +571,7 @@ pre-defined paragraph formats speeds up writing. The use of automatic
 numbering helps to minimize manual corrections, when the order of
 figures, for example, is changed.
 
-Most word processors, \LaTeX\ included, have a spelling checker
+Most word processors, \LaTeX\DIFaddbegin \DIFadd{\ }\DIFaddend included, have a spelling checker
 feature that is recommended to be used. This way your supervisor does
 not need to spend time on spotting and correcting typos, but can
 concentrate on the actual contents of the thesis.
@@ -504,89 +595,104 @@ included in the thesis. Specifically, a student needs to ask a
 permissions for each figure and table not created by the student
 her/himself but copied from another source.
 
-All theses in the University of Oulu that are to be approved are
-analyzed with a program called Turnitin. This program checks the
+\DIFdelbegin \DIFdel{Moreover, each student can her/himself decide whether the thesis will be }\DIFdelend \DIFaddbegin \DIFadd{All theses in the University of Oulu that are to be approved are
+}\DIFaddend analyzed with a program called \DIFdelbegin \DIFdel{Urkund}\DIFdelend \DIFaddbegin \DIFadd{Turnitin}\DIFaddend . This program checks the
 amount of similar text in the thesis and already published documents
-(i.e., theses delivered earlier and documents in various databases and
-in the Internet). The role of Turnitin is twofold: First, it checks
+(i.e.\DIFaddbegin \DIFadd{, }\DIFaddend theses delivered earlier and documents in various databases and
+in the Internet). The role of \DIFdelbegin \DIFdel{Urkund }\DIFdelend \DIFaddbegin \DIFadd{Turnitin }\DIFaddend is twofold: First, it checks
 whether a student has copied text from others’ documents. Copying of
 few sentences is acceptable when the copied text is referenced and
 quoted properly; otherwise such copying is not permitted and causes
 official consequences---the thesis can even be rejected. Second, when
-the thesis is in Turnitin’s databases, it checks whether others have
+the thesis is in \DIFdelbegin \DIFdel{Urkund}\DIFdelend \DIFaddbegin \DIFadd{Turnitin}\DIFaddend ’s databases, it checks whether others have
 copied text from this thesis.
 
-The student can choose whether their thesis is stored as comparison material
-in Turnitin. We recommend doing this, as then
+\DIFdelbegin \DIFdel{We recommend allowing the thesis it be delivered to Urkund }\DIFdelend \DIFaddbegin \DIFadd{The student can choose whether their thesis is stored as comparison material
+in Turnitin. We recommend doing this, }\DIFaddend as then
 the thesis is protected against incorrect copying by others. However,
-once delivered to Turnitin the thesis cannot be deleted from its
-databases. Text copied from others’ documents must be referenced
-and quoted properly in the first version delivered to Turnitin.
+\DIFdelbegin \DIFdel{as thesis }\DIFdelend once delivered to \DIFdelbegin \DIFdel{Urkund }\DIFdelend \DIFaddbegin \DIFadd{Turnitin the thesis }\DIFaddend cannot be deleted from its
+databases\DIFdelbegin \DIFdel{, the text }\DIFdelend \DIFaddbegin \DIFadd{. Text }\DIFaddend copied from others’ documents must be referenced
+and quoted properly in the first version delivered to \DIFdelbegin \DIFdel{Urkund}\DIFdelend \DIFaddbegin \DIFadd{Turnitin}\DIFaddend .
 Hence, a student must \textbf{always} check correct referencing and
-quoting with the supervisor before delivering the work to Turnitin!
+quoting with the supervisor before delivering the work to \DIFdelbegin \DIFdel{Urkund}\DIFdelend \DIFaddbegin \DIFadd{Turnitin}\DIFaddend !
 ITEE professors have additional tools for performing this check. The
 rights and permissions for thesis content can be checked at the same time.
 
-The University of Oulu offers a free tool, Turnitin Draft Coach, to
+\DIFdelbegin \DIFdel{More information can be found }\DIFdelend \DIFaddbegin \DIFadd{The University of Oulu offers a free tool, Turnitin Draft Coach, to
 all students as part of Microsoft Office 365 Word Online. With this
 tool, you will receive feedback and can check the originality of your
 text and the correctness of the references already during the writing
 process.  More information about the tool and its activation on the
 website of the University of Oulu at
-\url{https://www.oulu.fi/en/news/want-improve-your-academic-writing-and-achieve-better-results}.
+}\url{https://www.oulu.fi/en/news/want-improve-your-academic-writing-and-achieve-better-results}\DIFadd{.
+}
 
-Students can utilize the Turnitin similarity checking independently.
+\DIFadd{Students can utilize the Turnitin similarity checking independently.
 The tool can be found in Moodle
-\url{https://moodle.oulu.fi/course/view.php?id=26689} (Course key:
+}\url{https://moodle.oulu.fi/course/view.php?id=26689} \DIFadd{(Course key:
 Turnitin2025). The thesis is checked individually, so the originality
 of the text can be confirmed.
+}
 
-More information can be found from the degree programme web pages
-~\cite{mscstudies} and from Laturi’s web pages: \url{http://laturi.oulu.fi}.
+\DIFadd{More information can be found }\DIFaddend from the degree programme web pages
+\DIFaddbegin \DIFadd{~}\DIFaddend \cite{mscstudies} and from Laturi’s web pages: \DIFdelbegin \DIFdel{http://laturi.
+oulu.fi.
+}\DIFdelend \DIFaddbegin \url{http://laturi.oulu.fi}\DIFadd{.
+}\DIFaddend 
 
 \section{Optional bound versions}
-\label{boundversion}
-It is not mandatory to bind the thesis at a printing house. However, a
+\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \DIFaddbegin \label{boundversion}
+\DIFaddend It is not mandatory to bind the thesis at a printing house. However, a
 student is free to bind the thesis when she/he wants to have a
 high-quality copy for relatives, for example.
+\DIFdelbegin \DIFdel{For the bound thesis}\DIFdelend \DIFaddbegin 
 
-For bound theses, select the \textit{print} option in the thesis
-template, which adjusts the page margins to the following: left 4,5
+\DIFadd{For bound theses, select the }\textit{\DIFadd{print}} \DIFadd{option in the thesis
+template, which adjusts the page margins to the following: left 4}\DIFaddend ,\DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{5
 cm, right 2,0 cm, top 2,5 cm, and bottom 3,0 cm. Verify that figures
 and tables are correctly positioned and that page numbers and page
 number references in the text are accurate, as these may differ from
 the online PDF version. 
+}
 
-To ensure a high-quality thesis that is consistent with previous
-theses, the following rules apply: The words MASTER’S THESIS should be
-printed in the center of the front cover. The NAME OF THE AUTHOR
-should be printed in the lower right-hand corner of the front
-cover. The NAME OF THE AUTHOR and the year of publication should be
-printed on the spine of the thesis. Your thesis must be bound at a
+\DIFadd{To ensure a high-quality thesis that is consistent with previous
+theses, the following rules apply: The }\DIFaddend words MASTER’S THESIS should be
+printed in the \DIFdelbegin \DIFdel{middle }\DIFdelend \DIFaddbegin \DIFadd{center }\DIFaddend of the front cover. The NAME OF THE AUTHOR
+\DIFdelbegin \DIFdel{of the thesis }\DIFdelend should be printed in the lower \DIFdelbegin \DIFdel{right hand }\DIFdelend \DIFaddbegin \DIFadd{right-hand }\DIFaddend corner of the front
+cover. The NAME OF THE AUTHOR and \DIFaddbegin \DIFadd{the }\DIFaddend year of publication should be
+printed \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{on }\DIFaddend the spine of the thesis. \DIFdelbegin \DIFdel{You must have your thesis }\DIFdelend \DIFaddbegin \DIFadd{Your thesis must be }\DIFaddend bound at a
 printing house specialized in printing theses. The printing house will
 also produce and attach the cover to the printout that you
-provide. The cover must be black, and the text must be printed
+\DIFdelbegin \DIFdel{have brought with you}\DIFdelend \DIFaddbegin \DIFadd{provide. The cover must be black, and the text must be printed
 directly on it; stickers are not allowed.
+}
 
-\section{Copyright, Licenses and the Use of images}
+\section{\DIFadd{Copyright, Licenses and the Use of images}}
 \label{copyright}
-Intellectual property rights (IPR) protect works, i.e., the authors
+\DIFadd{Intellectual property rights (IPR) protect works, i.e., the authors
 and rights-holders of literary or artistic works that exceed the
 threshold of originality. These works include, for instance, texts,
 images, music, and computer software code. This section explains the
 related issues, especially concerning images, and provides guidelines
 for dealing with copyright matters in your thesis.
+}
 
-Your thesis is also a copyrighted work. If no license is explicitly
-stated, the license is \enquote{All rights reserved,} meaning it can only be
+\DIFadd{Your thesis is also a copyrighted work. If no license is explicitly
+stated, the license is }\enquote{All rights reserved,} \DIFadd{meaning it can only be
 used in limited ways under copyright law. The Federation of Finnish
 Open Science Coordination in Finland and the University of Oulu
 recommend publishing theses as open access and under a CC-BY 4.0 license,
-or if warranted, another CC license~\cite{coordination_open_2024}.
+or if warranted, another CC license~\mbox{%DIFAUXCMD
+\cite{coordination_open_2024}}\hskip0pt%DIFAUXCMD
+.
 CC-BY 4.0 allows reuse, including commercial use, of your work as long as
 the author is credited.
+}
 
-Among the various types of works protected by copyright, images
+\DIFadd{Among the various types of works protected by copyright, images
 present particular challenges and considerations. Images are
 frequently used to illustrate concepts, present data, or enhance the
 visual appeal of academic texts. However, their use is subject to
@@ -594,38 +700,43 @@ specific copyright restrictions, and improper use can lead to legal
 and ethical issues.  For this reason, figures found on the Internet,
 for example, may not be freely used in theses without proper
 permission or licensing.
+}
 
-According to the copyright enactments, you must always have
+\DIFadd{According to the copyright enactments, you must always have
 permission from the copyright holder, which is not necessarily the
 author, to use their figure in your work. To summarize:
-\textbf{Copyright infringement may lead to legal actions and
-penalties, and in those cases the author is responsible.} The writer
+}\textbf{\DIFadd{Copyright infringement may lead to legal actions and
+penalties, and in those cases the author is responsible.}} \DIFadd{The writer
 should grow towards to mainly using figures of his own in the
 thesis. Often it is necessary to redraw the figure and cite the
 original source.
+}
 
-It is good practice to explicitly state the copyright owners and
+\DIFadd{It is good practice to explicitly state the copyright owners and
 license for all images in your thesis. This can be done via a blanket
 statement on a separate copyright page that explicitly mentions
 images, or for every image separately in the caption. All exceptions
-to the main license of your thesis (e.g., \enquote{All rights reserved} or
-\enquote{CC-BY 4.0}) should \textbf{always} be included in the image
+to the main license of your thesis (e.g., }\enquote{All rights reserved} \DIFadd{or
+}\enquote{CC-BY 4.0}\DIFadd{) should }\textbf{\DIFadd{always}} \DIFadd{be included in the image
 captions.
+}
 
-If your use of external images is extensive and is a central part of
+\DIFadd{If your use of external images is extensive and is a central part of
 your thesis, it is good to also explicitly list them on the copyright
-page or in an appendix, e.g., ``Figure 5 is reproduced from [x] under
+page or in an appendix, e.g., ``Figure 5 is reproduced from }[\DIFadd{x}] \DIFadd{under
 the provisions of copyright law allowing use with appropriate
 citation.'' and also discuss their use with your thesis supervisor at
 an early stage and acquire the necessary permissions.
+}
 
-The starting point is that the figures must be related to the text,
+\DIFadd{The starting point is that the figures must be related to the text,
 i.e, the text must explain why the figure has been presented. The text
 must contain a reference to the figure. Use self-made figures
 (drawings, schematics, simulation or measurement result figures,
 photographs), if possible.
+}
 
-It is a good practice to mark the photographer in the photos
+\DIFadd{It is a good practice to mark the photographer in the photos
 (e.g. “Photographer first name last name year.”) If you are not the
 photographer, ask permission and keep the permission (e.g., email
 correspondence) safe. In addition, keep any other licenses you have
@@ -636,72 +747,86 @@ the CC license from the publication from which you have taken the
 photo. For this reason, we recommend mentioning the license explicitly
 for your own significant contributions, even if it is the same as
 the main license.
+}
 
-As mentioned, in case the figure has been taken from elsewhere, the
+\DIFadd{As mentioned, in case the figure has been taken from elsewhere, the
 author needs to have a permission from the copyright holder. Usually
 this is based on a license that gives permission to use the work with
 some conditions. The most common example would be a CC-BY license,
-such as the one used in \figref{fig:ccbypic}. If the figure is from a
+such as the one used in }\figref{fig:ccbypic}\DIFadd{. If the figure is from a
 publication you are citing, ``Under/Reprinted/Adapted CC BY 4.0 license
-picture from [x] \textcopyright 20xx Author.'' would be
-appropriate. In Finnish, use ``[Muokattu] CC BY 4.0 lisenssin alainen
-kuva lähteestä [x]. \textcopyright Vuosi Tekijä.''
+picture from }[\DIFadd{x}] \DIFadd{\textcopyright 20xx Author.'' would be
+appropriate. In Finnish, use ``}[\DIFadd{Muokattu}] \DIFadd{CC BY 4.0 lisenssin alainen
+kuva lähteestä }[\DIFadd{x}]\DIFaddend . \DIFdelbegin \DIFdel{The color of the cover has to be black. The text has to be printed on the cover, i.e., stickers should not be applied!
+ }\DIFdelend \DIFaddbegin \DIFadd{\textcopyright Vuosi Tekijä.''
+}
 
 \begin{figure}[H]
 \begin{center}
   \includegraphics[width=12cm]{Figures/ccby.jpg}
 \end{center}
-\caption{``\href{https://openverse.org/image/110032f8-1a7a-421f-86b1-88fdfde2e44f
-  }{Stephen Crane, Author, Red Badge of Courage}''
-  by~\href{https://www.flickr.com/photos/tonythemisfit/}{Tony Fischer
-  Photography} is licensed under
-\href{https://creativecommons.org/licenses/by/2.0/}{CC BY 2.0}.}
+\caption{\DIFaddFL{``}\href{https://openverse.org/image/110032f8-1a7a-421f-86b1-88fdfde2e44f
+  }{\DIFaddFL{Stephen Crane, Author, Red Badge of Courage}}\DIFaddFL{''
+  by~}\href{https://www.flickr.com/photos/tonythemisfit/}{\DIFaddFL{Tony Fischer
+  Photography}} \DIFaddFL{is licensed under
+}\href{https://creativecommons.org/licenses/by/2.0/}{\DIFaddFL{CC BY 2.0}}\DIFaddFL{.}}
 \label{fig:ccbypic}
 \end{figure}
 
-The permission can also be from the publisher. For instance, IEEE and
+\DIFadd{The permission can also be from the publisher. For instance, IEEE and
 many other publishers have an automated system for granting permission
 for theses. Mark the permission in the caption as requested by the
 right holder, e.g., “\textcopyright 2022 IEEE. Reprinted, with
-permission, from [x].''
+permission, from }[\DIFadd{x}]\DIFadd{.''
+}
 
-Not all figures exceed the threshold of originality. These include,
+\DIFadd{Not all figures exceed the threshold of originality. These include,
 for example, scientific diagrams and flowcharts. Good research
 practices require that even in this case, the source is cited in the
-caption (\enquote{Figure from [x].}). However, it would be best to ask
+caption (}\enquote{Figure from [x].}\DIFadd{). However, it would be best to ask
 for permission or at least redraw the image. Images with a CC license
 are free to use, so long as the terms of use are
-followed~\cite{about_cc_licenses}. Even then, the caption must mention
+followed~\mbox{%DIFAUXCMD
+\cite{about_cc_licenses}}\hskip0pt%DIFAUXCMD
+. Even then, the caption must mention
 the source (article, website, etc.) and that the image is CC-licensed.
+}
 
-Based on the right to quote, it is possible to take a photocopy,
+\DIFadd{Based on the right to quote, it is possible to take a photocopy,
 screenshot or photograph of a work (not the original file) and publish
 it, citing the original source in the caption. A critical aspect of
 the right to quote is that the use of the image is relevant to the
 work, i.e., the image must be related to the subject, and it must be
 explained in the text (this applies to all images). Similarly, the
 source must be cited in text citations.
+}
 
-Sometimes you may want to use someone else's original image idea as a
+\DIFadd{Sometimes you may want to use someone else's original image idea as a
 basis for your own work. Permission is not required provided that your
 work clearly an amply edited version of the original. However, in
 accordance with good research practices the type of modification and
 source (``Modified/Adapted/Redrawn/Based on/Created using data from
-[x]'') and must be declared in the caption. Should you only make minor
+}[\DIFadd{x}]\DIFadd{'') and must be declared in the caption. Should you only make minor
 edits to the original, separate permission is required. The University
-of Oulu Acta Oulu publishing guide~\cite{ronkainen_copyright} has more
+of Oulu Acta Oulu publishing guide~\mbox{%DIFAUXCMD
+\cite{ronkainen_copyright} }\hskip0pt%DIFAUXCMD
+has more
 details on this topic, and also the proper wordings in
-Finnish~\cite{ronkainen_tekijanoikeus}.
+Finnish~\mbox{%DIFAUXCMD
+\cite{ronkainen_tekijanoikeus}}\hskip0pt%DIFAUXCMD
+.
+}
 
-When searching for images through an internet image search, it is not
+\DIFadd{When searching for images through an internet image search, it is not
 always easy to find the rights holder from whom to request permission
 for use. Hunting for a permit can be a demanding task. The easiest way
 is to use images and figures from scientific articles (or with open
 licenses) as in these the rights holders are clearly declared.
+}
 
-\section{Accessibility}
+\section{\DIFadd{Accessibility}}
 \label{accessibility}
-Put effort into the accessibility of your thesis. The
+\DIFadd{Put effort into the accessibility of your thesis. The
 structure of an accessible document is clear, and the wording is as
 understandable as possible. Figures and tables should be given an
 alternative text that summarises the information they contain for the
@@ -709,6 +834,11 @@ reader. Alternative text is especially important in situations where
 the reader cannot see the figure or table, for example due to vision
 impairment.  More information on accessible Word documents and
 archivable PDF files can be found in the texts of the University of
-Oulu Campus ICT~\cite{ictaccessibleword,ictwordpdfa}. You can also
+Oulu Campus ICT~\mbox{%DIFAUXCMD
+\cite{ictaccessibleword,ictwordpdfa}}\hskip0pt%DIFAUXCMD
+. You can also
 read about the accessibility of mathematical equations in the Campus
-ICT text~\cite{ictaccessiblemath}.
+ICT text~\mbox{%DIFAUXCMD
+\cite{ictaccessiblemath}}\hskip0pt%DIFAUXCMD
+.
+ }\DIFaddend

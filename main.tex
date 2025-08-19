@@ -1,150 +1,265 @@
-% Template for B. Sc and M. Sc. (Tech.) degree programmes at the
-% Faculty of Information Technology and Electrical Engineering
-% at University of Oulu (CSE/BME/BA)
-% 
+%DIF 1c1-4
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL cse-old/main.tex      Tue Aug 19 14:24:55 2025
+%DIF ADD cse-thesis/main.tex   Tue Aug 19 13:16:53 2025
+%DIF < % Template for Degree Programme in Computer Science and Engineering Diploma Thesis v1.3.2019
+%DIF -------
+% Template for B. Sc and M. Sc. (Tech.) degree programmes at the %DIF > 
+% Faculty of Information Technology and Electrical Engineering %DIF > 
+% at University of Oulu (CSE/BME/BA) %DIF > 
+%  %DIF > 
+%DIF -------
 % Authors: Mika Korhonen (original author), Pekka Pietikäinen, Christian Wieser, Teemu Tokola, Juha Kylmänen, Tuomas Holmberg and Tuomas Varanka.
-% If you make any improvements to this template, submit them via
-% https://github.com/ouspg/cse-thesis
+%DIF 3c6-7
+%DIF < % If you make any improvements to this template, please contact teemu.tokola@oulu.fi
+%DIF -------
+% If you make any improvements to this template, submit them via %DIF > 
+% https://github.com/ouspg/cse-thesis %DIF > 
+%DIF -------
 %
 % CHANGELOG
 % 2023-01-31: Track changes has been turned on - TTo
 % 2023-06-15: Improvements to avoid missing filling in some details: TODO's added to template (TTo)
 % 2023-06-15: Changes to foreword, clarifications to indicate template is also for Bachelor thesis  (TTo)
 % 2023-06-15: Example of a CC-BY figure added with reference in the footnotes (TTo)
-% 2025-08-18: Major refactoring of the template (PPi)
+%DIF 10a14
+% 2025-08-18: Major refactoring of the template (PPi) %DIF > 
+%DIF -------
 
-%
-% dithesis.cls supports the following options
-% Language: english/finnish
-% Degree programme: cse (default)/bme/ba
-% Thesis type: master (default)/bachelor
-% Output type: online (default, 2.5 cm margin)
-%              print (4.5 cm left margin for bound theses)
-\documentclass[english, online, cse, master]{dithesis}
+%DIF 11a16-23
+% %DIF > 
+% dithesis.cls supports the following options %DIF > 
+% Language: english/finnish %DIF > 
+% Degree programme: cse (default)/bme/ba %DIF > 
+% Thesis type: master (default)/bachelor %DIF > 
+% Output type: online (default, 2.5 cm margin) %DIF > 
+%              print (4.5 cm left margin for bound theses) %DIF > 
+\documentclass[english, online, cse, master]{dithesis} %DIF > 
+%DIF -------
 
-%% Copyright of a work is with the creator/author of the work regardless of
-%% whether the copyright mark is explicitly in the work or not. You may, if you
-%% wish---we encourage you to do so---publish your work under a Creative
-%% Commons license (see creativecommons.org), in which case the license text
-%% must be visible in the work.
+%DIF 12-15c25-29
+%DIF < \documentclass[a4paper, 12pt, titlepage]{dithesis}
+%DIF < \usepackage{import}
+%DIF < \usepackage{di}
+%DIF < \usepackage[a-1b,mathxmp]{pdfx}
+%DIF -------
+%% Copyright of a work is with the creator/author of the work regardless of %DIF > 
+%% whether the copyright mark is explicitly in the work or not. You may, if you %DIF > 
+%% wish---we encourage you to do so---publish your work under a Creative %DIF > 
+%% Commons license (see creativecommons.org), in which case the license text %DIF > 
+%% must be visible in the work. %DIF > 
+%DIF -------
 
-% Uncommenting one of the following will automatically create a copyright page
-% If both are commented out the license is "All rights reserved"
-% and no copyright page will be generated
-%
-%\input{copyright-allrightsreserved}
-\input{copyright-ccby40.tex}
+%DIF 17a31-36
+% Uncommenting one of the following will automatically create a copyright page %DIF > 
+% If both are commented out the license is "All rights reserved" %DIF > 
+% and no copyright page will be generated %DIF > 
+% %DIF > 
+%\input{copyright-allrightsreserved} %DIF > 
+\input{copyright-ccby40.tex} %DIF > 
+%DIF -------
 
-%%%%%%%%%%%%%%%%%%%%% SET YOUR INFORMATION HERE %%%%%%%%%%%%%%%%%%%%%%%
+%DIF 18c38
+%DIF < %%%%%%%%%%%%%%%%%%%%%%% SET YOUR INFORMATION HERE %%%%%%%%%%%%%%%%%%%%%%%
+%DIF -------
+%%%%%%%%%%%%%%%%%%%%% SET YOUR INFORMATION HERE %%%%%%%%%%%%%%%%%%%%%%% %DIF > 
+%DIF -------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{TODO: Bachelor's and Diploma Thesis Guide}
+%DIF 21d41
+%DIF < %Finnish title, not required for foreign students
+%DIF -------
 \otsikko{TODO: Kandidaatintyön ja diplomityön teko-ohjeet}
 
-\firstname{Program}
-\lastname{Committee}
+%DIF 24-25c43-44
+%DIF < \firstname{TODO: Programme}
+%DIF < \lastname{TODO: Committee}
+%DIF -------
+\firstname{Program} %DIF > 
+\lastname{Committee} %DIF > 
+%DIF -------
 
-% Names of other authors can be added here
-%\firstnametwo{}
-%\lastnametwo{}
-%\firstnamethree{}
-%\lastnamethree{}
-% Remove or comment the extra names if you do not need them
+%DIF 27-29c46-51
+%DIF < % Please choose the correct type of thesis and the language used
+%DIF < \thesis{Master} % {Bachelor | Master}
+%DIF < \thesislanguage{english} % {finnish | english}
+%DIF -------
+% Names of other authors can be added here %DIF > 
+%\firstnametwo{} %DIF > 
+%\lastnametwo{} %DIF > 
+%\firstnamethree{} %DIF > 
+%\lastnamethree{} %DIF > 
+% Remove or comment the extra names if you do not need them %DIF > 
+%DIF -------
 
-% Abstracts are stored in the PDF metadata.
-% They must not contain empty lines (multiple paragraphs) or special
-% characters. Mathematical symbols should work (mathxmp option of the pdfx
-% package).
-% If the abstract contains multiple paragraphs or special characters,
-% provide the full text in abstract.tex and tiivistelma.tex.
-% This version should otherwise remain identical to it
-\abstract{This document provides general guidance for a degree student
-  in the technical degree programmes of Computer Science and
-  Engineering, Biomedical Engineering and Business Analytics (Tech.)
-  at the faculty of Information Technology and Electrical Engineering
-  at the University of Oulu in preparing his/her Bachelor's or
-  Master's thesis. This guide defines the role of a thesis in the
-  M.Sc. (Tech.) Degree, presents the actions to be taken in different
-  phases of the thesis procedure and introduces the way that the
-  thesis is written. The document has been formatted based on these
-  guidelines to serve as an example how the thesis should look like.}
+%DIF 31-35c53-69
+%DIF < %Names of other authors can be added here
+%DIF < \firstnametwo{}
+%DIF < \lastnametwo{}
+%DIF < \firstnamethree{}
+%DIF < \lastnamethree{}
+%DIF -------
+% Abstracts are stored in the PDF metadata. %DIF > 
+% They must not contain empty lines (multiple paragraphs) or special %DIF > 
+% characters. Mathematical symbols should work (mathxmp option of the pdfx %DIF > 
+% package). %DIF > 
+% If the abstract contains multiple paragraphs or special characters, %DIF > 
+% provide the full text in abstract.tex and tiivistelma.tex. %DIF > 
+% This version should otherwise remain identical to it %DIF > 
+\abstract{This document provides general guidance for a degree student %DIF > 
+  in the technical degree programmes of Computer Science and %DIF > 
+  Engineering, Biomedical Engineering and Business Analytics (Tech.) %DIF > 
+  at the faculty of Information Technology and Electrical Engineering %DIF > 
+  at the University of Oulu in preparing his/her Bachelor's or %DIF > 
+  Master's thesis. This guide defines the role of a thesis in the %DIF > 
+  M.Sc. (Tech.) Degree, presents the actions to be taken in different %DIF > 
+  phases of the thesis procedure and introduces the way that the %DIF > 
+  thesis is written. The document has been formatted based on these %DIF > 
+  guidelines to serve as an example how the thesis should look like.} %DIF > 
+%DIF -------
 
-\tiivistelma{Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa
-  opiskelijaa kandidaatin- ja diplomityön tekemisessä. Ohjeissa
-  selvitetään työn asema diplomi-insinööritutkinnossa, kerrotaan
-  toimenpiteet, joihin työn tekijän on ryhdyttävä työn eri vaiheissa,
-  sekä määritellään yksityiskohtaisesti kandidaatin- ja diplomitöiden
-  kirjallinen rakenne. Ohje on muotoiltu noudattaen näitä
-  kirjoitusohjeita ja toimii siten esimerkkinä, miltä lopputyön tulisi
-  näyttää.}
-
-% Keywords are also included in the PDF metadata, and cannot contain any
-% special characters. Separate them with \spc
-\keywords{M.Sc. degree\spc master’s thesis instructions\spc structure of a master’s thesis}
-\avainsanat{diplomi-insinöörin tutkinto\spc diplomityön ohjeet\spc diplomityön rakenne}
-
-
+%DIF 37c71-85
+%DIF < %Do not remove or comment the extra names if you do not need them, leave them empty instead
+%DIF -------
+\tiivistelma{Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa %DIF > 
+  opiskelijaa kandidaatin- ja diplomityön tekemisessä. Ohjeissa %DIF > 
+  selvitetään työn asema diplomi-insinööritutkinnossa, kerrotaan %DIF > 
+  toimenpiteet, joihin työn tekijän on ryhdyttävä työn eri vaiheissa, %DIF > 
+  sekä määritellään yksityiskohtaisesti kandidaatin- ja diplomitöiden %DIF > 
+  kirjallinen rakenne. Ohje on muotoiltu noudattaen näitä %DIF > 
+  kirjoitusohjeita ja toimii siten esimerkkinä, miltä lopputyön tulisi %DIF > 
+  näyttää.} %DIF > 
+ %DIF > 
+% Keywords are also included in the PDF metadata, and cannot contain any %DIF > 
+% special characters. Separate them with \spc %DIF > 
+\keywords{M.Sc. degree\spc master’s thesis instructions\spc structure of a master’s thesis} %DIF > 
+\avainsanat{diplomi-insinöörin tutkinto\spc diplomityön ohjeet\spc diplomityön rakenne} %DIF > 
+ %DIF > 
+ %DIF > 
+%DIF -------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\headertitlecap automatically creates headers with TitleCaps
-% (Capitalizes the First Letter in Each Word except ``Small'' Ones)
-% for H0, H2, and H3. Words not to be capitalized can be
-% changed in dithesis.sty.
-% This only has effect in English. In Finnish headers follow
-% the normal Finnish rules of capitalization.
-% Also this doesn't affect the PDF metadata, so you should
-% correctly title case headings in your .tex files anyway.
+%DIF 40c88-95
+%DIF < %\headertitlecap automatically creates headers with TitleCaps (Capitalizes the First Letter in Each Word) for H0, H2, and H3. Words not to be capitalized can be changed in di.sty
+%DIF -------
+%\headertitlecap automatically creates headers with TitleCaps %DIF > 
+% (Capitalizes the First Letter in Each Word except ``Small'' Ones) %DIF > 
+% for H0, H2, and H3. Words not to be capitalized can be %DIF > 
+% changed in dithesis.sty. %DIF > 
+% This only has effect in English. In Finnish headers follow %DIF > 
+% the normal Finnish rules of capitalization. %DIF > 
+% Also this doesn't affect the PDF metadata, so you should %DIF > 
+% correctly title case headings in your .tex files anyway. %DIF > 
+%DIF -------
 \headertitlecap
-
-% Add your bibliographies here. You can use several with BibLaTeX.
-\addbibresource{citations.bib}
+ %DIF > 
+% Add your bibliographies here. You can use several with BibLaTeX. %DIF > 
+\addbibresource{citations.bib} %DIF > 
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
 
 \begin{document}
-\pagestyle{empty}
-\maketitlepage
-\makecopyrightpage
+\DIFaddbegin \pagestyle{empty}
+\DIFaddend \maketitlepage
+%DIF < Create the title page
+    \DIFaddbegin \makecopyrightpage
+\DIFaddend 
 
-\IfLang{\MainLang}{finnish}{
+%DIF < If you are writing your thesis in Finnish you can change the order of abstract/tiivistelmä
+    %DIF < If you are a foreign student you can remove the Finnish abstract (tiivistelmä)
+    \DIFaddbegin \IfLang{\MainLang}{finnish}{
   \input{Chapters/tiivistelma}
   \input{Chapters/abstract}
   \selectlanguage{finnish}
 } {
-  \input{Chapters/abstract}
-  \input{Chapters/tiivistelma}
-  \selectlanguage{english}
+  \DIFaddend \input{Chapters/abstract}
+  \DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD <     %%%
+\DIFdelend \input{Chapters/tiivistelma}
+  \DIFaddbegin \selectlanguage{english}
 }
+\DIFaddend 
 
 \contents %Insert table of contents
-\input{Chapters/foreword}
-\input{Chapters/abbreviations}
-    
-% Enables page numbers and sets the dots for numbered chapters in 
-% table of contents
-\mainmatter
+\DIFdelbegin %DIFDELCMD < 
 
-\chapter{Introduction} %Set the name of a new chapter
+%DIFDELCMD <     %%%
+\DIFdelend \input{Chapters/foreword}
+\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD <     %%%
+\DIFdelend \input{Chapters/abbreviations}
+
+%DIF >  Enables page numbers and sets the dots for numbered chapters in 
+%DIF >  table of contents
+\DIFaddbegin \mainmatter
+
+\DIFaddend \chapter{Introduction} %Set the name of a new chapter
   \label{introduction} %Create a label for referencing purposes (\charef{.})
-  \input{Chapters/introduction} %Input the contents of the chapter from a separate file
-    
+  \DIFdelbegin %DIFDELCMD < \pagenumbers
+%DIFDELCMD <         %%%
+\DIFdelend \input{Chapters/introduction} %Input the contents of the chapter from a separate file
+
 \chapter{General outline for thesis projects}
   \label{relatedwork}
   \input{Chapters/relatedwork}
-    
+
 \chapter{Thesis writing instructions}
   \label{implementation}
   \input{Chapters/implementation}
-    
+
 \chapter{The literary structure of a thesis}
   \label{experiments}
   \input{Chapters/experiments}
-    
+
 \chapter{Summary}
   \label{summary}
   \input{Chapters/summary}
-    
-\printbibliography[heading=bibnumbered, title=\mybibname]
 
-\startappendix
-\chapter{Appendices}
+\DIFdelbegin %DIFDELCMD < \bibliographystyle{\biblanguage}
+%DIFDELCMD <     \bibliography{citations}
+%DIFDELCMD <     %%%
+\DIFdelend \DIFaddbegin \printbibliography[heading=bibnumbered, title=\mybibname]
+\DIFaddend 
+
+\DIFaddbegin \startappendix
+\DIFaddend \chapter{Appendices}
   \input{Chapters/appendices}
 
 \end{document}

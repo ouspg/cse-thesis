@@ -90,6 +90,7 @@ Contributors to the template include:
         * Instructions for proper attribution for reuse/modification of images from others has been included in the instructions. More information in Section 3.7.
         * Section 4.6 (References) has been revised to emphasize key details of IEEE citation style
       * Turnitin is now mandatory, reflect this in text
+      * BSc group thesis contributions are now in Introduction together with AI use (position previously varied, some placed this as an appendix). Example provided in Gallery/bsctimetable.tex
  
   * Template changes:
     * Major cleanup removing obsolete packages and using modern replacements

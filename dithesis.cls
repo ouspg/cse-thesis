@@ -202,7 +202,7 @@
 \newcommand{\gettitle}{\@title}
 
 \newcommand{\headertitlecap}{
-  \IfLang{\MainLang}{english}{
+  \IfLang{\MainLang}{english2}{
     \let\oldsection\section
     \let\oldsubsection\subsection
     \renewcommand{\section}[1]{\oldsection{\texorpdfstring{\titlecap{##1}}{##1}}}
