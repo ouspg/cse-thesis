@@ -49,7 +49,7 @@ Contributors to the template include:
    * This holds all the bibtex citations. Use a reference manager like Zotero and use the "bibtex" form of citation when exporting from it.
  * copyright-allrightsreserved.tex copyright-ccby40.tex
    * Copyright page contents for "All rights reserved" and CC-BY-4.0
-     * The wordings used in these should cover most theses
+     * The wordings used in these should cover most theses, can be modified if necessary
  * dithesis.sty
    * This is a package holds most of the style.
  * dithesis.cls
@@ -69,24 +69,27 @@ Contributors to the template include:
    * This file!
 
 ### LoC
- * 2025-08-19 Pekka Pietikäinen
-  * Changes to the instructions:
-    * “Tiivistelmä” is now required for all theses. In a thesis written in English, abstract precedes “tiivistelmä” and vice versa.
-    * Unification with changes done to 2025 ECE (Electronics and Communication Engineering) thesis instructions:
-      * List of abbreviations and symbols:
-        * The changes in the italicisation of Greek letters are also reflected in this section.
-        * ” Greek letters are not italicized.” => ”The lowercase Greek letters used as symbols of quantities are italicized, but uppercase letters are not italicized (e.g. δ vs. Δ).”
-        * Tables must be in text format – not an image.
-	    * Margins are now 2.5/2.5/2.5/3.0 cm (online), for bound (not just printed) versions of the thesis the old 4.5cm left margin (2.0 right) can chosen from the template.
-      * Equation guidelines updated to match ECE
-      * Font was Latin Modern in the text, but the template always used Times
-      * The necessary references are included in the figure captions. Copyright information is also added to the end of the caption. Figures should preferably be placed at the top or bottom of the page, however, structured naturally.
-      * Figure Copyright location (was in footnote, now copyright page or caption)
-      * The sources are now cited according to the IEEE model (was used in the text but not the template). Reference list was custom ACTA Oulu, now IEEE.
-        * For example, ”[1, 2, 5]” is now ”[1], [2], [5]”. More information and examples in Chapter 4.6.
-      * Finnish translation for References is now "Lähteet" (was: "Viiteet")
-    * Copyright issues
-      *  Copyright page has been added to thesis, and instructions for proper attribution for reuse/modification of images from others has been included in the instructions. More information in Chapter 3.7.
+  * 2025-08-19 Pekka Pietikäinen
+    * Changes to the instructions:
+      * “Tiivistelmä” is now required for all theses. In a thesis written in English, abstract precedes “tiivistelmä” and vice versa.
+      * Unification with changes done to 2025 ECE (Electronics and Communication Engineering) thesis instructions:
+        * List of abbreviations and symbols:
+          * The changes in the italicisation of Greek letters are also reflected in this section.
+          * ” Greek letters are not italicized.” => ”The lowercase Greek letters used as symbols of quantities are italicized, but uppercase letters are not italicized (e.g. δ vs. Δ).”
+          * Tables must be in text format – not an image.
+        * Margins are now 2.5/2.5/2.5/3.0 cm (online), for bound (not just printed) versions of the thesis the old 4.5cm left margin (2.0 right) can chosen from the template.
+        * Equation guidelines updated to match ECE
+        * Font was Latin Modern in the text, but the template always used Times
+        * The necessary references are included in the figure captions. Copyright information is also added to the end of the caption. Figures should preferably be placed at the top or bottom of the page, however, structured naturally.
+        * Figure Copyright location (was in footnote, now copyright page or caption)
+        * The sources are now cited according to the IEEE model (was used in the text but not the template). Reference list was custom ACTA Oulu, now IEEE.
+          * For example, ”[1, 2, 5]” is now ”[1], [2], [5]”. More information and examples in Chapter 4.6.
+        * Finnish translation for References is now "Lähteet" (was: "Viiteet")
+      * Copyright and citation style
+        * Copyright page has been added to thesis
+        * Instructions for proper attribution for reuse/modification of images from others has been included in the instructions. More information in Section 3.7.
+        * Section 4.6 (References) has been revised to emphasize key details of IEEE citation style
+      * Turnitin is now mandatory, reflect this in text
  
   * Template changes:
     * Major cleanup removing obsolete packages and using modern replacements
@@ -94,7 +97,7 @@ Contributors to the template include:
     * Abstract, keywords and other metadata automatically included in PDF
     * Support for CSE/BA/BME theses
     * biblatex/biber for bibliography management
-      * Citations exported from Zotero should have doi, accessed etc. correctly!
+      * Citations exported from Zotero should have doi, accessed etc. correctly. BetterBibTeX add-on may improve results further
 
  * 2025-06-02 Joni Kemppainen & Pekka Pietikäinen
    * PDF/A support for template
