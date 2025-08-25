@@ -85,14 +85,24 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\headertitlecap automatically creates headers with TitleCaps
+% \headertitlecap automatically creates headers with TitleCaps
 % (Capitalizes the First Letter in Each Word except ``Small'' Ones)
-% for H0, H2, and H3. Words not to be capitalized can be
-% changed in dithesis.sty.
+% https://en.wikipedia.org/wiki/Title_case
 % This only has effect in English. In Finnish headers follow
 % the normal Finnish rules of capitalization.
-% Also this doesn't affect the PDF metadata, so you should
-% correctly title case headings in your .tex files anyway.
+%
+% Title (abstract page, on front page it is all caps)
+% Chapters are all caps
+% Sections are title case
+% Subsections are title case
+% Subsubsections are in sentence case (as in IEEE Style manual)
+% Words not to be capitalized can be changed in dithesis.sty.
+%
+% Note that this does not affect the PDF table of contents, which is stored
+% in the metadata.
+% Because of this, you should consistently capitalize headers in your .tex
+% Both normal (sentence) case and title case are acceptable.
+% This template uses sentence case.
 \headertitlecap
 
 % Add your bibliographies here. You can use several with BibLaTeX.
