@@ -20,10 +20,22 @@ jobs:
         uses: zauguin/install-texlive@v4
         with:
           package_file: texlive-basic-packages.txt
-      - name: Compile LaTeX document
+      - name: Compile LaTeX document (1st pass)
+        run: pdflatex -halt-on-error main.tex
+      - name: Run bibliography tool
         run: |
-          pdflatex -halt-on-error main.tex
-          biber --validate-datamodel main
+          case "${GITHUB_REF##*/}" in
+            main|legacy)
+              echo "Running bibtex..."
+              bibtex main
+              ;;
+            *)
+              echo "Running biber..."
+              biber --validate-datamodel main
+              ;;
+          esac
+      - name: Compile LaTeX document (2nd pass)
+        run:
           pdflatex -halt-on-error main.tex
       - name: Verify PDF
         run: |
