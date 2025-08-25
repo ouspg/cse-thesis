@@ -39,6 +39,11 @@ This template is distributed to students via Overleaf and https://github.com/ous
    * This file!
 
 ### LoC
+ * 2025-08-31 Pekka Pietikäinen
+   * Thesis guidelines and template updated. New thesis projects should use updated template. If you started your thesis earlier, you can continue using this branch. Please ensure you have the PDF/A changes in di.sty/dithesis.cls/main.tex and Figures/* from June 2025 in your thesis project.
+ * 2025-06-02 Joni Kemppainen & Pekka Pietikäinen
+   * PDF/A support for template
+   * Add notes about transparency and explicit licenses for image captions
  * 2019-06-06 Tuomas Holmberg and Tuomas Varanka
    * Cleanups 
    * Moved github version to Overleaf
