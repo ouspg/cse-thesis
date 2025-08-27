@@ -87,8 +87,9 @@ preceding numerical value with a spac (e.g., 5 Gbit/s,  5\,$^\circ$C, yet 5$^\ci
 Numbers, functions, chemical symbols, units of measure, and subscripts are not italicized (e.g., 200, $\cos$, $\log$, NaCl, $\mu$A, cm, electron mass $m_\mathrm{e}$), but subscripts representing symbols of quantities are italicized (e.g., thermal velocity $v_\mathit{T}$). The lowercase Greek letters used as symbols of quantities are italicized, but uppercase letters are not italicized (e.g., $\delta$ vs.\ $\Delta$). More instructions for writing symbols can be found in the SI Guide~\cite{SIguide}, and some of them may be discipline-specific.
 List the symbols in the list at the beginning of your thesis, stylized the same as they appear in text and equations. Each equation must be part of a complete sentence. A blank line is left above and below an equation, and the equations are numbered in an increasing order through the entire text or, alternatively, by chapter if there are large quantities of equations. The corresponding order number is placed in parentheses on the right side of the equation. In the text, the equations are referred to by the order number of the equation in parentheses.
 In steady movement, speed $v$ is
+% Punctuation is placed inside \text{}, LaTeX changes . to , otherwise
 \begin{equation}
-    v = \frac{s}{t},
+    v = \frac{s}{t}\text{,}
     \label{eq:speed}
 \end{equation}
 where $s$ is the distance and $t$ the time travelled. The implications of equation~\eqref{eq:speed}, in turn, are\ldots
