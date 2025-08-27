@@ -28,7 +28,6 @@
 \usepackage[noindentafter]{titlesec}
 \usepackage{titlecaps}
 \usepackage{chngcntr}
-\usepackage[useregional=text, british]{datetime2}
 \usepackage{appendix}
 \usepackage{newfile}
 
@@ -51,11 +50,13 @@
 
 \DeclareOption{english}{%
   \PassOptionsToPackage{main=english, finnish}{babel}%
+  \PassOptionsToPackage{useregional=text, warn=false, british}{datetime2}
   \renewcommand*{\MainLang}{english}%
   \renewcommand*{\OtherLangs}{finnish}%
 }
 \DeclareOption{finnish}{%
   \PassOptionsToPackage{main=finnish, english}{babel}%
+  \PassOptionsToPackage{useregional=text, warn=false, finnish}{datetime2}
   \renewcommand*{\MainLang}{finnish}%
   \renewcommand*{\OtherLangs}{english}%
 }
@@ -85,6 +86,7 @@
 \ProcessOptions\relax
 
 \RequirePackage{geometry}
+\RequirePackage{datetime2}
 
 \newcommand*{\IfEng}[3]{\ifdefstring{#1}{english}{#2}{#3}}%
 \newcommand*{\IfFin}[3]{\ifdefstring{#1}{finnish}{#2}{#3}}%
@@ -249,7 +251,7 @@
 %Title page
 \newcommand{\maketitlepage}{
   \sloppy
-
+  \DTMlangsetup{showdayofmonth=false}
   \selectlanguage{\MainLang}
   {
     \centering
@@ -265,6 +267,8 @@
     \vspace{1cm}
   \clearpage
   }
+  \DTMlangsetup{showdayofmonth=true}
+
 }  
 
 \newcommand{\makecopyrightpage}{%
