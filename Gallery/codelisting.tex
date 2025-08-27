@@ -1,0 +1,20 @@
+% Add the following right after \documentclass, before \begin{document}
+%\usepackage{minted}
+%\addto\captionsfinnish{%
+%  \renewcommand{\listingscaption}{Listaus}%
+%  \renewcommand{\listoflistings}{Listaukset}%
+%}
+In Listing~\ref{listing:helloworld}, Hello World is printed.
+
+\begin{listing}
+\begin{minted}{python}
+import sys
+
+print('Hello, world')
+\end{minted}
+\caption{Printing Hello World in Python}
+\label{listing:helloworld}
+\end{listing}
+  
+  
+  

@@ -1,0 +1,293 @@
+% Template for M.Sc. (Tech.) degree programmes at the
+% Faculty of Information Technology and Electrical Engineering
+% at University of Oulu (CSE/BME/BA)
+% 
+\ProvidesPackage{dithesis}
+\usepackage{newtxtext, newtxmath}
+\usepackage[english,finnish]{babel}
+\usepackage[english=nohyphenation,finnish=nohyphenation]{hyphsubst}
+
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{tocloft}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+\usepackage{csquotes}
+\usepackage{colorprofiles}
+\usepackage{xcolor}
+
+% Bibliography
+
+\usepackage[backend=biber,
+  style=ieee,
+  doi=true,
+  urldate=long,
+  url=true]{biblatex}
+% Improves URL breaking in bibliography, load after biblatex
+\usepackage{xurl}
+
+\DefineBibliographyStrings{finnish}{
+  chapter      = luku,
+  editor       = toim\adddot,
+  editors      = toim\adddot,
+  mathesis     = Pro gradu -tutkielma,
+  patentjp     = Japanin patentti,
+  patentus     = Yhdysvaltain patentti,
+  phdthesis    = Väitöskirja,
+  presentedat  = esitetty,
+  techreport   = Tekninen raportti,
+  url          = [Online]\adddot\addspace Saatavilla,
+  urlseen      = Viitattu\addcolon
+}
+
+% Set language-dependent strings using babel's \addto\captions<lang>
+\addto\captionsfinnish{%
+  \renewcommand{\facultyname}{Tieto- ja sähkötekniikan tiedekunta}
+  \renewcommand{\degreeprogramme}{%
+    \ifthenelse{\equal{\degreeprogrammeselection}{bme}}%
+      {Lääketieteen tekniikan tutkinto-ohjelma}%
+    {\ifthenelse{\equal{\degreeprogrammeselection}{ba}}%
+      {Liiketoiminta-analytiikan tutkinto-ohjelma}%
+      {Tietotekniikan tutkinto-ohjelma}%
+    }%
+  }
+  \renewcommand{\degreeprogrammetitle}{%
+    \ifthenelse{\equal{\degreeprogrammeselection}{ba}}%
+      {Liiketoiminta-analytiikka\\Tietotekniikka}%
+    {\degreeprogramme%
+    }%
+  }
+  \renewcommand{\thesistypetitle}{%
+    \ifthenelse{\equal{\thesistype}{master}}%
+    {Diplomityö}%
+    {Kandidaatintyö}%
+  }
+  \renewcommand{\thesistitle}{\getotsikko}
+  \renewcommand{\universityname}{Oulun yli\-opis\-to}
+  \renewcommand{\universitynameieee}{\universityname}
+  \renewcommand{\pagelabel}{s.}
+  \renewcommand{\abstracttitle}{TIIVISTELMÄ}
+  \renewcommand{\headerforeword}{ALKULAUSE}
+  \renewcommand{\headerabbreviations}{LYHENTEIDEN JA MERKKIEN SELITYKSET}
+  \renewcommand{\tocname}{SISÄLLYSLUETTELO}
+  \renewcommand{\mybibname}{Lähteet}
+  \renewcommand{\cityname}{Oulussa }
+  \renewcommand{\countryname}{Suomi}
+  \renewcommand{\keywordsline}{Avainsanat: \avainsanatmetadata}
+  \renewcommand{\universitylogo}{Figures/logo-fi.png}
+}
+\addto\captionsenglish{%
+  \renewcommand{\facultyname}{Faculty of Information Technology and Electrical Engineering}
+  \renewcommand{\degreeprogramme}{%
+    \ifthenelse{\equal{\degreeprogrammeselection}{bme}}%
+      {Degree Programme in Biomedical Engineering}%
+    {\ifthenelse{\equal{\degreeprogrammeselection}{ba}}%
+      {Degree Programme in Business Analytics}%
+      {Degree Programme in Computer Science and Engineering}%
+    }%
+  }
+  \renewcommand{\degreeprogrammetitle}{%
+    \ifthenelse{\equal{\degreeprogrammeselection}{ba}}%
+      {Business Analytics\\Computer Science and Engineering}%
+    {\degreeprogramme%
+    }%
+  }
+  \renewcommand{\thesistypetitle}{%
+    \ifthenelse{\equal{\thesistype}{master}}%
+    {Master's thesis}%
+    {Bachelor's thesis}%
+  }
+  \renewcommand{\thesistitle}{\titlecap{\gettitle}}
+  \renewcommand{\universityname}{University of Oulu}
+  \renewcommand{\universitynameieee}{Univ. of Oulu}
+  \renewcommand{\pagelabel}{p.}
+  \renewcommand{\keywordsline}{Keywords: \keywordsmetadata}
+  \renewcommand{\abstracttitle}{ABSTRACT}
+  \renewcommand{\headerforeword}{FOREWORD}
+  \renewcommand{\headerabbreviations}{LIST OF ABBREVIATIONS AND SYMBOLS}
+  \renewcommand{\tocname}{TABLE OF CONTENTS}
+  \renewcommand{\mybibname}{References}
+  \renewcommand{\cityname}{Oulu, }
+  \renewcommand{\countryname}{Finland}
+}
+
+% Copyright strings
+% Syntax: 
+% \copyrigthtext{metadata text}{text visible on the page}
+% \copyrightstring is common for all languages and licenses.
+% Copyright (C) year Author(s)
+\newcommand{\copyrightmetastring}{Copyright \noexpand\textcopyright\ \number\year\ \getauthorslist.}
+\newcommand{\copyrightstring}{Copyright \textcopyright~\number\year\ \getauthorslist.}
+\newcommand{\allrightsreservedeng}{All rights reserved.}
+\newcommand{\allrightsreservedfin}{Kaikki oikeudet pidätetään.}
+\newcommand{\blockpar}{\vspace{1\baselineskip}\par\noindent}
+
+% Algorithms
+\usepackage[linesnumbered, ruled]{algorithm2e}
+
+% --- Package configurations ---
+\tolerance=500
+\setlength{\parindent}{0.5cm}
+\widowpenalty10000
+\clubpenalty10000
+\displaywidowpenalty10000
+\hbadness=99999
+\graphicspath{{Figures/}{../Figures/}}
+
+% Counter configurations
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\counterwithout{equation}{chapter}
+\counterwithout{footnote}{chapter}
+
+% Reference commands
+\newcommand{\figref}[1]{Figure~\ref{#1}}
+\renewcommand{\eqref}[1]{Equation~(\ref{#1})}
+\newcommand{\tabref}[1]{Table~\ref{#1}}
+\newcommand{\charef}[1]{Chapter~\ref{#1}}
+\newcommand{\secref}[1]{Section~\ref{#1}}
+
+% Algorithm configuration
+\SetAlCapSty{}
+\SetAlgoCaptionSeparator{.}
+\addto\captionsfinnish{\renewcommand{\algorithmcfname}{Algoritmi}}
+
+% Caption configurations
+\captionsetup[table]{
+  position=above,
+  justification=raggedright,
+  singlelinecheck=true,
+}
+
+% Figures
+\captionsetup[figure]{
+  justification=justified,  % full justification for long captions
+  singlelinecheck=true,     % short captions centered
+  % skip=\baselineskip
+}
+
+% TOC configuration
+\setcounter{tocdepth}{2}
+\renewcommand{\cfttoctitlefont}{\hfill\normalfont\large\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill\hfill}
+\renewcommand{\cftchapfont}{}
+\renewcommand{\cftchappagefont}{}
+\setlength{\cftbeforechapskip}{0mm}
+\setlength{\cftbeforetoctitleskip}{0mm}
+\setlength{\cftaftertoctitleskip}{8mm}
+\renewcommand{\cftdotsep}{0.2}
+
+% Add dot to toc entries if option turned on
+\makeatletter
+\renewcommand{\numberline}[1]{%
+  \hb@xt@\@tempdima{#1\sectionnamedot\hfil}}
+\makeatother
+
+\makeatletter
+\let\oldl@chapter\l@chapter
+\renewcommand*\l@chapter[2]{\oldl@chapter{\MakeUppercase{#1}}{#2}}
+\makeatother
+
+\makeatletter
+\def\ps@plain{\ps@myheadings} % plain pages like chapters also top right
+\makeatother
+
+\newcommand{\mainmatter}{
+  \clearpage
+  \pagestyle{myheadings}
+  \addtocontents{toc}{\protect\renewcommand{\protect\cftchapleader}{\protect\cftdotfill{\cftdotsep}}}
+}
+
+
+
+% Chapter
+% Chapters are set in 14pt bold (bfseries), centered, uppercase.
+% No space before, one baseline skip after.
+\titleformat{\chapter}
+  [hang]
+  {\normalfont\bfseries\fontsize{14}{17}\selectfont\centering}
+  {\chapnumformat}
+  {1em}
+  {\MakeUppercase}
+
+% Section
+% Sections are 12pt bold (bfseries), left-aligned, normal font.
+% 2 baseline skips before and 1 after.
+\titleformat{\section}
+  [hang]
+  {\normalfont\bfseries\fontsize{12}{15}\selectfont\centering}
+  {\secnumformat}
+  {1em}
+  {}
+
+% Subsection
+% Subsections are bold italic (bfseries, itshape), normal font size,
+% with 2 baseline skips before and 1 after.
+\titleformat{\subsection}
+  [hang]
+  {\normalfont\bfseries\itshape\centering}
+  {\subsecnumformat}
+  {1em}
+  {}
+\setcounter{secnumdepth}{2} % numbers up to \subsection by default
+
+% Subsubsection
+% Subsubsections are italic (itshape), normal font size,
+% with 2 baseline skips before and 1 after.
+\titleformat{\subsubsection}
+  [hang]
+  {\normalfont\itshape\centering}
+  {\subsubsecformat}
+  {1em}
+  {}
+
+\titlespacing*{\chapter}{0pt}{0pt}{\baselineskip}
+\titlespacing*{\section}{0pt}{2\baselineskip}{\baselineskip}
+\titlespacing*{\subsection}{0pt}{2\baselineskip}{\baselineskip}
+\titlespacing*{\subsubsection}{0pt}{2\baselineskip}{\baselineskip}
+
+% Bullet configuration
+\setlist[itemize,1]{label=\raisebox{0.2ex}{\tiny$\bullet$}}
+\setlist[itemize,2]{label=\raisebox{0.2ex}{\tiny$\bullet$}}
+
+% Change these "excluded words" if you are not satisfied with titlecaps
+%http://perspectivesandprotips.blogspot.com/2014/11/using-macros-with-titlecaps-in-latex.html
+\Resetlcwords
+\Addlcwords{a an the}
+\Addlcwords{and but for or nor}
+\Addlcwords{aboard about above across %
+  after against along amid among anti %
+  around as at behind below % before
+  beneath beside besides between %
+  beyond but by concerning considering %
+  despite down during except excepting %
+  excluding following for from in %
+  inside into like minus near of off %
+  on onto opposite outside over past %
+  per plus regarding round since % save
+  than through to toward towards under %
+  underneath unlike until up upon %
+versus via with within without}
+
+% Math display spacing
+\makeatletter
+\g@addto@macro{\normalsize}{%
+  \setlength{\abovedisplayskip}{0pt}
+  \setlength{\abovedisplayshortskip}{0pt}
+  \setlength{\belowdisplayskip}{12pt}
+  \setlength{\belowdisplayshortskip}{12pt}
+}
+\makeatother
+
+% Decimal comma
+%\DeclareMathSymbol{\decimal}{\mathord}{letters}{"3A}
+\DeclareMathSymbol{,}{\mathpunct}{letters}{"3B}
+\DeclareMathSymbol{.}{\mathord}{letters}{"3B}

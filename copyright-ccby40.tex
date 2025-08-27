@@ -1,0 +1,33 @@
+% Only include if you want to use a Creative Commons license,
+% since otherwise undesired information may be included in the PDF metadata.
+\usepackage[type={CC}, modifier={by}, version={4.0}]{doclicense-di}
+
+\IfLang{\MainLang}{finnish}{%
+  \copyrighttext
+  {\copyrightmetastring\ Jos ei toisin mainita, tämän dokumentin käyttö
+    on sallittu Creative Commons 4.0 Kansainvälinen (CC-BY-4.0)
+  lisenssin mukaisesti.}
+  {%
+    \copyrightstring
+    \doclicenseThis
+    \blockpar
+    Joidenkin kuvien ehdot poikkeavat tästä. Poikkeavat ehdot on
+    esitetty kuvateksteissä. Näiden kuvien uudelleenjulkaisu tai
+    muokkaaminen on sallittu niiden omien ehtojen mukaisesti.
+  }
+}
+{%
+  \copyrighttext%
+  {\copyrightmetastring\ Except otherwise noted, the reuse of this
+    document is authorized under a Creative Commons 4.0 International
+  (CC-BY-4.0) license.}%
+  {%
+    \copyrightstring
+    \doclicenseThis
+    \blockpar
+    Some figures are subject to different terms, such as copyright
+    licenses and publisher permissions. There terms are indicated in
+    the figure captions. Reproduction or modification of such figures
+    is allowed under the conditions specified.
+  }
+}

@@ -1,9 +1,7 @@
-\ifthenelse{\equal{\getlanguage}{finnish}}
-    {\newcommand{\headerabbreviations}{LYHENTEIDEN JA MERKKIEN SELITYKSET}}
-    {\newcommand{\headerabbreviations}{LIST OF ABBREVIATIONS AND SYMBOLS}}
-    
 \header{\headerabbreviations}
 \setlongtables
+% According to updated thesis guidelines, lowercase Greek letters used as quantities
+% are italicized. Uppercase Greek letters are upright.
 \begin{longtable}[l]{p{3cm}p{0.7\textwidth}}
 
     CSE\footnote{Even though a symbol or an abbreviation is explained on this page, it should be written out full when appearing in the text for the first time. Remove this footnote from your thesis.} & Computer Science and Engineering\\
@@ -25,8 +23,8 @@
     \\
     $\beta$ & shape factor \\
     $\epsilon$\textsubscript{k} & error signal at instant k \\
-    \textbf{$\Phi$}\textsubscript{k} & state transition matrix at instant k \\
-    \textbf{$\theta$} & parameter vector \\
+    $\Phi$\textsubscript{k} & state transition matrix at instant k \\
+    $\boldsymbol{\theta}$ & parameter vector \\
     $\sigma$\textsuperscript{2} & variance \\
     \\
     $\lfloor$ $\rfloor$ & integer part \\
@@ -36,10 +34,3 @@
 \end{longtable}
 \setcounter{table}{0}
 
-%sets the dots for numbered chapters in table of contents
-\addtocontents{toc}{\protect\renewcommand{\protect\cftchapleader}{\protect\cftdotfill{\cftdotsep}}}
-
-%sets bibliography language
-\ifthenelse{\equal{\getlanguage}{finnish}}
-    {\newcommand{\biblanguage}{di_fin}}
-    {\newcommand{\biblanguage}{di_eng}}

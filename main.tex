@@ -1,90 +1,160 @@
-% Template for Degree Programme in Computer Science and Engineering Diploma Thesis v1.3.2019
+% Template for B. Sc and M. Sc. (Tech.) degree programmes at the
+% Faculty of Information Technology and Electrical Engineering
+% at University of Oulu (CSE/BME/BA)
+% 
 % Authors: Mika Korhonen (original author), Pekka Pietikäinen, Christian Wieser, Teemu Tokola, Juha Kylmänen, Tuomas Holmberg and Tuomas Varanka.
-% This template is developed at https://github.com/ouspg/cse-thesis and improvements can be contributed there. 
-% They will be synchronized with Overleaf.
+% If you make any improvements to this template, submit them via
+% https://github.com/ouspg/cse-thesis
 %
 % CHANGELOG
 % 2023-01-31: Track changes has been turned on - TTo
 % 2023-06-15: Improvements to avoid missing filling in some details: TODO's added to template (TTo)
 % 2023-06-15: Changes to foreword, clarifications to indicate template is also for Bachelor thesis  (TTo)
 % 2023-06-15: Example of a CC-BY figure added with reference in the footnotes (TTo)
-% 2025-06-02: Use TeXLive 2024 and output PDF/A directly from template. 
-% 2025-08-31: This version of the template should not be used for new thesis projects, use updated template instead. 
+% 2025-08-18: Major refactoring of the template (PPi)
 
-\documentclass[a4paper, 12pt, titlepage]{dithesis}
-\usepackage{import}
-\usepackage{di}
-% Maybe needed for PDF/A
-%\usepackage{colorprofiles} 
-\usepackage[a-1b,mathxmp]{pdfx}
+%
+% dithesis.cls supports the following options
+% Language: english/finnish
+% Degree programme: cse (default)/bme/ba
+% Thesis type: master (default)/bachelor
+% Output type: online (default, 2.5 cm margin)
+%              print (4.5 cm left margin for bound theses)
+\documentclass[english, online, cse, master]{dithesis}
 
+%% Copyright of a work is with the creator/author of the work regardless of
+%% whether the copyright mark is explicitly in the work or not. You may, if you
+%% wish---we encourage you to do so---publish your work under a Creative
+%% Commons license (see creativecommons.org), in which case the license text
+%% must be visible in the work.
 
-%%%%%%%%%%%%%%%%%%%%%%% SET YOUR INFORMATION HERE %%%%%%%%%%%%%%%%%%%%%%%
+% Uncommenting one of the following will automatically create a copyright page
+% If both are commented out the license is "All rights reserved"
+% and no copyright page will be generated
+%
+%\input{copyright-allrightsreserved}
+\input{copyright-ccby40.tex}
+
+%%%%%%%%%%%%%%%%%%%%% SET YOUR INFORMATION HERE %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{TODO: Bachelor's and Diploma Thesis Guide}
-%Finnish title, not required for foreign students
 \otsikko{TODO: Kandidaatintyön ja diplomityön teko-ohjeet}
 
-\firstname{TODO: Programme}
-\lastname{TODO: Committee}
+\firstname{Program}
+\lastname{Committee}
 
-% Please choose the correct type of thesis and the language used
-\thesis{Master} % {Bachelor | Master}
-\thesislanguage{english} % {finnish | english}
+% Names of other authors can be added here
+%\firstnametwo{}
+%\lastnametwo{}
+%\firstnamethree{}
+%\lastnamethree{}
+% Remove or comment the extra names if you do not need them
 
-%Names of other authors can be added here
-\firstnametwo{}
-\lastnametwo{}
-\firstnamethree{}
-\lastnamethree{}
+% Abstracts are stored in the PDF metadata.
+% They must not contain empty lines (multiple paragraphs) or special
+% characters. Mathematical symbols should work (mathxmp option of the pdfx
+% package).
+% If the abstract contains multiple paragraphs or special characters,
+% provide the full text in abstract.tex and tiivistelma.tex.
+% This version should otherwise remain identical to it
+\abstract{This document provides general guidance for a degree student
+  in the technical degree programmes of Computer Science and
+  Engineering, Biomedical Engineering and Business Analytics (Tech.)
+  at the faculty of Information Technology and Electrical Engineering
+  at the University of Oulu in preparing his/her Bachelor's or
+  Master's thesis. This guide defines the role of a thesis in the
+  M.Sc. (Tech.) Degree, presents the actions to be taken in different
+  phases of the thesis procedure and introduces the way that the
+  thesis is written. The document has been formatted based on these
+  guidelines to serve as an example how the thesis should look like.}
 
-%Do not remove or comment the extra names if you do not need them, leave them empty instead
+\tiivistelma{Näissä ohjeissa opastetaan valmistumisvaiheessa olevaa
+  opiskelijaa kandidaatin- ja diplomityön tekemisessä. Ohjeissa
+  selvitetään työn asema diplomi-insinööritutkinnossa, kerrotaan
+  toimenpiteet, joihin työn tekijän on ryhdyttävä työn eri vaiheissa,
+  sekä määritellään yksityiskohtaisesti kandidaatin- ja diplomitöiden
+  kirjallinen rakenne. Ohje on muotoiltu noudattaen näitä
+  kirjoitusohjeita ja toimii siten esimerkkinä, miltä lopputyön tulisi
+  näyttää.}
+
+% Keywords are also included in the PDF metadata, and cannot contain any
+% special characters. Separate them with \spc
+\keywords{M.Sc. degree\spc master’s thesis instructions\spc structure of a master’s thesis}
+\avainsanat{diplomi-insinöörin tutkinto\spc diplomityön ohjeet\spc diplomityön rakenne}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\headertitlecap automatically creates headers with TitleCaps (Capitalizes the First Letter in Each Word) for H0, H2, and H3. Words not to be capitalized can be changed in di.sty
+% \headertitlecap automatically creates headers with TitleCaps
+% (Capitalizes the First Letter in Each Word except ``Small'' Ones)
+% https://en.wikipedia.org/wiki/Title_case
+% This only has effect in English. In Finnish headers follow
+% the normal Finnish rules of capitalization.
+%
+% Title (abstract page, on front page it is all caps)
+% Chapters are all caps
+% Sections are title case
+% Subsections are title case
+% Subsubsections are in sentence case (as in IEEE Style manual)
+% Words not to be capitalized can be changed in dithesis.sty.
+%
+% Note that this does not affect the PDF table of contents, which is stored
+% in the metadata.
+% Because of this, you should consistently capitalize headers in your .tex
+% Both normal (sentence) case and title case are acceptable.
+% This template uses sentence case.
 \headertitlecap
 
-\begin{document}
-    \maketitlepage %Create the title page
-    
-    %If you are writing your thesis in Finnish you can change the order of abstract/tiivistelmä
-    %If you are a foreign student you can remove the Finnish abstract (tiivistelmä)
-    \input{Chapters/abstract}
-    
-    \input{Chapters/tiivistelma}
-    
-    \contents %Insert table of contents
-    
-    \input{Chapters/foreword}
-    
-    \input{Chapters/abbreviations}
-    
-    
-    \chapter{Introduction} %Set the name of a new chapter
-        \label{introduction} %Create a label for referencing purposes (\charef{.})
-        \pagenumbers
-        \input{Chapters/introduction} %Input the contents of the chapter from a separate file
-    
-    \chapter{General outline for thesis projects}
-        \label{relatedwork}
-        \input{Chapters/relatedwork}
-    
-    \chapter{Thesis writing instructions}
-        \label{implementation}
-        \input{Chapters/implementation}
-    
-    \chapter{The literary structure of a thesis}
-        \label{experiments}
-        \input{Chapters/experiments}
-    
-    \chapter{Summary}
-        \label{summary}
-        \input{Chapters/summary}
+% Add your bibliographies here. You can use several with BibLaTeX.
+\addbibresource{citations.bib}
 
-    \bibliographystyle{\biblanguage}
-    \bibliography{citations}
+\begin{document}
+\pagestyle{empty}
+\maketitlepage
+\makecopyrightpage
+
+\IfLang{\MainLang}{finnish}{
+  \input{Chapters/tiivistelma}
+  \input{Chapters/abstract}
+  \selectlanguage{finnish}
+} {
+  \input{Chapters/abstract}
+  \input{Chapters/tiivistelma}
+  \selectlanguage{english}
+}
+
+\contents %Insert table of contents
+\input{Chapters/foreword}
+\input{Chapters/abbreviations}
     
-    \chapter{Appendices}
-        \input{Chapters/appendices}
+% Enables page numbers and sets the dots for numbered chapters in 
+% table of contents
+\mainmatter
+
+\chapter{Introduction} %Set the name of a new chapter
+  \label{introduction} %Create a label for referencing purposes (\charef{.})
+  \input{Chapters/introduction} %Input the contents of the chapter from a separate file
+    
+\chapter{General outline for thesis projects}
+  \label{relatedwork}
+  \input{Chapters/relatedwork}
+    
+\chapter{Thesis writing instructions}
+  \label{implementation}
+  \input{Chapters/implementation}
+    
+\chapter{The literary structure of a thesis}
+  \label{experiments}
+  \input{Chapters/experiments}
+    
+\chapter{Summary}
+  \label{summary}
+  \input{Chapters/summary}
+    
+\printbibliography[heading=bibnumbered, title=\mybibname]
+
+\startappendix
+\chapter{Appendices}
+  \input{Chapters/appendices}
 
 \end{document}

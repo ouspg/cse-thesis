@@ -1,6 +1,29 @@
-## cse-thesis
+## CSE/BME/BA thesis
 
-This LaTeX -template has been used by various people at department  since the late 1990's, and has slowly improved over time.  It is still  somewhat rough at the edges, but hopefully will be helpful in reducing  some of the pain involved in writing a diploma thesis. 
+This LaTeX -template is for BSc and MSc theses of the CSE, BME and BA degree
+programmes at the ITEE faculty of the University of Oulu.
+
+It has been used by various people since the late 1990's, and has
+slowly improved over time. It  still somewhat rough at the edges,
+but hopefully will be helpful in reducing some of the pain involved in
+writing a diploma thesis.
+
+The current version of the template produces PDF/A-1b compliant PDF file,
+which can directly be uploaded to Laturi (Muuntaja is NOT required).
+This requires that transparency is removed from all images in your thesis.
+Instructions for doing this are included in [images.md](images.md).
+
+We kindly ask for students using this template to improve this template,
+and share the improvements, so that others may benefit.
+
+This template is distributed to students via Overleaf, and
+https://github.com/ouspg/cse-thesis is synchronized with it. Issues
+and pull requests can be made to GitHub.
+
+This work is licensed under a Creative Commons “Attribution 4.0
+International” license.
+
+### Contributions
 
 Contributors to the template include:
 
@@ -13,34 +36,69 @@ Contributors to the template include:
  * Tuomas Holmberg
  * Tuomas Varanka
 
-We kindly ask for students using this template to improve this template,
-and share the improvements, so that others may benefit.
-
-This template is distributed to students via Overleaf and https://github.com/ouspg/cse-thesis is synchronized with it. Issues and pull requests can be made to GitHub
-
 ### FILES AND FOLDERS
- * Figures
-   * Place the necessary figures in your thesis here. A path to the figures has already been set when using "\begin{figure}...". Look for an example of how to use figures from Figure 1 and 2.
- * Chapters
-   * This folder holds all the chapters that are added to the main file. To create more chapters simply create a .tex file in the chapters folder and input it in the main.tex file.
- * citations.bib
-   * This holds all the bibtex citations. When searching for references online, use the "bibtex" form of citation.
- * di.bst
-   * This holds the style for the bibliography. No need to go here.
- * di.sty
-   * This is a package holds most of the scripts and style.
- * dithesis.cls
-   * Similar to di.sty, holds scripts and style.
- * LICENSE
-   * The license.
  * main.tex
    * The main file. Input your information and files here.
+ * Chapters
+   * This folder holds all the chapters that are added to the main file. To create more chapters simply create a .tex file in the chapters folder and input it in the main.tex file.
+ * Figures
+   * Place the necessary figures in your thesis here. A path to the figures has already been set when using "\begin{figure}...". Look for an example of how to use figures from Figure 1 and 2.
+ * Gallery
+   * This contains examples LaTeX snippets for doing various things that some theses might require. 
+ * citations.bib
+   * This holds all the bibtex citations. Use a reference manager like Zotero and use the "bibtex" form of citation when exporting from it.
+ * copyright-allrightsreserved.tex copyright-ccby40.tex
+   * Copyright page contents for "All rights reserved" and CC-BY-4.0
+     * The wordings used in these should cover most theses, can be modified if necessary
+ * dithesis.sty
+   * This is a package holds most of the style.
+ * dithesis.cls
+   * Similar to dithesis.sty, holds scripts and style.
+ * ieee.bbx v1.4e 2025-03-14
+   * This is needed to make @online citations comply with the IEEE style. TexLive 2025 should ship this, so can be removed once Overleaf has it
+ * LICENSE
+   * CC-BY-4.0 license for this template
+ * doclicense-di.sty, doclicense-images/, doclicense-finnish.ldf
+   * PDF/A-compatible CC license logos and .sty-file that looks for them in separate directory
+     * Generated with gs -dPDFA -dBATCH -dNOPAUSE -sColorConversionStrategy=UseDeviceIndependentColor -sDEVICE=pdfwrite -dPDFACompatibilityPolicy=2 -sOutputFile="$@" "$@.in.pdf"
+   * Finnish translations to doclicense
+ * images.md
+   * Instructions on removing transparency from your PDF/PDF images
+     * Updated as needed
  * README.md
    * This file!
 
 ### LoC
- * 2025-08-31 Pekka Pietikäinen
-   * Thesis guidelines and template updated. New thesis projects should use updated template. If you started your thesis earlier, you can continue using this branch. Please ensure you have the PDF/A changes in di.sty/dithesis.cls/main.tex and Figures/* from June 2025 in your thesis project.
+  * 2025-08-19 Pekka Pietikäinen
+    * Changes to the instructions:
+      * “Tiivistelmä” is now required for all theses. In a thesis written in English, abstract precedes “tiivistelmä” and vice versa.
+      * Unification with changes done to 2025 ECE (Electronics and Communication Engineering) thesis instructions:
+        * List of abbreviations and symbols:
+          * The changes in the italicisation of Greek letters are also reflected in this section.
+          * ” Greek letters are not italicized.” => ”The lowercase Greek letters used as symbols of quantities are italicized, but uppercase letters are not italicized (e.g. δ vs. Δ).”
+          * Tables must be in text format – not an image.
+        * Margins are now 2.5/2.5/2.5/3.0 cm (online), for bound (not just printed) versions of the thesis the old 4.5cm left margin (2.0 right) can chosen from the template.
+        * Equation guidelines updated to match ECE
+        * Font was Latin Modern in the text, but the template always used Times
+        * The necessary references are included in the figure captions. Copyright information is also added to the end of the caption. Figures should preferably be placed at the top or bottom of the page, however, structured naturally.
+        * Figure Copyright location (was in footnote, now copyright page or caption)
+        * The sources are now cited according to the IEEE model (was used in the text but not the template). Reference list was custom ACTA Oulu, now IEEE.
+          * For example, ”[1, 2, 5]” is now ”[1], [2], [5]”. More information and examples in Chapter 4.6.
+        * Finnish translation for References is now "Lähteet" (was: "Viiteet")
+      * Copyright and citation style
+        * Copyright page has been added to thesis
+        * Instructions for proper attribution for reuse/modification of images from others has been included in the instructions. More information in Section 3.7.
+        * Section 4.6 (References) has been revised to emphasize key details of IEEE citation style
+      * Turnitin is now mandatory, reflect this in text
+      * BSc group thesis contributions are now in Introduction together with AI use (position previously varied, some placed this as an appendix). Example provided in Gallery/bsctimetable.tex
+ 
+    * Template changes:
+      * Major cleanup removing obsolete packages and using modern replacements
+      * PDF/A-1b output. If no transparent images (PDF/PNG) are used, Muuntaja is not required, this is also recommended, since Muuntaja might break the thesis in other ways.
+      * Abstract, keywords and other metadata automatically included in PDF
+      * Support for CSE/BA/BME theses
+      * biblatex/biber for bibliography management
+        * Citations exported from Zotero should have doi, accessed etc. correctly. BetterBibTeX add-on may improve results further
  * 2025-06-02 Joni Kemppainen & Pekka Pietikäinen
    * PDF/A support for template
    * Add notes about transparency and explicit licenses for image captions
@@ -66,8 +124,4 @@ This template is distributed to students via Overleaf and https://github.com/ous
 
 ### TODO   
  * See Issues (are the ones below relevant anymore?)
- * Accessed time in url in citations automatically. (author=..., accessed=...)
- * Automatic sorting in list of abbreviations and symbols
- * Improve TitleCaps
- * Clean up algorithm environment (ifelse finnish)
 
