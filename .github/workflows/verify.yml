@@ -5,10 +5,12 @@ on:
     branches:
       - main
       - devel
+      - legacy
   pull_request:
     branches:
       - main
       - devel
+      - legacy
 
 jobs:
   build_latex:
@@ -25,7 +27,7 @@ jobs:
       - name: Run bibliography tool
         run: |
           case "${GITHUB_REF##*/}" in
-            main|legacy)
+            legacy)
               echo "Running bibtex..."
               bibtex main
               ;;
