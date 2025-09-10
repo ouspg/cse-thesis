@@ -29,6 +29,7 @@ Contributors to the template include:
 
  * Mika Korhonen (original author)
  * Pekka Pietikäinen
+ * Simo Hosio
  * Christian Wieser
  * Teemu Tokola
  * Juha Kylmänen
@@ -102,6 +103,8 @@ Contributors to the template include:
  * 2025-06-02 Joni Kemppainen & Pekka Pietikäinen
    * PDF/A support for template
    * Add notes about transparency and explicit licenses for image captions
+ * 2025-02-28 Simo Hosio
+   * Instructions for Authors contribution and AI usage section
  * 2019-06-06 Tuomas Holmberg and Tuomas Varanka
    * Cleanups 
    * Moved github version to Overleaf
