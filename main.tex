@@ -24,6 +24,25 @@
 % Output type: online (default, 2.5 cm margin)
 %              print (4.5 cm left margin for bound theses)
 \documentclass[english, online, cse, master]{dithesis}
+% Place it here, after the class has loaded the graphics drivers
+\makeatletter
+\@ifundefined{ExplScriptOn}{
+  \IfFileExists{expl3.sty}{\usepackage{expl3}}{}
+}{}
+
+\ifdefined\ExplScriptOn
+  \ExplScriptOn
+  \bool_if_exist:NT \l__graphics_transgroup_bool
+    {
+      \cs_set_protected:Npn \__graphics_backend_include_pdf:n #1
+        {
+          \bool_set_false:N \l__graphics_transgroup_bool
+          \__graphics_backend_include_auxi:n {#1}
+        }
+    }
+  \ExplScriptOff
+\fi
+\makeatother
 
 %% Copyright of a work is with the creator/author of the work regardless of
 %% whether the copyright mark is explicitly in the work or not. You may, if you
