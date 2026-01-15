@@ -53,5 +53,5 @@ jobs:
         with:
           name: pdf-and-verapdf
           path: |
-	      main.pdf
-	      verapdf.xml
+            main.pdf
+            verapdf.xml
