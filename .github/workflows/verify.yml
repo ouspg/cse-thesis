@@ -44,14 +44,10 @@ jobs:
           if [ "$ACT" = "true" ]; then
             echo "No docker in ACT"
           else
-            set -o pipefail   # ensure Docker exit code is propagated
-            docker run --rm -t -v "$(pwd):/data" docker.io/verapdf/cli:v1.28.2 -f 1b --format xml main.pdf | tee verapdf.xml
+            docker run --rm -t -v "$(pwd):/data" docker.io/verapdf/cli:v1.28.2 -f 1b main.pdf
           fi
       - name: Upload PDF
-        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: pdf-and-verapdf
-          path: |
-            main.pdf
-            verapdf.xml
+          name: pdf
+          path: main.pdf

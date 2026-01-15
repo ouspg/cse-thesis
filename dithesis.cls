@@ -36,12 +36,8 @@
 \usepackage{longtable}
 \usepackage[a-1b,latxmp, mathxmp]{pdfx}[2017/05/18]
 \usepackage{graphicx}
-\def\Gread@pdf#1{%
-  \let\Gin@decode\@empty
-  \Gin@interpolatefalse
-  % \Gread@transgrouptrue % <--- WE REMOVE THIS LINE
-  \Gread@pdftex{#1}%
-}
+\let\Gread@transgrouptrue\Gread@transgroupfalse
+
 
 \hypersetup{
   unicode=true,
