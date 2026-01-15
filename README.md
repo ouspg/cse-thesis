@@ -70,6 +70,10 @@ Contributors to the template include:
    * This file!
 
 ### LoC
+  * 2026-01-15 Pekka Pietikäinen
+    * Add Gallery/aiusage.tex with Finnish/English examples for one author no AI used
+    * Finnish Abstract page used p. not s. for document metadata, now translates properly (Fixes #21)
+    * Clarify that your employer can also have image copyright
   * 2025-08-19 Pekka Pietikäinen
     * Changes to the instructions:
       * “Tiivistelmä” is now required for all theses. In a thesis written in English, abstract precedes “tiivistelmä” and vice versa.
