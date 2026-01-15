@@ -26,9 +26,7 @@
 \documentclass[english, online, cse, master]{dithesis}
 % Place it here, after the class has loaded the graphics drivers
 \makeatletter
-\@ifundefined{ExplScriptOn}{
-  \IfFileExists{expl3.sty}{\usepackage{expl3}}{}
-}{}
+\usepackage{expl3}
 
 \ifdefined\ExplScriptOn
   \ExplScriptOn
