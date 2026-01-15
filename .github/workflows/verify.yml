@@ -44,7 +44,7 @@ jobs:
           if [ "$ACT" = "true" ]; then
             echo "No docker in ACT"
           else
-            docker run --rm -t -v "$(pwd):/data" ghcr.io/verapdf/cli:latest -f 1b main.pdf
+            docker run --rm -t -v "$(pwd):/data" docker.io/verapdf/cli:v1.28.2 -f 1b main.pdf
           fi
       - name: Upload PDF
         uses: actions/upload-artifact@v4
