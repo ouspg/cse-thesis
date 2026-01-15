@@ -300,7 +300,7 @@
 
 
 \newcommand{\abstractauthors}{%
-  {\textbf{\getauthorsabstractacta\ (\the\year) \thesistitle.} \universityname, \facultyname, \degreeprogramme, \thesistypetitle, \shownumberofpages~p.}
+  {\textbf{\getauthorsabstractacta\ (\the\year) \thesistitle.} \universityname, \facultyname, \degreeprogramme, \thesistypetitle, \shownumberofpages~\pagelabel}
 }
 
 \newcommand{\abstractauthorsieee}{%
