@@ -70,6 +70,8 @@ Contributors to the template include:
    * This file!
 
 ### LoC
+  * 2026-06-02
+    * Clarify that Finnish abstract is also required for international students (This changed a while back but was not changed in the instructions) 
   * 2026-04-01 Pekka Pietikäinen
     * Update Turnitin link for 2026 (and note it changes annually)
     * Use citestyle=numeric-comp -> The official IEEE [1], [16], [17], [18] -> [1, 16-18]. If you need page numbers for one citation (or want the official IEEE style), use ~\cite{ref1},~\cite[p. 55]{ref2},~\cite{ref3}
