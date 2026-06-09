@@ -50,3 +50,8 @@ xpatch
 
 # This gets pulled by hyperref randomly depending on environment
 greek-fontenc
+
+# LuaLaTeX support (needed for devel branch / PDF/UA-2 compilation)
+fontspec              # Font selection for LuaLaTeX/XeLaTeX; loaded automatically by newtxtext under lualatex
+luaotfload            # OpenType font loader for LuaTeX; runtime dependency of fontspec
+lualatex-math         # Fixes math-mode behaviour differences between pdflatex and lualatex (newtxmath compatibility)
