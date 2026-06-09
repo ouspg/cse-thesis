@@ -4,5 +4,14 @@
 
 \makeatletter
 \input{doclicense-\MainLang.ldf}
-\renewcommand{\doclicenseImageFileName}{doclicense-images/doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier} 
+\renewcommand{\doclicenseImageFileName}{doclicense-images/doclicense-\doclicense@type-\doclicense@modifier\doclicense@imagemodifier}
+\renewcommand{\doclicenseImage}[1][]{%
+  \setkeys{doclicense}{#1}%
+  \href{\doclicenseURL}{%
+    \includegraphics[
+      width=\doclicense@imagewidth,
+      alt={\doclicenseLongName\ license icon}%
+    ]{\doclicenseImageFileName}%
+  }%
+}
 \makeatother

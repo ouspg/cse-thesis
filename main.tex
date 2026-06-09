@@ -1,10 +1,13 @@
 \DocumentMetadata{
   lang        = en, %default en=en-US, others en-UK, fin 
- pdfversion  = 2.0,
- pdfstandard = {UA-2,A-4f}, %or A-4f or A-4
- %testphase = {phase-III,math,table,title}, %TEX LIVE 2024
- tagging = on,  %on, off, draft (off might speed up latexing) after 6/2025
- tagging-setup= {math/setup=mathml-SE} %mathml-SE (adds MathML structure elements), mathml-AF (attach MathML associated files) or tex-AF (attach the TEX sources). See tagpdf package for more details
+  % Output PDF/A-4b and UA-2
+  pdfversion  = 2.0,
+  pdfstandard = {UA-2,A-4f}, %or A-4f or A-4
+  tagging = on,  %on, off, draft (off might speed up latexing) after 6/2025
+  tagging-setup= {math/setup=mathml-SE} %mathml-SE (adds MathML structure elements), mathml-AF (attach MathML associated files) or tex-AF (attach the TEX sources). See tagpdf package for more details
+  % Alternatively A-2b
+  %pdfversion = 1.7,
+  %pdfstandard = {A-2b},
 }
 
 % Template for B. Sc and M. Sc. (Tech.) degree programmes at the

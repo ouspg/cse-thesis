@@ -36,10 +36,6 @@
 \usepackage{longtable}
 \usepackage{graphicx}
 
-% Compatibility with older TeX distributions, make it a 
-% no-op if not already defined. Some day alt-text will
-% end up in the PDF.
-\providecommand{\alt}[1]{}
 % --- Language option processing ---
 \newcommand*{\MainLang}{}
 \newcommand*{\OtherLangs}{}
@@ -251,7 +247,8 @@
   \selectlanguage{\MainLang}
   {
     \centering
-    \includegraphics*[width=0.22\textwidth]{\universitylogo}\\
+    \includegraphics*[width=0.22\textwidth,
+      alt={University of Oulu logo}]{\universitylogo}\\
     {\sffamily\fontsize{8}{10pt}\selectfont \MakeUppercase{\facultyname} \\}
     \vspace{70 mm}
     {\textbf{\fontsize{16}{19pt}\selectfont \getauthorstitle}\\}
