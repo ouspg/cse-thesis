@@ -34,16 +34,8 @@
 % Footnotes in longtable require it to be loaded before pdfx, otherwise
 % should be in .sty
 \usepackage{longtable}
-\usepackage[a-1b,latxmp, mathxmp]{pdfx}[2017/05/18]
 \usepackage{graphicx}
-\let\Gread@transgrouptrue\Gread@transgroupfalse
 
-
-\hypersetup{
-  unicode=true,
-  pdfencoding=auto,
-  hidelinks
-}
 % Compatibility with older TeX distributions, make it a 
 % no-op if not already defined. Some day alt-text will
 % end up in the PDF.
@@ -282,7 +274,12 @@
     \newpage
     \thispagestyle{empty}%
     \noindent
+    % NoHyper suppresses link annotations on this page, avoiding a tagpdf 1.0b
+    % off-by-one bug where the first annotation StructParent collides with the
+    % last page's StructParents value in the ParentTree.
+    \begin{NoHyper}%
     \CopyrightText\par%
+    \end{NoHyper}%
     \cleardoublepage
   \fi
 }%

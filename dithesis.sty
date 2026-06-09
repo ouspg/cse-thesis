@@ -132,6 +132,10 @@
 
 % Algorithms
 \usepackage[linesnumbered, ruled]{algorithm2e}
+% algorithm2e has no tagpdf support — suspend tagging for the float to avoid
+% invalid P→P structure violations in tagged/UA-2 output.
+\AddToHook{env/algorithm/begin}{\SuspendTagging{algorithm2e}}
+\AddToHook{env/algorithm/end}{\ResumeTagging{algorithm2e}}
 
 % --- Package configurations ---
 \tolerance=500
