@@ -55,3 +55,5 @@ greek-fontenc
 fontspec              # Font selection for LuaLaTeX/XeLaTeX; loaded automatically by newtxtext under lualatex
 luaotfload            # OpenType font loader for LuaTeX; runtime dependency of fontspec
 lualatex-math         # Fixes math-mode behaviour differences between pdflatex and lualatex (newtxmath compatibility)
+luamml                # LuaLaTeX MathML generation; required by DocumentMetadata tagging-setup=mathml-SE
+hyperxmp              # Embeds XMP metadata (including license) into PDF; required by doclicense for metadata
