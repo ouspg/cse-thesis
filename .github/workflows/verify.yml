@@ -63,7 +63,7 @@ jobs:
           else
             for flavor in $PDF_FLAVORS; do
               echo "--- Validating PDF/$flavor ---"
-              docker run --rm -t -v "$(pwd):/data" docker.io/verapdf/cli:v1.28.2 -f "$flavor" main.pdf
+              docker run --rm -t -v "$(pwd):/data" docker.io/verapdf/cli:v1.30.2 -f "$flavor" main.pdf
             done
           fi
 
