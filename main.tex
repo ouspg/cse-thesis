@@ -1,15 +1,3 @@
-\DocumentMetadata{
-  %lang        = en, %default en=en-US, others en-UK, fin 
-  % Output PDF/A-4b and UA-2
-  pdfversion  = 2.0,
-  pdfstandard = {UA-2,A-4f}, %or A-4f or A-4
-  tagging = on,  %on, off, draft (off might speed up latexing) after 6/2025
-  tagging-setup= {math/setup=mathml-SE} %mathml-SE (adds MathML structure elements), mathml-AF (attach MathML associated files) or tex-AF (attach the TEX sources). See tagpdf package for more details
-  % Alternatively A-2b
-  %pdfversion = 1.7,
-  %pdfstandard = {A-2b},
-}
-
 % Template for B. Sc and M. Sc. (Tech.) degree programmes at the
 % Faculty of Information Technology and Electrical Engineering
 % at University of Oulu (CSE/BME/BA)
@@ -27,6 +15,19 @@
 % 2023-06-15: Changes to foreword, clarifications to indicate template is also for Bachelor thesis  (TTo)
 % 2023-06-15: Example of a CC-BY figure added with reference in the footnotes (TTo)
 % 2025-08-18: Major refactoring of the template (PPi)
+% 2026-06-10: Output PDF/A-4f and UA-2 (requires LuaTeX & TexLive 2025 or newer)
+
+\DocumentMetadata{
+  %lang        = en, % Enough to set in \documentclass
+  % Output PDF/A-4b and UA-2
+  pdfversion  = 2.0,
+  pdfstandard = {UA-2,A-4f}, %or A-4f or A-4
+  tagging = on,  %on, off, draft (off might speed up latexing) after 6/2025
+  tagging-setup= {math/setup=mathml-SE} %mathml-SE (adds MathML structure elements), mathml-AF (attach MathML associated files) or tex-AF (attach the TEX sources). See tagpdf package for more details
+  % Alternatively A-2b
+  %pdfversion = 1.7,
+  %pdfstandard = {A-2b},
+}
 
 %
 % dithesis.cls supports the following options
@@ -35,7 +36,7 @@
 % Thesis type: master (default)/bachelor
 % Output type: online (default, 2.5 cm margin)
 %              print (4.5 cm left margin for bound theses)
-\documentclass[finnish, online, cse, master]{dithesis}
+\documentclass[english, online, cse, master]{dithesis}
 
 %% Copyright of a work is with the creator/author of the work regardless of
 %% whether the copyright mark is explicitly in the work or not. You may, if you

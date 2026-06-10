@@ -202,15 +202,6 @@ caption text ends with a full stop. A short caption is centered,
 while a long caption extending to a several lines is justified on both sides.
 
 % Pictures in .pdf, .png or .jpg. No need to specify the extension.
-% Transparent images are not allowed with PDF/A.
-% With ImageMagick transparency can be removed with
-% convert image.png -background white -alpha remove -alpha off image_nobg.png
-% This restriction also affects PDF images, as a first step try to make the PDF
-% image PDF/A:
-% gs -dPDFA -dBATCH -dNOPAUSE
-% -sColorConversionStrategy=UseDeviceIndependentColor
-% -sDEVICE=pdfwrite -dPDFACompatibilityPolicy=2
-% -sOutputFile=output.pdf input.pdf
 \begin{figure}[ht]
 \begin{center}
   \includegraphics*[width=0.7\textwidth,
@@ -239,9 +230,8 @@ copyright page.
 
 Figures and tables should be given an alternative text that summarises
 the information they contain for the reader. This is discussed further
-in~\secref{accessibility}. Unfortunately support for this in
-\LaTeX\ is still work in progress, and the alternative text will
-currently not end up in the final PDF, so including them is not a requirement.
+in~\secref{accessibility}. Add alternative text via the \texttt{alt=}
+key of \verb|\includegraphics|, as shown in~\figref{fig:work_packages}.
 A suitable alternative text for~\figref{fig:work_packages} could be:
 
 \begin{quote}
@@ -252,12 +242,8 @@ WP2, and WP4 send outputs to WP5 (right). A curved arrow shows WP3
 also directly feeding into WP5.
 \end{quote}
 
-The final thesis will be published as a PDF/A file, and this LaTeX
-template produces files in that format directly. Be sure to remove all
-transparency in your source images to ensure the end result is also
-compliant. This affects figures in PDF and PNG formats. Instructions
-on doing this are included with the thesis template.  If you have done
-this for all of your images, there is no need to use Muuntaja.
+The final thesis will be published as a PDF/A file, and this \LaTeX\
+template produces files in that format directly.
 
 \subsection{Algorithms}
 Algorithms can be implemented simply using \LaTeX. An example of an
@@ -697,7 +683,15 @@ understandable as possible. Figures and tables should be given an
 alternative text that summarises the information they contain for the
 reader. Alternative text is especially important in situations where
 the reader cannot see the figure or table, for example due to vision
-impairment.  More information on accessible Word documents and
+impairment. In this template, add alternative text via the \texttt{alt=}
+key of \verb|\includegraphics|:
+\begin{verbatim}
+\includegraphics[width=0.8\textwidth,
+  alt={Description of the figure.}]{filename}
+\end{verbatim}
+The template produces PDF/UA-2 tagged output, which embeds the alternative
+text in the PDF and enables assistive technologies such as screen readers
+to access it. More information on accessible Word documents and
 archivable PDF files can be found in the texts of the University of
 Oulu Campus ICT~\cite{ictaccessibleword,ictwordpdfa}. You can also
 read about the accessibility of mathematical equations in the Campus
