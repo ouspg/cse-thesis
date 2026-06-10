@@ -60,6 +60,9 @@ jobs:
       - name: Compile LaTeX document (2nd pass)
         run: $COMPILER -halt-on-error main.tex
 
+      - name: Compile LaTeX document (3rd pass)
+        run: $COMPILER -halt-on-error main.tex
+
       - name: Verify PDF
         run: |
           if [ "$ACT" = "true" ]; then
