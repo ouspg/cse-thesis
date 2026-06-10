@@ -18,6 +18,8 @@ multirow              # Allows multi-row cells in tables; still widely needed.
 newtx                 # ✅ Modern Times-like font package; supersedes 'times', includes text+math.
 nth                   # Adds support for ordinal suffixes (e.g., 1st, 2nd); small but helpful.
 pdfmanagement-testphase # pdfmanagement-testphase.sty; required by \DocumentMetadata (PDF/A-4f, UA-2)
+tagpdf                # Tagged PDF support; required by \DocumentMetadata tagging=on
+latex-lab             # LaTeX laboratory testphase modules (toc, sec, graphic, etc.)
 placeins              # Prevents floats from escaping their sections; useful with \FloatBarrier.
 titlecaps             # Capitalizes titles (e.g., sections); niche but functional.
 titlesec              # Provides control over section title formatting; useful for custom layouts.
