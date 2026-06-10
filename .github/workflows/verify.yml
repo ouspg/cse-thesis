@@ -36,6 +36,10 @@ jobs:
         uses: zauguin/install-texlive@v4
         with:
           package_file: texlive-basic-packages.txt
+          # Pin to TL2025 (Overleaf target). TL2026 loads sec-template.sty which
+          # overrides titlesec chapter formatting. Remove pin when titlesec ships
+          # sec-template support.
+          texlive_version: 2025
 
       - name: Compile LaTeX document (1st pass)
         run: $COMPILER -halt-on-error main.tex
