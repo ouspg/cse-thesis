@@ -17,7 +17,7 @@ import                # Supports modular document structure; enables nested \inp
 multirow              # Allows multi-row cells in tables; still widely needed.
 newtx                 # ✅ Modern Times-like font package; supersedes 'times', includes text+math.
 nth                   # Adds support for ordinal suffixes (e.g., 1st, 2nd); small but helpful.
-pdfx                  # Enables PDF/A and PDF/X output; useful for archival documents.
+pdfmanagement-testphase # pdfmanagement-testphase.sty; required by \DocumentMetadata (PDF/A-4f, UA-2)
 placeins              # Prevents floats from escaping their sections; useful with \FloatBarrier.
 titlecaps             # Capitalizes titles (e.g., sections); niche but functional.
 titlesec              # Provides control over section title formatting; useful for custom layouts.
@@ -41,11 +41,9 @@ fontaxes
 ifmtarg
 ifnextok
 ifoddpage
-newfile
 relsize
 xifthen
 xurl
-xmpincl
 xpatch
 
 # This gets pulled by hyperref randomly depending on environment
