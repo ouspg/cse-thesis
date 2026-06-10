@@ -189,16 +189,30 @@
 \setlength{\cftaftertoctitleskip}{8mm}
 \renewcommand{\cftdotsep}{0.2}
 
-% Add dot to toc entries if option turned on
-\makeatletter
-\renewcommand{\numberline}[1]{%
-  \hb@xt@\@tempdima{#1\sectionnamedot\hfil}}
-\makeatother
+% testphase-toc: \numberline is registered in the LaTeX3 text module as
+% \use_none:n (strips the number) inside a \group_begin:/\group_end: block so
+% that \text_purify:n can build a plain-text tag title without the number.
+% Because \tl_set:cn is LOCAL, the registration reverts after each group ends.
+% We declare \numberline unexpanded HERE (load time = effectively global) so
+% \MakeUppercase in contentsline@text@0@format preserves the number token,
+% which the typesetting \renewcommand below then renders as "N. ".
+% IMPORTANT: must be at load level with ExplSyntaxOn active, NOT inside
+% \AtBeginDocument{...} where the argument is tokenized at read time.
+\ExplSyntaxOn
+\text_declare_expand_equivalent:Nn \numberline { \exp_not:n { \numberline } }
+\ExplSyntaxOff
 
-\makeatletter
-\let\oldl@chapter\l@chapter
-\renewcommand*\l@chapter[2]{\oldl@chapter{\MakeUppercase{#1}}{#2}}
-\makeatother
+\AtBeginDocument{%
+  \makeatletter
+  \renewcommand{\numberline}[1]{#1\sectionnamedot\enspace}%
+  % tocloft's \l@chapter uses {\cftchapfont #1} — it does not call
+  % contentsline@text@0@format. Wrap \l@chapter to uppercase before
+  % passing to tocloft. \text_declare_expand_equivalent above ensures
+  % \MakeUppercase preserves \numberline so the number survives.
+  \let\oldl@chapter\l@chapter
+  \renewcommand*\l@chapter[2]{\oldl@chapter{\MakeUppercase{#1}}{#2}}%
+  \makeatother
+}
 
 \makeatletter
 \def\ps@plain{\ps@myheadings} % plain pages like chapters also top right
@@ -212,51 +226,46 @@
 
 
 
-% Chapter
-% Chapters are set in 14pt bold (bfseries), centered, uppercase.
-% No space before, one baseline skip after.
+\setcounter{secnumdepth}{2} % numbers up to \subsection by default
+
+% latex-lab-testphase-sec fires a class/after hook that can override titlesec's
+% \@makechapterhead (newer TL snapshots added sec-template.sty with default
+% sectioning templates). Defer all \titleformat/\titlespacing to \AtBeginDocument
+% so they win regardless of which latex-lab version the engine runs.
+\AtBeginDocument{%
+% Chapter: 14pt bold, centered, uppercase. No space before, one baseline skip after.
 \titleformat{\chapter}
   [hang]
   {\normalfont\bfseries\fontsize{14}{17}\selectfont\centering}
   {\chapnumformat}
   {1em}
   {\MakeUppercase}
-
-% Section
-% Sections are 12pt bold (bfseries), left-aligned, normal font.
-% 2 baseline skips before and 1 after.
+% Section: 12pt bold, centered. 2 baseline skips before and 1 after.
 \titleformat{\section}
   [hang]
   {\normalfont\bfseries\fontsize{12}{15}\selectfont\centering}
   {\secnumformat}
   {1em}
   {}
-
-% Subsection
-% Subsections are bold italic (bfseries, itshape), normal font size,
-% with 2 baseline skips before and 1 after.
+% Subsection: bold italic, centered. 2 baseline skips before and 1 after.
 \titleformat{\subsection}
   [hang]
   {\normalfont\bfseries\itshape\centering}
   {\subsecnumformat}
   {1em}
   {}
-\setcounter{secnumdepth}{2} % numbers up to \subsection by default
-
-% Subsubsection
-% Subsubsections are italic (itshape), normal font size,
-% with 2 baseline skips before and 1 after.
+% Subsubsection: italic, centered. 2 baseline skips before and 1 after.
 \titleformat{\subsubsection}
   [hang]
   {\normalfont\itshape\centering}
   {\subsubsecformat}
   {1em}
   {}
-
 \titlespacing*{\chapter}{0pt}{0pt}{\baselineskip}
 \titlespacing*{\section}{0pt}{2\baselineskip}{\baselineskip}
 \titlespacing*{\subsection}{0pt}{2\baselineskip}{\baselineskip}
 \titlespacing*{\subsubsection}{0pt}{2\baselineskip}{\baselineskip}
+}
 
 % Bullet configuration
 \setlist[itemize,1]{label=\raisebox{0.2ex}{\tiny$\bullet$}}

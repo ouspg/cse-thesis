@@ -18,8 +18,12 @@
 \LoadClass[12pt,a4paper]{report}
 
 % --- Core packages only (minimal set) ---
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+% inputenc/fontenc are pdflatex-isms; lualatex uses fontspec for encoding
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+\fi
 \usepackage{etoolbox}
 \usepackage{ifthen}
 \usepackage{xstring}
@@ -29,10 +33,8 @@
 \usepackage{titlecaps}
 \usepackage{chngcntr}
 \usepackage{appendix}
-\usepackage{newfile}
 
-% Footnotes in longtable require it to be loaded before pdfx, otherwise
-% should be in .sty
+% Footnotes in longtable require it to be loaded early (before most packages)
 \usepackage{longtable}
 \usepackage{graphicx}
 
@@ -125,10 +127,6 @@
 
 % --- Miscellaneous ---
 
-\newtoggle{writexmpdatafile}
-
-\toggletrue{writexmpdatafile}
-
 \newcommand{\CopyrightText}{}% variable; used for printing on page
 \newcommand{\MetaCopyrightText}{}%
 \newcommand{\pdfCopyrightURL}{}%
@@ -140,49 +138,31 @@
   \makeatother
 }%
 
-\newcommand*{\spc}{\noexpand\sep}%
+\newcommand*{\spc}{, }%
 
 \newcommand{\makemetadata}{%
-  \iftoggle{writexmpdatafile}{%
-    % Write the metadata into file .xmpdata, which is included in the PDF/A file
-	\newoutputstream{xmpdata}%
-	\openoutputfile{\jobname.xmpdata}{xmpdata}%
-	\addtostream{xmpdata}{\noexpand\Title {\metadatatitle}}%
-	\addtostream{xmpdata}{\noexpand\Author {\getauthorsmetadata}}%
-        \addtostream{xmpdata}{\noexpand\Copyright {\MetaCopyrightText}}%
- 	\addtostream{xmpdata}{\noexpand\CopyrightURL {\pdfCopyrightURL}}
-		\IfFin{\MainLang}{%
-          \addtostream{xmpdata}{\noexpand\Subject {\tiivistelmametadata}}%
-          \addtostream{xmpdata}{\noexpand\Keywords[fi] {\avainsanatmetadata%
-              \noexpand\sep[en] \keywordsmetadata}}%
-        }{%
-          \addtostream{xmpdata}{\noexpand\Subject {\abstractmetadata}}%
-          \addtostream{xmpdata}{\noexpand\Keywords[en] {\keywordsmetadata%
-              \noexpand\sep[fi] \avainsanatmetadata}}%
-        }%
-  \closeoutputstream{xmpdata}%
+  \IfLang{\MainLang}{finnish}{%
+    \renewcommand{\metadatatitle}{\getotsikko}%
+    \hypersetup{%
+      pdftitle={\metadatatitle},%
+      pdfauthor={\getauthorslist},%
+      pdfsubject={\tiivistelmametadata},%
+      pdfkeywords={\avainsanatmetadata; \keywordsmetadata},%
+      pdfcopyright={\MetaCopyrightText},%
+    }%
   }{%
-    % Write the metadata directly into the pdf file via hyperref keywords
-	%\renewcommand*{\spc}{; }%
-	%\hypersetup{%
-	%  pdftitle={\maintitle},%
-	%  pdfauthor={\ThesisAuthor},%
-	%  pdfsubject={\abstracttext},%
-	%  pdfcopyright={\MetaCopyrightText},%
-	%  pdfkeywords={\keywords}%
-	%}%
+    \renewcommand{\metadatatitle}{\gettitle}%
+    \hypersetup{%
+      pdftitle={\metadatatitle},%
+      pdfauthor={\getauthorslist},%
+      pdfsubject={\abstractmetadata},%
+      pdfkeywords={\keywordsmetadata; \avainsanatmetadata},%
+      pdfcopyright={\MetaCopyrightText},%
+    }%
   }%
 }%
-%
-\AtBeginDocument{%
-  \IfLang{\MainLang}{finnish}{%
-    \renewcommand{\metadatatitle}{\getotsikko}
-  }{%
-    \renewcommand{\metadatatitle}{\gettitle}
-  }
-  \makemetadata%
-}%
-%
+
+\AtBeginDocument{\makemetadata}%
 
 \newcommand{\firstname}[1]{\def\firstnameA{#1}}
 \newcommand{\lastname}[1]{\def\lastnameA{#1}}

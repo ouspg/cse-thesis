@@ -1,5 +1,5 @@
 \DocumentMetadata{
-  lang        = en, %default en=en-US, others en-UK, fin 
+  %lang        = en, %default en=en-US, others en-UK, fin 
   % Output PDF/A-4b and UA-2
   pdfversion  = 2.0,
   pdfstandard = {UA-2,A-4f}, %or A-4f or A-4
@@ -35,7 +35,7 @@
 % Thesis type: master (default)/bachelor
 % Output type: online (default, 2.5 cm margin)
 %              print (4.5 cm left margin for bound theses)
-\documentclass[english, online, cse, master]{dithesis}
+\documentclass[finnish, online, cse, master]{dithesis}
 
 %% Copyright of a work is with the creator/author of the work regardless of
 %% whether the copyright mark is explicitly in the work or not. You may, if you
@@ -66,10 +66,9 @@
 %\lastnamethree{}
 % Remove or comment the extra names if you do not need them
 
-% Abstracts are stored in the PDF metadata.
-% They must not contain empty lines (multiple paragraphs) or special
-% characters. Mathematical symbols should work (mathxmp option of the pdfx
-% package).
+% Abstracts are stored in the PDF metadata (pdfsubject).
+% They must not contain empty lines (multiple paragraphs), special
+% characters, or math.
 % If the abstract contains multiple paragraphs or special characters,
 % provide the full text in abstract.tex and tiivistelma.tex.
 % This version should otherwise remain identical to it
@@ -93,8 +92,8 @@
   kirjoitusohjeita ja toimii siten esimerkkinä, miltä lopputyön tulisi
   näyttää.}
 
-% Keywords are also included in the PDF metadata, and cannot contain any
-% special characters. Separate them with \spc
+% Keywords are also included in the PDF metadata (pdfkeywords), and cannot
+% contain special characters. Separate them with \spc (expands to ", ")
 \keywords{M.Sc. degree\spc master’s thesis instructions\spc structure of a master’s thesis}
 \avainsanat{diplomi-insinöörin tutkinto\spc diplomityön ohjeet\spc diplomityön rakenne}
 
