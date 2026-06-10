@@ -26,7 +26,7 @@ jobs:
           BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF##*/}}"
           if [ "$BRANCH" = "devel" ]; then
             echo "COMPILER=lualatex" >> "$GITHUB_ENV"
-            echo "PDF_FLAVORS=4f" >> "$GITHUB_ENV"
+            echo "PDF_FLAVORS=4f ua2" >> "$GITHUB_ENV"
           else
             echo "COMPILER=pdflatex" >> "$GITHUB_ENV"
             echo "PDF_FLAVORS=1b" >> "$GITHUB_ENV"
