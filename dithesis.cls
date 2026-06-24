@@ -145,8 +145,6 @@
 
 \newcommand*{\spc}{, }%
 
-\usepackage{xparse} % if not already loaded (LaTeX2e 2020+ has it built in)
-
 \ExplSyntaxOn
 % Global scratch tl used to carry the resolved text out of the local group in
 % \flattentext (a global assignment is not unwound at \group_end:).
@@ -253,10 +251,8 @@
 \newcommand{\facultyname}{}
 \newcommand{\degreeprogramme}{}
 \newcommand{\degreeprogrammetitle}{}
-\newcommand{\getauthorsabstract}{}
 \newcommand{\thesistypetitle}{}
 \newcommand{\thesistitle}{}
-\newcommand{\metadatatitle}{}
 \newcommand{\universityname}{}
 \newcommand{\universitynameieee}{}
 \newcommand{\pagelabel}{}
@@ -340,7 +336,6 @@
 \newenvironment{thesisabstract}[1]{%
   \selectlanguage{#1}%
   \setcounter{NAppdxPages}{\numexpr\value{NAllPages}-\value{NMainTxtPages}\relax}
-  \renewcommand*{\spc}{, }
 
   \cleardoublepage
   \noindent\abstractauthors
@@ -386,7 +381,6 @@
     \firstnameA\ \lastnameA%
   \fi
 }
-\newcommand{\getauthorsmetadata}{\getauthors{\spc }}
 \newcommand{\getauthorslist}{\getauthors{, }}
 \newcommand{\getauthorstitle}{
   \begin{tabular}[t]{c}
