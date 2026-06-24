@@ -145,84 +145,10 @@
 
 \newcommand*{\spc}{, }%
 
-\ExplSyntaxOn
-% Global scratch tl used to carry the resolved text out of the local group in
-% \flattentext (a global assignment is not unwound at \group_end:).
-\tl_new:N \g__dithesis_flat_tl
-\NewDocumentCommand{\flattentext}{m m}{
-  % #1 = macro to receive the flattened, PDF-string-safe text
-  % #2 = macro containing the original abstract (e.g. \abstractmetadata)
-  %
-  % Produces a single-paragraph, plain-text version of the abstract for the XMP
-  % metadata (dc:description, set via pdfsubject in \makemetadata):
-  %   * \par and explicit line breaks become spaces;
-  %   * runs of spaces are collapsed and the ends trimmed;
-  %   * \texorpdfstring{<tex>}{<text>} is reduced to its <text> argument, so
-  %     inline math written as \texorpdfstring{$E=mc^2$}{E = mc^2} has a clean
-  %     text form in the metadata while the body keeps the real math.
-  % Expand #2 once so a macro name resolves to its stored token list.
-  \tl_set:No \l_tmpa_tl { #2 }
-  % Replace every break *token* with a space. (\s in the regex only sees
-  % character spaces, so these control sequences must be handled first.)
-  \tl_replace_all:Nnn \l_tmpa_tl { \par } { ~ }
-  \tl_replace_all:Nnn \l_tmpa_tl { \\ } { ~ }
-  \tl_replace_all:Nnn \l_tmpa_tl { \newline } { ~ }
-  \tl_replace_all:Nnn \l_tmpa_tl { \linebreak } { ~ }
-  \regex_replace_all:nnN { \s+ } { \ } \l_tmpa_tl
-  \tl_trim_spaces:N \l_tmpa_tl
-  % Resolve \texorpdfstring to its text argument and fully expand to plain text.
-  \group_begin:
-    \cs_set:Npn \texorpdfstring ##1##2 {##2}
-    \tl_gset:Ne \g__dithesis_flat_tl { \l_tmpa_tl }
-  \group_end:
-  \tl_set_eq:NN #1 \g__dithesis_flat_tl
-}
-\ExplSyntaxOff
-
-\newcommand{\abstractflat}{}
-\newcommand{\tiivistelmaflat}{}
-\newcommand{\keywordsflat}{}
-\newcommand{\avainsanatflat}{}
-
-\newcommand{\makemetadata}{%
-  % Flatten everything to PDF-string-safe plain text. For keywords this also
-  % drops any \texorpdfstring{\footnote{...}}{} guidance: dc:subject is built by
-  % detokenising (not \pdfstringdef), so \texorpdfstring would otherwise resolve
-  % to its TeX branch and leak the footnote text into the metadata. Flattening
-  % forces the text branch, leaving the footnote to render on the page only.
-  \flattentext\abstractflat\abstractmetadata
-  \flattentext\tiivistelmaflat\tiivistelmametadata
-  \flattentext\keywordsflat\keywordsmetadata
-  \flattentext\avainsanatflat\avainsanatmetadata
-  \hypersetup{%
-    pdftitle={[fi]\getotsikko,
-      [en]\gettitle},%
-    pdfauthor={\getauthorslist},%
-    % pdfsubject becomes dc:description. The value is read as a comma list to
-    % support the [lang] tags, so each abstract is wrapped in braces to protect
-    % the commas in its text; otherwise it is shredded into bogus rdf:li lines.
-    pdfsubject={[en]{\abstractflat},[fi]{\tiivistelmaflat}},%
-    % Keywords: no [lang] tags (dc:subject is an unordered Bag with no language
-    % concept, so tags would leak as literal text) and no braces (the commas
-    % separate the individual keywords into dc:subject entries).
-    pdfkeywords={\avainsanatflat, \keywordsflat},%
-  }%
-}
-\AtBeginDocument{\makemetadata}
-
-% pdfcopyright becomes dc:rights (a comma-separated langalt, so each language's
-% text is braced to protect its internal commas, like pdfsubject above).
-% This must run in begindocument/end, AFTER pdfmanagement-firstaid's own
-% \AtBeginDocument hook, which -- when doclicense is loaded with hyperxmp
-% disabled -- sets pdfcopyright to the single-language \doclicenseLongTextForHyperref
-% and would otherwise overwrite ours. Setting it later lets us provide a proper
-% bilingual dc:rights for both the CC and all-rights-reserved cases.
-\AddToHook{begindocument/end}{%
-  \ifdefempty{\MetaCopyrightTextEn}{}{%
-    \hypersetup{pdfcopyright={[en]{\MetaCopyrightTextEn},%
-                              [fi]{\MetaCopyrightTextFi}}}%
-  }%
-}
+% The PDF-metadata emission machinery (\flattentext, \makemetadata, and the
+% begindocument hooks that build dc:description / dc:rights / dc:subject) lives
+% in dithesis.sty, next to the copyright and language strings it consumes. The
+% user-facing data macros (\abstract, \keywords, \copyrighttext, ...) stay here.
 
 \newcommand{\firstname}[1]{\def\firstnameA{#1}}
 \newcommand{\lastname}[1]{\def\lastnameA{#1}}
