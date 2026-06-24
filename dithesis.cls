@@ -202,10 +202,10 @@
     % support the [lang] tags, so each abstract is wrapped in braces to protect
     % the commas in its text; otherwise it is shredded into bogus rdf:li lines.
     pdfsubject={[en]{\abstractflat},[fi]{\tiivistelmaflat}},%
-    % Keywords are intentionally NOT braced: the commas separate individual
-    % keywords into dc:subject entries.
-    pdfkeywords={[fi]\avainsanatflat,
-                 [en]\keywordsflat},%
+    % Keywords: no [lang] tags (dc:subject is an unordered Bag with no language
+    % concept, so tags would leak as literal text) and no braces (the commas
+    % separate the individual keywords into dc:subject entries).
+    pdfkeywords={\avainsanatflat, \keywordsflat},%
   }%
 }
 \AtBeginDocument{\makemetadata}
