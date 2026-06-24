@@ -198,9 +198,12 @@
     % support the [lang] tags, so each abstract is wrapped in braces to protect
     % the commas in its text; otherwise it is shredded into bogus rdf:li lines.
     pdfsubject={[en]{\abstractflat},[fi]{\tiivistelmaflat}},%
-    % Keywords: no [lang] tags (dc:subject is an unordered Bag with no language
-    % concept, so tags would leak as literal text) and no braces (the commas
-    % separate the individual keywords into dc:subject entries).
+    % Keywords: no [lang] tags (dc:subject is an unordered Bag; current
+    % pdfmanagement tags each entry xml:lang="x-default" but offers no real
+    % per-language langalt, so [fi]/[en] would just leak as literal text) and no
+    % braces (the commas separate the individual keywords into dc:subject
+    % entries). If a future pdfmanagement supports langalt keywords, re-add the
+    % tags adjacent: pdfkeywords={[fi]\avainsanatflat,[en]\keywordsflat}.
     pdfkeywords={\avainsanatflat, \keywordsflat},%
   }%
 }
