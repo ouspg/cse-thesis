@@ -100,10 +100,16 @@
   kirjoitusohjeita ja toimii siten esimerkkinä, miltä lopputyön tulisi
   näyttää.}
 
-% Keywords are also included in the PDF metadata (pdfkeywords), and cannot
-% contain special characters. Separate them with \spc (expands to ", ")
-\keywords{M.Sc. degree, master’s thesis instructions, structure of a master’s thesis}
-\avainsanat{diplomi-insinöörin tutkinto, diplomityön ohjeet, diplomityön rakenne}
+% Keywords are also included in the PDF metadata (pdfkeywords), separated by
+% commas. The \texorpdfstring{\footnote{...}}{} shows guidance on the abstract
+% page only; the empty PDF-string branch keeps it out of the metadata. Remove
+% the footnote in your own thesis.
+\keywords{M.Sc. degree, master’s thesis instructions, structure of a master’s
+  thesis\texorpdfstring{\footnote{The keywords should differ from those used in
+  the title. Remove this footnote from your thesis.}}{}}
+\avainsanat{diplomi-insinöörin tutkinto, diplomityön ohjeet, diplomityön
+  rakenne\texorpdfstring{\footnote{Käytä avainsanoina eri sanoja kuin lopputyön
+  otsikossa. Poista tämä alaviite lopputyöstäsi.}}{}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -135,15 +141,7 @@
 \maketitlepage
 \makecopyrightpage
 
-\IfLang{\MainLang}{finnish}{
-  \input{Chapters/tiivistelma}
-  \input{Chapters/abstract}
-  \selectlanguage{finnish}
-} {
-  \input{Chapters/abstract}
-  \input{Chapters/tiivistelma}
-  \selectlanguage{english}
-}
+\makeabstracts
 
 \contents %Insert table of contents
 \input{Chapters/foreword}

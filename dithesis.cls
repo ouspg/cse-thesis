@@ -181,11 +181,19 @@
 
 \newcommand{\abstractflat}{}
 \newcommand{\tiivistelmaflat}{}
+\newcommand{\keywordsflat}{}
+\newcommand{\avainsanatflat}{}
 
 \newcommand{\makemetadata}{%
-  % Flatten the abstracts to PDF-string-safe, single-paragraph plain text.
+  % Flatten everything to PDF-string-safe plain text. For keywords this also
+  % drops any \texorpdfstring{\footnote{...}}{} guidance: dc:subject is built by
+  % detokenising (not \pdfstringdef), so \texorpdfstring would otherwise resolve
+  % to its TeX branch and leak the footnote text into the metadata. Flattening
+  % forces the text branch, leaving the footnote to render on the page only.
   \flattentext\abstractflat\abstractmetadata
   \flattentext\tiivistelmaflat\tiivistelmametadata
+  \flattentext\keywordsflat\keywordsmetadata
+  \flattentext\avainsanatflat\avainsanatmetadata
   \hypersetup{%
     pdftitle={[fi]\getotsikko,
       [en]\gettitle},%
@@ -194,8 +202,10 @@
     % support the [lang] tags, so each abstract is wrapped in braces to protect
     % the commas in its text; otherwise it is shredded into bogus rdf:li lines.
     pdfsubject={[en]{\abstractflat},[fi]{\tiivistelmaflat}},%
-    pdfkeywords={[fi]\avainsanatmetadata,
-                 [en]\keywordsmetadata},%
+    % Keywords are intentionally NOT braced: the commas separate individual
+    % keywords into dc:subject entries.
+    pdfkeywords={[fi]\avainsanatflat,
+                 [en]\keywordsflat},%
   }%
 }
 \AtBeginDocument{\makemetadata}
@@ -354,6 +364,20 @@
   \par
   \vspace{1\baselineskip}\noindent
   \textbf{\keywordsline}
+}
+
+% Emit both abstract pages from the stored \abstract/\tiivistelma content, with
+% the main language first (the language a reader expects up front). Keywords and
+% their on-page footnote come from \keywords/\avainsanat in the preamble.
+\newcommand{\makeabstracts}{%
+  \IfLang{\MainLang}{finnish}{%
+    \begin{thesisabstract}{finnish}\tiivistelmametadata\end{thesisabstract}%
+    \begin{thesisabstract}{english}\abstractmetadata\end{thesisabstract}%
+  }{%
+    \begin{thesisabstract}{english}\abstractmetadata\end{thesisabstract}%
+    \begin{thesisabstract}{finnish}\tiivistelmametadata\end{thesisabstract}%
+  }%
+  \selectlanguage{\MainLang}%
 }
 
 %chapters without page numbering
