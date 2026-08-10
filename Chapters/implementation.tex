@@ -139,6 +139,11 @@ done when following the model of this \LaTeX\ template:
   \begin{center}
     \caption{The font types used in a Master’s thesis}
     \label{tab:sample_table}
+    % Tag the header cells so screen readers announce them as headers rather
+    % than as ordinary data cells (see \secref{accessibility}). The heading of
+    % this table spans the first three rows, and the leftmost column holds the
+    % row headings. The setting is local to the table environment.
+    \tagpdfsetup{table/header-rows={1,2,3}, table/header-columns={1}}
     \begin{tabular}{| c | l | l | l | l |}
       \hline
       \multicolumn{1}{|l|}{Font}  & \multicolumn{4}{l|}{Layout}
@@ -443,7 +448,10 @@ in the same situation as you are now, and yet they were still able to graduate.
 \begin{figure}[ht]
 \begin{center}
   \includegraphics*[width=0.9\textwidth,
-    alt={Cartoon of a person running outside at night howling at the moon in frustration.}]{unto_uneksija}
+    alt={Photograph of a student seen from behind, writing at a desktop
+      computer in an office, with crumpled paper and empty coffee cups piled
+      on the desk. Two comic-style speech bubbles carry the text quoted in
+      the caption.}]{unto_uneksija}
 \end{center}
 \caption{Writing angst and the pain of creation. “Writing your thesis
   can sometimes
@@ -627,7 +635,10 @@ kuva lähteestä [x]. \textcopyright Vuosi Tekijä.''
 \begin{figure}[H]
 \begin{center}
   \includegraphics[width=12cm,
-    alt={Black and white portrait photograph of Stephen Crane.}]{Figures/ccby.jpg}
+    % Note: alt text is written verbatim into the PDF, so quotes and dashes
+    % must be typed as the characters you want, not as LaTeX shorthands.
+    alt={Photograph of a flat granite grave marker set in grass, inscribed
+      “Stephen Crane, Author, 1871–1900”.}]{Figures/ccby.jpg}
 \end{center}
 \caption{``\href{https://openverse.org/image/110032f8-1a7a-421f-86b1-88fdfde2e44f
   }{Stephen Crane, Author, Red Badge of Courage}''
@@ -688,6 +699,27 @@ key of \verb|\includegraphics|:
 \includegraphics[width=0.8\textwidth,
   alt={Description of the figure.}]{filename}
 \end{verbatim}
+Alternative text is written into the PDF as it is typed, so type quotation
+marks and dashes as the characters you want rather than as the \LaTeX{}
+shorthands \verb|``|, \verb|''| and \verb|---|. Describe what the figure
+shows, not what the caption already says, and keep the description of the
+same thing consistent if the figure is reused.
+
+A table needs its heading cells marked so that a screen reader can announce
+which column and row a value belongs to instead of reading a flat sequence
+of numbers. Give the numbers of the heading rows and columns before the
+table, as in \tabref{tab:sample_table}:
+\begin{verbatim}
+\tagpdfsetup{table/header-rows={1}, table/header-columns={1}}
+\end{verbatim}
+The setting applies to the next table only if it is given inside the
+\texttt{table} environment; a \texttt{longtable} is not a float, so reset it
+afterwards with an empty value. In a \texttt{longtable} that repeats a
+heading via \verb|\endhead|, the heading rows are detected automatically.
+Keep tables simple---merged cells, cells left empty for layout, and a single
+logical row split across several \verb|\\| lines all reach the screen reader
+as the structure you typed rather than the one the sighted reader sees.
+
 The template produces PDF/UA-2 tagged output, which embeds the alternative
 text in the PDF and enables assistive technologies such as screen readers
 to access it. More information on accessible Word documents and

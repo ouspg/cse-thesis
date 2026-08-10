@@ -271,6 +271,11 @@
 
 \newenvironment{thesisabstract}[1]{%
   \selectlanguage{#1}%
+  % \selectlanguage does not reach the PDF structure tree, so one of the two
+  % abstract pages would otherwise inherit the document language and be read
+  % out by a screen reader in the wrong language. Set /Lang on the structure
+  % elements created inside the environment; the setting is group-local.
+  \ifstrequal{#1}{finnish}{\tagpdfsetup{text/lang=fi}}{\tagpdfsetup{text/lang=en}}%
   \setcounter{NAppdxPages}{\numexpr\value{NAllPages}-\value{NMainTxtPages}\relax}
 
   \cleardoublepage

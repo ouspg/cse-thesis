@@ -18,7 +18,9 @@
 % 2026-06-10: Output PDF/A-4f and UA-2 (requires LuaTeX & TexLive 2025 or newer)
 
 \DocumentMetadata{
-  %lang        = en, % Enough to set in \documentclass
+  lang        = en, % Main language of the thesis; must match \documentclass.
+                    % \DocumentMetadata runs before \documentclass, so it
+                    % cannot pick this up on its own and warns if it is unset.
   % Output PDF/A-4f and UA-2
   pdfversion  = 2.0,
   pdfstandard = {UA-2,A-4f}, %or A-4f or A-4

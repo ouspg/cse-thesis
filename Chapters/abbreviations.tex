@@ -1,5 +1,8 @@
 \header{\headerabbreviations}
 \setlongtables
+% The list has no heading row; the term in the left column is the heading of
+% its own row, so tag the first column as headers for screen readers.
+\tagpdfsetup{table/header-columns={1}}
 % According to updated thesis guidelines, lowercase Greek letters used as quantities
 % are italicized. Uppercase Greek letters are upright.
 \begin{longtable}[l]{p{3cm}p{0.7\textwidth}}
@@ -32,5 +35,6 @@
     $\arg$() & argument \\
 
 \end{longtable}
+\tagpdfsetup{table/header-columns={}}
 \setcounter{table}{0}
 
