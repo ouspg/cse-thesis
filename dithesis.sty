@@ -322,9 +322,11 @@
 \setcounter{secnumdepth}{2} % numbers up to \subsection by default
 
 % latex-lab-testphase-sec fires a class/after hook that can override titlesec's
-% \@makechapterhead (newer TL snapshots added sec-template.sty with default
-% sectioning templates). Defer all \titleformat/\titlespacing to \AtBeginDocument
-% so they win regardless of which latex-lab version the engine runs.
+% \@makechapterhead, so \titleformat given at package-load time may be undone.
+% Deferring all \titleformat/\titlespacing to \AtBeginDocument makes them win
+% regardless of which latex-lab version the engine runs. Verified correct on
+% TL2025 and TL2026; harmless either way, so it stays until titlesec and the
+% tagging code have settled on a shared sectioning interface.
 \AtBeginDocument{%
 % Chapter: 14pt bold, centered, uppercase. No space before, one baseline skip after.
 \titleformat{\chapter}
