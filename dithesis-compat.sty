@@ -1,0 +1,113 @@
+% Kernel- and package-version workarounds for dithesis.sty, kept in one place
+% so they can be dropped as upstream catches up. Each item says what it works
+% around and when it can go. The template's own layout stays in dithesis.sty;
+% only code that exists because of a particular kernel or package version
+% belongs here.
+%
+% Section A is for kernels without latex-lab's heading templates (before
+% 2026-06). Section B is for gaps in current packages, independent of the
+% kernel version.
+\ProvidesPackage{dithesis-compat}
+
+% True when latex-lab builds headings from `heading' template instances
+% (2026-06 kernel, tagging on or off). This checks for the feature rather
+% than the kernel date. It is evaluated when used, at
+% \begin{document}, not at load.
+\newcommand*\dithesis@IfTemplateHeadingsTF[2]{%
+  \ifdefined\IfInstanceExistsTF
+    \IfInstanceExistsTF{heading}{chapter}{#1}{#2}%
+  \else
+    #2%
+  \fi
+}
+
+% Called by dithesis.sty at \begin{document}.
+\newcommand*\dithesis@setupheadings{%
+  \dithesis@IfTemplateHeadingsTF
+    {\dithesis@headinginstances\dithesis@templatetoctitle}%
+    {\dithesis@legacyheadings\dithesis@legacytoctitle}%
+}
+
+%% ---------------------------------------------------------------------------
+%% A. No heading templates.
+%% DROP WHEN: the template requires a kernel with heading templates. Then delete this section, point \dithesis@setupheadings at the
+%% template branch alone, and define \dithesis@tocanchor as empty.
+%% ---------------------------------------------------------------------------
+
+% A1. Headings with \@startsection and \@makechapterhead, the same layout as
+% \dithesis@headinginstances in dithesis.sty. \if@nobreak is still true when a
+% heading directly follows another, which is how the before-skip drops to 1
+% empty row there. A negative before-skip suppresses the indent of the
+% following paragraph.
+\newcommand*\dithesis@beforeheading{\if@nobreak-\baselineskip\else-2\baselineskip\fi}
+\newcommand*\dithesis@legacyheadings{%
+  \def\@makechapterhead##1{%
+    {\parindent\z@\normalfont\bfseries\fontsize{14}{17}\selectfont\centering
+     \ifnum\c@secnumdepth>\m@ne\chapnumformat\hspace{1em}\fi
+     \MakeUppercase{##1}\par}%
+    \vskip\baselineskip}%
+  \def\@makeschapterhead##1{%
+    {\parindent\z@\normalfont\bfseries\fontsize{14}{17}\selectfont\centering
+     \MakeUppercase{##1}\par}%
+    \vskip\baselineskip}%
+  \renewcommand\section{\@startsection{section}{1}{\z@}%
+    {\dithesis@beforeheading}{\baselineskip}%
+    {\normalfont\bfseries\fontsize{12}{15}\selectfont\centering}}%
+  \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+    {\dithesis@beforeheading}{\baselineskip}%
+    {\normalfont\bfseries\itshape\centering}}%
+  \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+    {\dithesis@beforeheading}{\baselineskip}%
+    {\normalfont\itshape\centering}}%
+  % Heading numbers are "1.1." followed by 1em, like the chapter number.
+  \def\@seccntformat##1{\csname the##1\endcsname\sectionnamedot\hspace{1em}}%
+}
+
+% A2. tocloft sets the TOC title as a paragraph of its own, so it is centered
+% with fills. The closing pair is uneven on purpose: this is the layout the
+% template has always had.
+\newcommand*\dithesis@legacytoctitle{%
+  \renewcommand{\cfttoctitlefont}{\hfill\dithesis@toctitlefont}%
+  \renewcommand{\cftaftertoctitle}{\hfill\hfill}%
+}
+
+% A3. The TOC title sets no anchor of its own here, so the TOC's own entry
+% (\frontmattertocentry after \tableofcontents) would pick up whatever anchor
+% came last, such as a footnote. Called by \contents before \tableofcontents;
+% with heading templates the title's anchor replaces this one.
+\newcommand*\dithesis@tocanchor{\phantomsection}
+
+%% ---------------------------------------------------------------------------
+%% B. Gaps in current packages. Each item has its own DROP WHEN.
+%% ---------------------------------------------------------------------------
+
+% B1. tocloft with heading templates sets the TOC title as a \chapter, with
+% \cfttoctitlefont as its heading declarations, where the \hfill centering of
+% A2 would push it right; a declaration centers it instead.
+% DROP WHEN: tocloft no longer sets the title through \cfttoctitlefont (then
+% check the TOC title on page 5 of the guide).
+\newcommand*\dithesis@templatetoctitle{%
+  \renewcommand{\cfttoctitlefont}{\dithesis@toctitlefont\centering}%
+  \renewcommand{\cftaftertoctitle}{}%
+}
+
+% B2. testphase-toc registers \numberline in the LaTeX3 text module as
+% \use_none:n (strips the number) inside a \group_begin:/\group_end: block so
+% that \text_purify:n can build a plain-text tag title without the number.
+% Because \tl_set:cn is LOCAL, the registration reverts after each group ends.
+% Declaring \numberline unexpanded here (load time = effectively global) lets
+% \MakeUppercase in contentsline@text@0@format keep the number token, which
+% the \numberline definition in dithesis.sty then renders as "N. ".
+% IMPORTANT: must be at load level with ExplSyntaxOn active, NOT inside
+% \AtBeginDocument{...} where the argument is tokenized at read time.
+% DROP WHEN: chapter numbers survive in the TOC without it.
+\ExplSyntaxOn
+\text_declare_expand_equivalent:Nn \numberline { \exp_not:n { \numberline } }
+\ExplSyntaxOff
+
+% B3. algorithm2e has no tagpdf support; suspend tagging for the float to
+% avoid invalid P→P structure violations in tagged/UA-2 output.
+% DROP WHEN: algorithm2e tags its floats (veraPDF UA-2 passes without this).
+\AddToHook{env/algorithm/begin}{\SuspendTagging{algorithm2e}}
+\AddToHook{env/algorithm/end}{\ResumeTagging{algorithm2e}}
+
