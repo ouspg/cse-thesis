@@ -3,6 +3,10 @@
 % at University of Oulu (CSE/BME/BA)
 % 
 \ProvidesPackage{dithesis}
+% Kernel- and package-version workarounds live in one place so they can be
+% dropped as upstream catches up. Loaded first: it decides which tocloft to
+% load, and the rest of it only takes effect at \begin{document}.
+\RequirePackage{dithesis-compat}
 \usepackage{newtxtext, newtxmath}
 \usepackage[english,finnish]{babel}
 \usepackage[english=nohyphenation,finnish=nohyphenation]{hyphsubst}
@@ -14,7 +18,7 @@
 \usepackage{subcaption}
 \usepackage{multirow}
 \usepackage{caption}
-\usepackage{tocloft}
+\dithesis@loadtocloft
 
 \usepackage{amsfonts}
 \usepackage{amsmath}
@@ -407,7 +411,3 @@ versus via with within without}
   \setlength{\belowdisplayskip}{12pt}
   \setlength{\belowdisplayshortskip}{12pt}
 }
-
-% Kernel- and package-version workarounds live in one place so they can be
-% dropped as upstream catches up. Loaded last: it adjusts settings made above.
-\RequirePackage{dithesis-compat}

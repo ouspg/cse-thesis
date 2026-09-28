@@ -55,6 +55,10 @@ Contributors to the template include:
  * dithesis-compat.sty
    * Workarounds for particular LaTeX kernel and package versions, each
      marked with when it can be removed. Loaded by dithesis.sty.
+ * vendor/tocloft.sty
+   * tocloft 3.0, shipped until Overleaf's TeX Live has it. Used only when it
+     is newer than the installed tocloft and the kernel supports it; see
+     dithesis-compat.sty.
  * doclicense-di.sty, doclicense-finnish.ldf
    * CC license support: adds alt-text to the license badge image and
      Finnish translations for doclicense.

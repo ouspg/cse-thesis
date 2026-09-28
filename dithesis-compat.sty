@@ -11,8 +11,9 @@
 
 % True when latex-lab builds headings from `heading' template instances
 % (2026-06 kernel, tagging on or off). This checks for the feature rather
-% than the kernel date. It is evaluated when used, at
-% \begin{document}, not at load.
+% than the kernel date. It is evaluated when used: at load time for C1, at
+% \begin{document} for the headings. latex-lab is loaded by \DocumentMetadata,
+% before the class, so the answer is the same at both points.
 \newcommand*\dithesis@IfTemplateHeadingsTF[2]{%
   \ifdefined\IfInstanceExistsTF
     \IfInstanceExistsTF{heading}{chapter}{#1}{#2}%
@@ -76,6 +77,63 @@
 % came last, such as a footnote. Called by \contents before \tableofcontents;
 % with heading templates the title's anchor replaces this one.
 \newcommand*\dithesis@tocanchor{\phantomsection}
+
+%% ---------------------------------------------------------------------------
+%% C. Packages shipped with the template, in vendor/. A shipped copy is loaded
+%% by path, and only when it is newer than the system copy, so an up-to-date
+%% TeX installation wins without anyone having to delete files. Each item has
+%% its own DROP WHEN; dropping means deleting the vendor/ file and loading the
+%% package normally.
+%% ---------------------------------------------------------------------------
+
+% The date of the first \ProvidesPackage{<name>} line in <file>, as the
+% integer YYYYMMDD in #3, or 0 if the file is missing or has no dated line.
+\ExplSyntaxOn
+\ior_new:N \g__dithesis_date_ior
+\seq_new:N \l__dithesis_date_seq
+\cs_new_protected:Npn \dithesis@filedate #1#2#3
+  {
+    \int_zero:N #3
+    \ior_open:NnT \g__dithesis_date_ior {#1}
+      {
+        \ior_str_map_inline:Nn \g__dithesis_date_ior
+          {
+            \regex_extract_once:nnNT
+              { ProvidesPackage\{#2\}\[(\d{4})[-/](\d{2})[-/](\d{2}) }
+              {##1} \l__dithesis_date_seq
+              {
+                \int_set:Nn #3
+                  { \seq_item:Nn \l__dithesis_date_seq {2}
+                    \seq_item:Nn \l__dithesis_date_seq {3}
+                    \seq_item:Nn \l__dithesis_date_seq {4} }
+                \ior_map_break:
+              }
+          }
+        \ior_close:N \g__dithesis_date_ior
+      }
+  }
+\ExplSyntaxOff
+\newcount\dithesis@systemdate
+\newcount\dithesis@vendordate
+
+% C1. tocloft 3.0 (2026-09) sets list titles through the kernel's heading
+% templates, so the TOC title is tagged as a heading; tocloft 2.3i, which
+% Overleaf's TeX Live 2026 has, bails out under tagging. 3.0 fails outright
+% on kernels without heading templates, so the shipped copy is only used
+% where they exist.
+% DROP WHEN: Overleaf's TeX Live has tocloft 3.0 or newer (the log then
+% shows the system copy being loaded).
+\newcommand*\dithesis@loadtocloft{%
+  \dithesis@filedate{tocloft.sty}{tocloft}\dithesis@systemdate
+  \dithesis@filedate{vendor/tocloft.sty}{tocloft}\dithesis@vendordate
+  \dithesis@IfTemplateHeadingsTF
+    {\ifnum\dithesis@vendordate>\dithesis@systemdate
+       \RequirePackage{vendor/tocloft}%
+     \else
+       \RequirePackage{tocloft}%
+     \fi}%
+    {\RequirePackage{tocloft}}%
+}
 
 %% ---------------------------------------------------------------------------
 %% B. Gaps in current packages. Each item has its own DROP WHEN.

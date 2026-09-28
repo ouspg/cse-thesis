@@ -1,6 +1,12 @@
 \ProvidesPackage{doclicense-di}
 \NeedsTeXFormat{LaTeX2e}
-\RequirePackageWithOptions{doclicense}
+% Forward our options and add hyperxmp=false: pdfmanagement writes the XMP
+% metadata and refuses to load hyperxmp, so doclicense's request for it only
+% produced a warning. (\RequirePackageWithOptions plus \PassOptionsToPackage
+% does not reach doclicense's \ProcessLocalKeyvalOptions*.)
+\DeclareOption*{\PassOptionsToPackage{\CurrentOption}{doclicense}}
+\ProcessOptions\relax
+\RequirePackage[hyperxmp=false]{doclicense}
 
 \makeatletter
 \input{doclicense-\MainLang.ldf}
