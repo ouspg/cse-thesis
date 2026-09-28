@@ -321,46 +321,115 @@
 
 \setcounter{secnumdepth}{2} % numbers up to \subsection by default
 
-% Headings are plain \@startsection and \@makechapterhead redefinitions, not
-% titlesec. latex-lab tags headings by hooking the kernel's sectioning code;
-% titlesec replaces that code, so its \section titles were tagged as P rather
-% than H2, and from the 2026-06 kernel titlesec also warns "Non standard
-% sectioning command" for every level. The redefinitions are deferred to
-% \AtBeginDocument because latex-lab's class/after hook redefines
-% \@makechapterhead and would otherwise undo ours.
-% Spacing follows the Typography section of the guide: 2 empty rows before a
-% heading, 1 after, and 1 between two headings (\if@nobreak is still true when
-% a heading directly follows another). The chapter heading sits on the top
-% margin. A negative before-skip suppresses the indent of the first paragraph
-% after the heading, as the guide asks.
+% Headings. Spacing follows the Typography section of the guide: 2 empty rows
+% before a heading, 1 after, and 1 between two headings; the chapter heading
+% sits on the top margin and the first paragraph after a heading is not
+% indented. titlesec is not used: it replaces the kernel sectioning code that
+% latex-lab hooks for tagging, so its section titles were tagged as P, not H2.
+%
+% Two implementations, because the kernel changed underneath us:
+% - From the 2026-06 kernel with tagging, latex-lab builds every heading from
+%   a `heading' template instance and ignores \@makechapterhead and
+%   \@seccntformat, so the layout is declared as instances. The template adds
+%   no space before a heading that directly follows another, which gives the
+%   1 empty row between headings.
+% - Older kernels, or no tagging, use \@startsection and \@makechapterhead.
+%   \if@nobreak is still true when a heading directly follows another, which
+%   is how the before-skip drops to 1 empty row there. A negative before-skip
+%   suppresses the indent of the following paragraph.
+% Both run at \begin{document}, since latex-lab's class/after hook would
+% otherwise overwrite them.
 \makeatletter
-\newcommand*\dithesis@beforeheading{\if@nobreak-\baselineskip\else-2\baselineskip\fi}
-\AtBeginDocument{%
+\newcommand*\dithesis@headinginstances{%
+  % tocloft sets the TOC title as a \chapter here, with \cfttoctitlefont as
+  % its heading declarations; the \hfill pair from the TOC configuration above
+  % would push it right, so center it with a declaration instead.
+  \renewcommand{\cfttoctitlefont}{\normalfont\large\bfseries\centering}%
+  \renewcommand{\cftaftertoctitle}{}%
   % Chapter: 14pt bold, centered, uppercase. On the top margin, 1 empty row after.
-  \def\@makechapterhead#1{%
+  \DeclareInstance{heading}{chapter}{display}{%
+    , name                 = chapter
+    , level                = 0
+    , placement            = top
+    , after-penalty-vspace = 0pt
+    , after-vspace         = \baselineskip
+    , number-format        = \theheading\sectionnamedot
+    , heading-decls        = \normalfont\bfseries\fontsize{14}{17}\selectfont\centering
+    , headformat-instance  = chapter
+    , mark-cmd             = \chaptermark{##1}
+    , contents-extra       = \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                             \addtocontents{lot}{\protect\addvspace{10\p@}}%
+  }%
+  \DeclareInstance{headformat}{chapter}{hang}{%
+    , number-title-sep = 1em
+    , title-format     = \MakeUppercase{##1}
+  }%
+  % Section: 12pt bold, centered. 2 empty rows before and 1 after.
+  \DeclareInstance{heading}{section}{display}{%
+    , name                = section
+    , level               = 1
+    , before-vspace       = 2\baselineskip
+    , after-vspace        = \baselineskip
+    , number-format       = \theheading\sectionnamedot
+    , heading-decls       = \normalfont\bfseries\fontsize{12}{15}\selectfont\centering
+    , headformat-instance = section
+    , mark-cmd            = \sectionmark{##1}
+  }%
+  % Subsection: bold italic, centered. 2 empty rows before and 1 after.
+  \DeclareInstance{heading}{subsection}{display}{%
+    , name                = subsection
+    , parent-name         = section
+    , level               = 2
+    , before-vspace       = 2\baselineskip
+    , after-vspace        = \baselineskip
+    , number-format       = \theheading\sectionnamedot
+    , heading-decls       = \normalfont\bfseries\itshape\centering
+    , headformat-instance = subsection
+    , mark-cmd            = \subsectionmark{##1}
+  }%
+  % Subsubsection: italic, centered. 2 empty rows before and 1 after.
+  \DeclareInstance{heading}{subsubsection}{display}{%
+    , name                = subsubsection
+    , parent-name         = subsection
+    , level               = 3
+    , before-vspace       = 2\baselineskip
+    , after-vspace        = \baselineskip
+    , number-format       = \theheading\sectionnamedot
+    , heading-decls       = \normalfont\itshape\centering
+    , headformat-instance = subsubsection
+  }%
+}
+\newcommand*\dithesis@beforeheading{\if@nobreak-\baselineskip\else-2\baselineskip\fi}
+\newcommand*\dithesis@legacyheadings{%
+  \def\@makechapterhead##1{%
     {\parindent\z@\normalfont\bfseries\fontsize{14}{17}\selectfont\centering
      \ifnum\c@secnumdepth>\m@ne\chapnumformat\hspace{1em}\fi
-     \MakeUppercase{#1}\par}%
+     \MakeUppercase{##1}\par}%
     \vskip\baselineskip}%
-  \def\@makeschapterhead#1{%
+  \def\@makeschapterhead##1{%
     {\parindent\z@\normalfont\bfseries\fontsize{14}{17}\selectfont\centering
-     \MakeUppercase{#1}\par}%
+     \MakeUppercase{##1}\par}%
     \vskip\baselineskip}%
-  % Section: 12pt bold, centered. 2 empty rows before and 1 after.
   \renewcommand\section{\@startsection{section}{1}{\z@}%
     {\dithesis@beforeheading}{\baselineskip}%
     {\normalfont\bfseries\fontsize{12}{15}\selectfont\centering}}%
-  % Subsection: bold italic, centered. 2 empty rows before and 1 after.
   \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
     {\dithesis@beforeheading}{\baselineskip}%
     {\normalfont\bfseries\itshape\centering}}%
-  % Subsubsection: italic, centered. 2 empty rows before and 1 after.
   \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
     {\dithesis@beforeheading}{\baselineskip}%
     {\normalfont\itshape\centering}}%
+  % Heading numbers are "1.1." followed by 1em, like the chapter number.
+  \def\@seccntformat##1{\csname the##1\endcsname\sectionnamedot\hspace{1em}}%
 }
-% Heading numbers are "1.1." followed by 1em, like the chapter number.
-\def\@seccntformat#1{\csname the#1\endcsname\sectionnamedot\hspace{1em}}
+\AtBeginDocument{%
+  \ifdefined\IfInstanceExistsTF
+    \IfInstanceExistsTF{heading}{chapter}%
+      {\dithesis@headinginstances}{\dithesis@legacyheadings}%
+  \else
+    \dithesis@legacyheadings
+  \fi
+}
 \makeatother
 
 % Bullet configuration
