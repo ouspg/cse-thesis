@@ -1,12 +1,10 @@
 scheme-basic          # Base TeX Live scheme; minimal install for LaTeX (required).
 algorithm2e           # Provides structured pseudocode environments; actively maintained.
-appendix              # Customized appendices
 babel-finnish         # Finnish language support for babel; needed for multilingual documents.
 biber                 # Bibliography handling
 biblatex              # Modern bibliography package; recommended over bibtex.
 biblatex-ieee         # IEEE style for biblatex
 boxedminipage         # Creates boxed content blocks; still useful in templates.
-chngcntr              # Allows resetting counters (e.g., figures per chapter); still applicable.
 collection-fontsrecommended # Fonts
 csquotes              # Advanced quotation handling; supports multilingual quotes.
 datetime2             # ✅ Modern date/time formatting package; recommended.

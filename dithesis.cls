@@ -30,8 +30,6 @@
 
 % --- Essential formatting packages needed for document structure ---
 \usepackage{titlecaps}
-\usepackage{chngcntr}
-\usepackage{appendix}
 
 % Footnotes in longtable require it to be loaded early (before most packages)
 \usepackage{longtable}
@@ -81,8 +79,6 @@
 \RequirePackage{geometry}
 \RequirePackage{datetime2}
 
-\newcommand*{\IfEng}[3]{\ifdefstring{#1}{english}{#2}{#3}}%
-\newcommand*{\IfFin}[3]{\ifdefstring{#1}{finnish}{#2}{#3}}%
 \newcommand{\IfLang}[4]{%
   \ifdefstring{#1}{#2}{#3}{#4}%
 }
@@ -126,7 +122,6 @@
 \newcommand{\CopyrightText}{}% variable; used for printing on page
 \newcommand{\MetaCopyrightTextEn}{}% English dc:rights text
 \newcommand{\MetaCopyrightTextFi}{}% Finnish dc:rights text
-\newcommand{\pdfCopyrightURL}{}%
 % \copyrighttext{<English metadata>}{<Finnish metadata>}{<copyright-page text>}
 % The two metadata strings become a bilingual dc:rights in the PDF metadata;
 % the page text is shown on the copyright page in the document's main language.
@@ -134,9 +129,6 @@
   \renewcommand{\MetaCopyrightTextEn}{#1}%
   \renewcommand{\MetaCopyrightTextFi}{#2}%
   \renewcommand{\CopyrightText}{#3}%
-  \makeatletter
-  \@ifundefined{doclicenseURL}{}{\renewcommand{\pdfCopyrightURL}{\doclicenseURL}}%
-  \makeatother
 }%
 
 \newcommand*{\spc}{, }%
@@ -157,8 +149,8 @@
 \newcommand{\getotsikko}{\@otsikko}
 \newcommand{\gettitle}{\@title}
 
-% Deferred so that it wraps the heading definitions dithesis.sty makes at
-% \begin{document}; applied in the preamble, those would replace the wrapper.
+% Deferred so that it wraps the heading definitions made at \begin{document}
+% (\dithesis@setupheadings); applied in the preamble, those would replace it.
 \newcommand{\headertitlecap}{\AtBeginDocument{%
   \IfLang{\MainLang}{english}{
     \let\oldsection\section
@@ -188,7 +180,6 @@
 \newcommand{\thesistypetitle}{}
 \newcommand{\thesistitle}{}
 \newcommand{\universityname}{}
-\newcommand{\universitynameieee}{}
 \newcommand{\pagelabel}{}
 \newcommand{\abstracttitle}{}
 \newcommand{\headerforeword}{}
@@ -236,38 +227,36 @@
     \newpage
     \thispagestyle{empty}%
     \noindent
-    % NoHyper suppresses link annotations on this page, avoiding a tagpdf 1.0b
-    % off-by-one bug where the first annotation StructParent collides with the
-    % last page's StructParents value in the ParentTree.
-    \begin{NoHyper}%
     \CopyrightText\par%
-    \end{NoHyper}%
     \cleardoublepage
   \fi
 }%
 
 \addtocontents{toc}{\protect\thispagestyle{empty}}
+% TOC entry without a page number for a front-matter heading, called right
+% after the heading. It links to the heading's own anchor (\@currentHref,
+% expanded now) rather than to the page, so that the link target is the
+% heading in the PDF structure tree, as PDF/UA expects.
+\newcommand{\frontmattertocentry}[1]{%
+  \addtocontents{toc}{\protect\contentsline{chapter}{#1}{}{\@currentHref}}%
+}
 %Table of contents
 % Commentary: Use \contents to generate the table of contents. Only chapters from Introduction onwards are numbered.
 \newcommand{\contents}{
   \newpage
   \renewcommand{\contentsname}{\tocname}%
-  \addtocontents{toc}{\protect\contentsline{chapter}{\tocname}{}{page.\thepage}
-  }
   \newlength{\temp}
   \setlength{\temp}{\parskip}
   \setlength{\parskip}{0mm}
+  \dithesis@tocanchor% see dithesis-compat.sty
   \tableofcontents
+  \frontmattertocentry{\tocname}%
   \setlength{\parskip}{\temp}
 }
 
 
 \newcommand{\abstractauthors}{%
   {\textbf{\getauthorsabstractacta\ (\the\year) \thesistitle.} \universityname, \facultyname, \degreeprogramme, \thesistypetitle, \shownumberofpages~\pagelabel}
-}
-
-\newcommand{\abstractauthorsieee}{%
-  {\getauthorsabstractieee, ``\thesistitle,'' \thesistypetitle, \degreeprogramme, \universitynameieee, Oulu, \countryname, \the\year.}
 }
 
 \newenvironment{thesisabstract}[1]{%
@@ -283,12 +272,13 @@
   \noindent\abstractauthors
   \par\vspace{2\baselineskip}%
 
-  {\centering\bfseries\fontsize{14}{17}\selectfont\MakeUppercase{\abstracttitle}\par}%
-  \addtocontents{toc}{\protect\contentsline{chapter}{\abstracttitle}{}{page.\thepage}}
+  % The title is a heading (H1) in the structure tree, not a paragraph, and
+  % carries the anchor its TOC entry links to.
+  {\centering\bfseries\fontsize{14}{17}\selectfont\tagpdfsetup{para/tag=H1}%
+   \MakeUppercase{\abstracttitle}\phantomsection\par}%
+  \frontmattertocentry{\abstracttitle}%
   \vspace{1\baselineskip}
-  \makeatletter
   \@afterindentfalse\@afterheading
-  \makeatother
   \begingroup
   \bfseries
   }{%
@@ -316,7 +306,7 @@
 \newcommand{\header}[1]{
   \chapter*{#1}
   \thispagestyle{empty}
-  \addtocontents{toc}{\protect\contentsline{chapter}{#1}{}{page.\thepage} }
+  \frontmattertocentry{#1}%
 }
 
 % Helper macro to get first initial from a name
@@ -359,22 +349,6 @@
     \lastnameA\ \getfirstinitial{\firstnameA}%
   \fi
 }
-%get authors for the abstract (IEEE style: F. Lastname)
-\newcommand{\getauthorsabstractieee}{%
-  \ifdefined\firstnameB
-    \ifdefined\firstnameC
-      \getfirstinitial{\firstnameA}\ \lastnameA,\ %
-      \getfirstinitial{\firstnameB}\ \lastnameB,\ %
-      \getfirstinitial{\firstnameC}\ \lastnameC%
-    \else
-      \getfirstinitial{\firstnameA}\ \lastnameA,\ %
-      \getfirstinitial{\firstnameB}\ \lastnameB%
-    \fi
-  \else
-    \getfirstinitial{\firstnameA}\ \lastnameA%
-  \fi
-}
-
 %signature at the bottom of foreword
 \newcommand{\signature}{
   \DTMlangsetup[en-GB]{monthyearsep={,\space}}

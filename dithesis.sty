@@ -72,7 +72,6 @@
   }
   \renewcommand{\thesistitle}{\getotsikko}
   \renewcommand{\universityname}{Oulun yli\-opis\-to}
-  \renewcommand{\universitynameieee}{\universityname}
   \renewcommand{\pagelabel}{s.}
   \renewcommand{\abstracttitle}{TIIVISTELMÄ}
   \renewcommand{\headerforeword}{ALKULAUSE}
@@ -107,7 +106,6 @@
   }
   \renewcommand{\thesistitle}{\titlecap{\gettitle}}
   \renewcommand{\universityname}{University of Oulu}
-  \renewcommand{\universitynameieee}{Univ. of Oulu}
   \renewcommand{\pagelabel}{p.}
   \renewcommand{\keywordsline}{Keywords: \keywordsmetadata}
   \renewcommand{\abstracttitle}{ABSTRACT}
@@ -225,10 +223,6 @@
 
 % Algorithms
 \usepackage[linesnumbered, ruled]{algorithm2e}
-% algorithm2e has no tagpdf support — suspend tagging for the float to avoid
-% invalid P→P structure violations in tagged/UA-2 output.
-\AddToHook{env/algorithm/begin}{\SuspendTagging{algorithm2e}}
-\AddToHook{env/algorithm/end}{\ResumeTagging{algorithm2e}}
 
 % --- Package configurations ---
 \tolerance=500
@@ -282,8 +276,9 @@
 
 % TOC configuration
 \setcounter{tocdepth}{2}
-\renewcommand{\cfttoctitlefont}{\hfill\normalfont\large\bfseries}
-\renewcommand{\cftaftertoctitle}{\hfill\hfill}
+% The TOC title font. How the title is centered depends on the kernel, see
+% dithesis-compat.sty.
+\newcommand*\dithesis@toctitlefont{\normalfont\large\bfseries}
 \renewcommand{\cftchapfont}{}
 \renewcommand{\cftchappagefont}{}
 \setlength{\cftbeforechapskip}{0mm}
@@ -291,34 +286,17 @@
 \setlength{\cftaftertoctitleskip}{8mm}
 \renewcommand{\cftdotsep}{0.2}
 
-% testphase-toc: \numberline is registered in the LaTeX3 text module as
-% \use_none:n (strips the number) inside a \group_begin:/\group_end: block so
-% that \text_purify:n can build a plain-text tag title without the number.
-% Because \tl_set:cn is LOCAL, the registration reverts after each group ends.
-% We declare \numberline unexpanded HERE (load time = effectively global) so
-% \MakeUppercase in contentsline@text@0@format preserves the number token,
-% which the typesetting \renewcommand below then renders as "N. ".
-% IMPORTANT: must be at load level with ExplSyntaxOn active, NOT inside
-% \AtBeginDocument{...} where the argument is tokenized at read time.
-\ExplSyntaxOn
-\text_declare_expand_equivalent:Nn \numberline { \exp_not:n { \numberline } }
-\ExplSyntaxOff
-
 \AtBeginDocument{%
-  \makeatletter
   \renewcommand{\numberline}[1]{#1\sectionnamedot\enspace}%
   % tocloft's \l@chapter uses {\cftchapfont #1} — it does not call
   % contentsline@text@0@format. Wrap \l@chapter to uppercase before
-  % passing to tocloft. \text_declare_expand_equivalent above ensures
+  % passing to tocloft. Item B2 in dithesis-compat.sty ensures
   % \MakeUppercase preserves \numberline so the number survives.
   \let\oldl@chapter\l@chapter
   \renewcommand*\l@chapter[2]{\oldl@chapter{\MakeUppercase{#1}}{#2}}%
-  \makeatother
 }
 
-\makeatletter
 \def\ps@plain{\ps@myheadings} % plain pages like chapters also top right
-\makeatother
 
 \newcommand{\mainmatter}{
   \clearpage
@@ -336,25 +314,14 @@
 % indented. titlesec is not used: it replaces the kernel sectioning code that
 % latex-lab hooks for tagging, so its section titles were tagged as P, not H2.
 %
-% Two implementations, because the kernel changed underneath us:
-% - From the 2026-06 kernel with tagging, latex-lab builds every heading from
-%   a `heading' template instance and ignores \@makechapterhead and
-%   \@seccntformat, so the layout is declared as instances. The template adds
-%   no space before a heading that directly follows another, which gives the
-%   1 empty row between headings.
-% - Older kernels, or no tagging, use \@startsection and \@makechapterhead.
-%   \if@nobreak is still true when a heading directly follows another, which
-%   is how the before-skip drops to 1 empty row there. A negative before-skip
-%   suppresses the indent of the following paragraph.
-% Both run at \begin{document}, since latex-lab's class/after hook would
-% otherwise overwrite them.
-\makeatletter
+% The layout is declared as latex-lab `heading' template instances, which the
+% kernel uses from 2026-06. The template adds no space before a heading that
+% directly follows another, which gives the 1 empty row between headings.
+% Older kernels get an equivalent \@startsection implementation from
+% dithesis-compat.sty, which also decides which of the two runs
+% (\dithesis@setupheadings, at \begin{document}, as latex-lab's class/after
+% hook would otherwise overwrite the definitions).
 \newcommand*\dithesis@headinginstances{%
-  % tocloft sets the TOC title as a \chapter here, with \cfttoctitlefont as
-  % its heading declarations; the \hfill pair from the TOC configuration above
-  % would push it right, so center it with a declaration instead.
-  \renewcommand{\cfttoctitlefont}{\normalfont\large\bfseries\centering}%
-  \renewcommand{\cftaftertoctitle}{}%
   % Chapter: 14pt bold, centered, uppercase. On the top margin, 1 empty row after.
   \DeclareInstance{heading}{chapter}{display}{%
     , name                 = chapter
@@ -408,38 +375,7 @@
     , headformat-instance = subsubsection
   }%
 }
-\newcommand*\dithesis@beforeheading{\if@nobreak-\baselineskip\else-2\baselineskip\fi}
-\newcommand*\dithesis@legacyheadings{%
-  \def\@makechapterhead##1{%
-    {\parindent\z@\normalfont\bfseries\fontsize{14}{17}\selectfont\centering
-     \ifnum\c@secnumdepth>\m@ne\chapnumformat\hspace{1em}\fi
-     \MakeUppercase{##1}\par}%
-    \vskip\baselineskip}%
-  \def\@makeschapterhead##1{%
-    {\parindent\z@\normalfont\bfseries\fontsize{14}{17}\selectfont\centering
-     \MakeUppercase{##1}\par}%
-    \vskip\baselineskip}%
-  \renewcommand\section{\@startsection{section}{1}{\z@}%
-    {\dithesis@beforeheading}{\baselineskip}%
-    {\normalfont\bfseries\fontsize{12}{15}\selectfont\centering}}%
-  \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-    {\dithesis@beforeheading}{\baselineskip}%
-    {\normalfont\bfseries\itshape\centering}}%
-  \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-    {\dithesis@beforeheading}{\baselineskip}%
-    {\normalfont\itshape\centering}}%
-  % Heading numbers are "1.1." followed by 1em, like the chapter number.
-  \def\@seccntformat##1{\csname the##1\endcsname\sectionnamedot\hspace{1em}}%
-}
-\AtBeginDocument{%
-  \ifdefined\IfInstanceExistsTF
-    \IfInstanceExistsTF{heading}{chapter}%
-      {\dithesis@headinginstances}{\dithesis@legacyheadings}%
-  \else
-    \dithesis@legacyheadings
-  \fi
-}
-\makeatother
+\AtBeginDocument{\dithesis@setupheadings}
 
 % Bullet configuration
 \setlist[itemize,1]{label=\raisebox{0.2ex}{\tiny$\bullet$}}
@@ -465,12 +401,13 @@
 versus via with within without}
 
 % Math display spacing
-\makeatletter
 \g@addto@macro{\normalsize}{%
   \setlength{\abovedisplayskip}{0pt}
   \setlength{\abovedisplayshortskip}{0pt}
   \setlength{\belowdisplayskip}{12pt}
   \setlength{\belowdisplayshortskip}{12pt}
 }
-\makeatother
 
+% Kernel- and package-version workarounds live in one place so they can be
+% dropped as upstream catches up. Loaded last: it adjusts settings made above.
+\RequirePackage{dithesis-compat}

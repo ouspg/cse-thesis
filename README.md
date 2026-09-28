@@ -52,6 +52,9 @@ Contributors to the template include:
    * Copyright page contents for "All rights reserved" and CC-BY-4.0.
  * dithesis.cls, dithesis.sty
    * Document class and style package.
+ * dithesis-compat.sty
+   * Workarounds for particular LaTeX kernel and package versions, each
+     marked with when it can be removed. Loaded by dithesis.sty.
  * doclicense-di.sty, doclicense-finnish.ldf
    * CC license support: adds alt-text to the license badge image and
      Finnish translations for doclicense.
