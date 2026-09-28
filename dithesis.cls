@@ -204,10 +204,13 @@
 
 %Title page
 \newcommand{\maketitlepage}{
-  \sloppy
   \DTMlangsetup{showdayofmonth=false}
   \selectlanguage{\MainLang}
   {
+    % \sloppy is scoped to this group: the title block is centered and set in
+    % large type, where a long title would otherwise overflow. Left unscoped it
+    % leaks into the whole document, since nothing restores \fussy afterwards.
+    \sloppy
     \centering
     \includegraphics*[width=0.22\textwidth,
       alt={University of Oulu logo}]{\universitylogo}\\

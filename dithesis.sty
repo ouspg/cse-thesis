@@ -232,11 +232,20 @@
 
 % --- Package configurations ---
 \tolerance=500
+% With hyphenation disabled above, TeX cannot break long words to fill a line,
+% so justified paragraphs otherwise overflow into the margin. \emergencystretch
+% grants an extra pass with wider interword space, which trades loose lines for
+% overfull ones. The Acta Universitatis Ouluensis template pairs its own
+% no-hyphenation rule with the same 3em value.
+\setlength{\emergencystretch}{3em}
 \setlength{\parindent}{0.5cm}
 \widowpenalty10000
 \clubpenalty10000
 \displaywidowpenalty10000
-\hbadness=99999
+% Report genuinely loose lines. This was \hbadness=99999, which silenced every
+% underfull-hbox warning; with hyphenation disabled above, loose lines are the
+% failure mode most likely to need a manual rewrite.
+\hbadness=1000
 \graphicspath{{Figures/}{../Figures/}}
 
 % Counter configurations
